@@ -1,0 +1,163 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.24)  19 MAY 2020 15:50
+entering extended mode
+**./bare_jrnl.tex
+(bare_jrnl.tex
+LaTeX2e <2020-02-02> patch level 3
+L3 programming layer <2020-02-21> (IEEEtran.cls
+Document Class: IEEEtran 2002/11/18 revision V1.6b by Michael Shell
+-- See the "IEEEtran_HOWTO" manual for usage information.
+-- The source comments contain changelog notes.
+\@IEEEtrantmpdimenA=\dimen134
+\@IEEEtrantmpdimenB=\dimen135
+\@IEEEtrantmpcountA=\count167
+\@IEEEtrantmpcountB=\count168
+\@IEEEtrantmptoksA=\toks14
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 7
+76.
+
+("C:\Users\acabrejasegea\AppData\Local\Programs\MiKTeX 2.9\tex/latex/psnfss\ot1
+ptm.fd"
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+\@IEEEnormalsizefontbaselineskip=\skip47
+
+-- This is a 10 point document.
+\normalsizebaselineskip=\skip48
+\normaljot=\skip49
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1095.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1095.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1095.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1095.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1095.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1095.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1095.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1095.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1095.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1095.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1095.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <11> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1095.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1095.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1095.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1095.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <17> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1095.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1095.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1095.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1095.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1095.
+
+\IEEEilabelindentA=\dimen136
+\IEEEilabelindentB=\dimen137
+\IEEEilabelindent=\dimen138
+\IEEEelabelindent=\dimen139
+\IEEEdlabelindent=\dimen140
+\labelindent=\dimen141
+\IEEEiednormlabelsep=\dimen142
+\IEEEiedmathlabelsep=\dimen143
+\IEEEiedtopsep=\skip50
+\c@section=\count169
+\c@subsection=\count170
+\c@subsubsection=\count171
+\c@paragraph=\count172
+\c@IEEEsubequation=\count173
+\abovecaptionskip=\skip51
+\belowcaptionskip=\skip52
+\c@figure=\count174
+\c@table=\count175
+\@IEEEeqnnumcols=\count176
+\@IEEEeqncolcnt=\count177
+\@IEEEtmpitemindent=\dimen144
+\c@biography=\count178
+\@IEEEtranrubishbin=\box45
+)
+("C:\Users\acabrejasegea\AppData\Local\Programs\MiKTeX 2.9\tex/latex/l3backend\
+l3backend-pdfmode.def"
+File: l3backend-pdfmode.def 2020-02-21 L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count179
+\l__pdf_internal_box=\box46
+)
+No file bare_jrnl.aux.
+\openout1 = `bare_jrnl.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 262.
+LaTeX Font Info:    ... okay on input line 262.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 262.
+LaTeX Font Info:    ... okay on input line 262.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 262.
+LaTeX Font Info:    ... okay on input line 262.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 262.
+LaTeX Font Info:    ... okay on input line 262.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 262.
+LaTeX Font Info:    ... okay on input line 262.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 262.
+LaTeX Font Info:    ... okay on input line 262.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 262.
+LaTeX Font Info:    ... okay on input line 262.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 316.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 316.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 316.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 324.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 355.
+[1{C:/Users/acabrejasegea/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
+
+
+
+]
+(bare_jrnl.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 976 strings out of 481545
+ 17737 string characters out of 2909744
+ 252439 words of memory out of 3000000
+ 16286 multiletter control sequences out of 15000+200000
+ 575937 words of font info for 94 fonts, out of 3000000 for 9000
+ 1144 hyphenation exceptions out of 8191
+ 27i,8n,28p,240b,253s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/bas
+e/8r.enc}<C:/Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
+urw/times/utmb8a.pfb><C:/Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/
+fonts/type1/urw/times/utmbi8a.pfb><C:/Users/acabrejasegea/AppData/Local/Program
+s/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/acabrejasegea/AppData/L
+ocal/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on bare_jrnl.pdf (1 page, 54616 bytes).
+PDF statistics:
+ 23 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

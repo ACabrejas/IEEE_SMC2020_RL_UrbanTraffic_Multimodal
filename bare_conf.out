@@ -1,0 +1,22 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Related Work}{}% 2
+\BOOKMARK [1][-]{section.3}{Problem Definition}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Reinforcement Learning}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Deep Reinforcement Learning}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Modal Prioritisation}{section.3}% 6
+\BOOKMARK [1][-]{section.4}{Methods}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Reinforcement Learning Agent}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.2}{Reinforcement Learning Environment}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.3}{State Representation}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.4}{Actions of the Agent}{section.4}% 11
+\BOOKMARK [1][-]{section.5}{Reward Functions}{}% 12
+\BOOKMARK [2][-]{subsection.5.1}{Queue based Reward Functions}{section.5}% 13
+\BOOKMARK [2][-]{subsection.5.2}{Waiting Time based Rewards Functions}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.3}{Delay Based Reward Functions}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.4}{Average Speed Reward Functions}{section.5}% 16
+\BOOKMARK [1][-]{section.6}{Experiments}{}% 17
+\BOOKMARK [2][-]{subsection.6.1}{Training Process}{section.6}% 18
+\BOOKMARK [2][-]{subsection.6.2}{Evaluation and Scoring}{section.6}% 19
+\BOOKMARK [1][-]{section.7}{Results}{}% 20
+\BOOKMARK [1][-]{section.8}{Discussion and Conclusion}{}% 21
+\BOOKMARK [1][-]{section*.2}{References}{}% 22
