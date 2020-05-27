@@ -61,86 +61,277 @@ The abstract goes here.
 
 
 \section{Introduction}
-\lipsum(1)
+%\lipsum(1)
 
 \section{Related Work}
-\lipsum()
+%\lipsum()
 
+As indicated in \cite{survey2020}, pedestrian implementation has a high impact on learning performance, being often discarded as unimportant or left for future work.
 
+In this paper we attempt to cover this gap in the literature, providing with a performance assessment of RL agents serving both vehicles and pedestrians, using a variety of rewards in a calibrated model of a real-world junction.
 \section{Problem Definition}
-                                             
-\subsection{Reinforcement Learning}
+\subsection{Markov Decision Processes and Reinforcement Learning}
+The problem is framed as a Markov Decision Process (MDP), satisfying the Markov property: given a current state $s_t$, the next state $s_{t+1}$ is independent of the succession of previous states $\{s_{t-1}, s_{t-2}, ..., s_0\}$.
+An MDP is defined by the 5-element tuple:
+\begin{enumerate}
+\item The set of possible states $\mathcal{S}, s_i\in \mathcal{S}$.
+\item The set of possible actions $\mathcal{A}, a_i\in \mathcal{A}$.
+\item The probabilistic transition function between states $\mathcal{T}$.
+\item The discount factor $\gamma \in [0,1]$ 
+\item The scalar Reward Function $\mathcal{R}$. 
+\end{enumerate}
+
+The objective of an MDP agent is to find an optimal policy $\pi^*$, mapping states to actions, that maximises the sum of expected discounted reward.
+\begin{equation}
+R_t = \mathbb{E} \bigg{[} \sum^{\infty}_{i=0} \gamma^i r_{t+i} \bigg{]} 
+\label{eq:reward}
+\end{equation}
+In this case, $\mathcal{T}$ is unknown, only allowing for model-free Reinforcement Learning (RL).
+
+Model-Free RL is an area of Machine Learning covering how independent agents can take sequential decisions in an unknown environment and learn from these in order to obtain $\pi^*$. 
+There are two main approaches: Policy-Based RL, in which states are mapped to a distribution of potential actions, and Value-Based RL, which is used in this paper and estimates the value (expected return) of the different state-action pairs under a given policy $\pi$ as defined in Eq. \ref{eq:value}.
+\begin{equation}
+V^{\pi}(s) = \mathbb{E} [R_t|s,\pi]
+\label{eq:value}
+\end{equation}
+
+\subsection{Value-Based Reinforcement Learning}
+
+
+using a scalar reward signal as indication of the performance of its actions.
+An optimal policy will be that which maximises the expected future discounted rewards $R_t$, choosing an optimal sequence of actions $\pi^*(s)=a^*$ to achieve it.
+The parameter regulating how far into the future is the agent optimising for, is the discount factor $\gamma$, as shown in Eq. \ref{eq:reward}.
+
 
 \subsection{Deep Reinforcement Learning}
-
-\subsection{Modal Prioritisation}
-
+The concept of Deep Reinforcement Learning refers to RL algorithms in which a Deep Neural Network is used to approximate the policy function.
 
 \section{Methods}
 
 \begin{figure}                                                
 \centering                                                    
-\includegraphics[width=2.5in]{rl}                                    
-\caption{Study Junction model in SUMO}                                  
+\includegraphics[width=2.5in]{schematic_pp2.png}                                    
+\caption{Schematic representation of information transmission occurring between Agent and SUMO Environment}                                  
 \label{rl}                                               
-\end{figure}     
+\end{figure}  
 
 \subsection{Reinforcement Learning Agent}
-
+The basic common agent used to obtain these results is a standard implementation of a Deep Q Network (DQN) in PyTorch \cite{pytorch}, optimising its weights via Stochastic Gradient Descent \cite{kiefer} using ADAM \cite{adam} as optimizer.
+The learning rate is set to $\alpha=10^{-5}$ and the discount factor to $\gamma = 0.8$ for all simulations.
+The Neural Network in the agent uses 2 hidden, fully connected layers of sizes 500 and 1000 respectively, using ReLU as an activation function.
 \subsection{Reinforcement Learning Environment}
+Our environment is modelled in the microscopic traffic simulator SUMO \cite{sumo}, representing a real-world intersection in Greater Manchester, UK.
+The junction consists of four arms, with 6 incoming lanes (two each in North-South orientation, and one each in East-West orientation) and 4 pedestrian crossings.
+The real-world site also contains 4 Vivacity vision-based sensors, able to supply queue length, speed and flow data.
+The demand and turning rations at the junction have been calibrated using 3.5 months of journey time and flow data collected by these sensors.
+The environment includes an emulated traffic signal controller, responsible of changing between the different stages in the intersection and enforcing the operational limitations, focused on safety.
+This includes enforcing green times, intergreen times, as well as determining allowed stages.  
+
+A stage is defined as a group of non-conflicting green lights (phases) in a junction which move at the same time.
+
+The Agent decides which stage to select next and requests this from an emulated traffic signal controller, which moves to that stage subject to its limitations, which are primarily safety-related.
+The site features 4 Vivacity vision-based sensors which can provide flow, queue length and speed data. The data available to the agent is restricted to what can be obtained from these sensors.
+\begin{figure}                                                
+\centering                                                    
+\includegraphics[width=2.5in]{gmaps_iso_censored.jpg}                                    
+\caption{Aerial view of Study Junction from Google Earth.}                                  
+\label{intersection}                                               
+\end{figure}     
 
 \begin{figure}                                                
 \centering                                                    
 \includegraphics[width=2.5in]{intersection}                                    
-\caption{Study Junction model in SUMO}                                  
+\caption{Study Junction model in SUMO with a schematic representation of the areas covered by sensors.}                                  
 \label{intersection}                                               
 \end{figure}     
 
 \subsection{State Representation}
+The agent receives an observation of the simulator state as input, which remains constant across all experiments here presented.
+This observation is a combination of the state of the traffic controller (which stage is active) and data from the sensors.
+The data from the sensors is comprised of the occupancy in each lane area detector and a binary signal representing whether the "Pedestrian Cross" button has been pushed or not.
+A series of these, covering the last 12 seconds at a resolution of 0.6 seconds (20 state-entries) are provided to the agent.
+
+While there is a variety of state representations available in the literature, often being more information dense, many of their features are not obtainable in practice with available sensors.
+Furthermore, recent studies \cite{genders2018} show that more information-dense states provide marginal improvements, if any, being able to control isolated intersections with simple inputs.
+
+\begin{itemize}
+\item 7 * Area sensor occupancies
+\item VDR3 Pedestrian Button Push
+\item G1-G4 Stage bits (Binary, active/inactive)
+\item NS1-NS4 Next Stage Bits (ASK SHAUN WHERE THEY COME FROM, FUNCTION AND HOW TO OBTAIN THEM)
+\end{itemize}
 
 \subsection{Actions of the Agent}
+The actions available to the agent
 
+The junction is configured to have 4 available stages. 
+The Agent is able to choose Stage 2, Stage 3 or Stage 4, yielding an action space size of 3.
+Stage 1 serves a leading right turn phase from the main road, and was excluded by suggestion of the transport authority, since it is an intermediary stage that the controller will go through in order to reach Stage 2, which serves the main road.
+Stage 3 only serves pedestrians, which are not considered here, so was also excluded.
+Stage 4 serves the side roads, which do experience significant demand.
+In each timestep when a stage has been active longer than the minimum green time, the agent generates state-action values for each potential stage and the highest value is chosen according to an $\epsilon$-greedy policy \cite{suttonbarto}. If the agent chooses the same stage, that stage is extended by 0.6s, otherwise the controler begins the transition to the other stage.
+The extension can be chosen indefinitely, as long as the agent identifies it as the best action.
+
+The complexity in the decision-making stems from the combination of using of Stage 1 as an intermediate state and the extensions to the stage duration.
+Traditional RL for Urban Traffic Control regards each Stage as an action for the agent to take, based on the instantaneous state of the system.
+However, in the case of the intermediate Stage 1, the agent has to choose when to start the transition without knowledge of the future state when Stage 2 begins.
+Regarding the extensions, given that their length is smaller than that of the initial phase, their impact on the state will be smaller, generating a distribution of reward and state-action value outcomes that the agent needs to approximate.
+\begin{figure}                                                
+\centering                                                    
+\includegraphics[width=2.5in]{phases_limited.png}                                    
+\caption{Allowed stages and the phases that compose them. Stage 1 is an intermediate Stage, being necessary to go through it to reach Stage 2.}                                  
+\label{intersection}                                               
+\end{figure}     
+
+\section{Modal Prioritisation}
+The agent has to serve both vehicles and pedestrians arriving at the intersection, seeking to jointly optimise the intersection for both modes of transport.
+
+All the reward functions presented in this paper follow the same structure.
+The reward, as seen by the agent, will be a linear combination of an independently calculated reward for the vehicles and another for the agents, as it can be seen in Eq. \ref{eq:modal}.
+\begin{equation}
+R_t = \alpha * R^v_t + \beta * R^p_t
+\label{eq:modal}
+\end{equation}
+In this way, $\alpha$ and $\beta$ are the Modal Prioritisation coefficients for our rewards.
 
 \section{Reward Functions}
+In this section the individually tested reward functions are introduced.
 
-\subsection{Queue based Reward Functions}
+Let $N$ be the set of lane queue sensors present in the intersection.
+Let $M$ be the set of pedestrian occupancy sensors in the junction.
+Let $V_t$ and $P_t$ be respectively the set of vehicles on incoming lanes, and the set of pedestrians waiting to cross in the intersection at time $t$. 
+Let $s_v$ be the individual speeds of the vehicles, $\tau^v$ and $\tau^p$ the waiting times of vehicles and pedestrians respectively.
+Let $\rho_v$ and $\rho_p$ the vehicular and pedestrian flows across the junction over the length of the action.
+Let $t^p$ be the time at which the previous action was taken and $t^{pp}$ the time of the action before that.
+Lastly, let $t^v_e$ and $t^p_e$ the entry times of vehicles and pedestrians to the area covered by sensors. 
 
-\subsection{Waiting Time based Rewards Functions}
+\subsection{Queue Length based Rewards}
+\subsubsection{Queue Length}
+The reward will be the negative sum over all $n$ sensors of the queues ($q$) at time step $t$.
+Similar to the reward introduced in \cite{prashanth2011} but without the need for thresholding the queue values, and used in \cite{aslani2019}.
+\begin{equation}
+    R_t = - \alpha \sum_{n \in N} q^v_{t} - \beta \sum_{m \in M} q^p_{t}
+\label{eq:queue}
+\end{equation}
+One of the first published in the field of Q-Learning, this reward function has low sensor requirements and is implementable using just induction loops.
 
-\subsection{Delay Based Reward Functions}
+\subsubsection{Queue Squared}
+Introduced in \cite{gendersthesis}, this function squares the result of adding all queues.
+This increasingly penalises actions that lead to longer queues.
+\begin{equation}
+   R_t = - \alpha \bigg( \sum_{n \in N} q^v_{t} \bigg)^2 - \beta \bigg( \sum_{m \in M} q^p_{t} \bigg)^2
+\label{eq:queuesq} 
+\end{equation}
 
-\subsection{Average Speed Reward Functions}
+\subsubsection{Delta Queue}
+The reward will be the difference between the previous and current sum of queues, turning positive for those action that decrease the queue size and negative when it increases.
+Similar approach to the rewards shown in Eqs. (\ref{eq:delta_wait_time}) and (\ref{eq:changedelay}).
+\begin{equation}
+    R_t = \alpha \bigg( \sum_{n \in N} q^v_{t^p} -\sum_{n \in N} q^v_{t} \bigg) + \beta \bigg( \sum_{m \in M} q^p_{t^p} - \sum_{m \in M} q^p_{t} \bigg)
+    \label{deltaqueue}
+\end{equation}
+
+\subsection{Waiting Time based Rewards}
+\subsubsection{Wait Time}
+The reward will be the negative aggregated time in queue ($\tau$) that the vehicles at the intersection have accumulated since the last action. 
+\begin{equation}
+R_t = - \bigg( \sum_{v \in V_t} \tau^v_{t} + \sum_{p \in P_t} \tau^p_{t} \bigg)
+\label{eq:wait_time}
+\end{equation}
+This function is more information-dense than queues, scaling with individual waiting times, but requires more advanced hardware for individual vehicle recognition.
+
+\subsubsection{Delta Wait Time}
+Similar to Eq. \ref{deltaqueue}, used in \cite{liang2018}. The reward will be the difference between total intersection $\tau$ between the current time and the previous action. 
+\begin{equation}
+R_t = \alpha \bigg( \sum_{v \in V_t} \tau^v_{t_p} -  \sum_{v \in V_t} \tau^v_{t} \bigg) + \beta \bigg( \sum_{p \in P_t} \tau^p_{t_p} -  \sum_{p \in P_t} \tau^p_{t} \bigg)
+\label{eq:delta_wait_time}
+\end{equation}
+
+\subsubsection{Waiting Time Adjusted by Demand}
+The reward will be the negative aggregated waiting time as above, but in this case it is divided by an estimate of the current demand ($\hat{d}$) or arrival rate, implicitly accepting that given a wait time as a result of an action, the penalty should scale with the difficulty of the task.
+\begin{equation}
+   R_t = -\frac{1}{\hat{d}} \bigg( \alpha \sum_{v \in V_t} \tau^v_{t} + \beta \sum_{p \in P_t} \tau^p_{t} \bigg)
+\label{eq:wait_time_norm} 
+\end{equation}
+
+\subsection{Time Lost based Rewards}
+\subsubsection{Time Lost}
+Used in \cite{wan2018}, the reward will be the negative aggregated delay accumulated by all vehicles upstream from the intersection, understanding the delay as deviations from the vehicle's maximum allowed speed ($s_{max}$). 
+Assuming a simulator time step of length $\delta$:
+\begin{equation}
+    R_t = - \bigg( \alpha \sum_{v \in V_t}  \sum_{t^p_e}^t \delta * \big( 1-\frac{s_v}{s_{max}} \big) + \beta \sum_{p \in P_t} \tau^p_t \bigg)
+\label{eq:delay}
+\end{equation}
+This reward provides a more accurate representation of the total delay caused, since it also accounts for all deceleration happening around the intersection. 
+
+\subsubsection{Delta Time Lost}
+Introduced in \cite{abdulhai2010} and used in \cite{mannion} \cite{genders2016} \cite{gao2017} \cite{mousavi2017} and \cite{genders2018}.
+Similar to Eq. (\ref{eq:delta_wait_time}).
+The reward will be the change of global delay in the vehicles around the intersection since the last action was taken.
+\begin{equation}
+\begin{split}
+R_t =  \alpha \bigg( \sum_{v \in V_t} \sum_{t^{pp}}^{t^p} ts * & \big( 1-\frac{s_v}{s_{max}} \big) - \sum_{v \in V_t}  \sum_{t^p}^t ts * \big( 1-\frac{s_v}{s_{max}} \big) \bigg) \\
+& + \beta \bigg( \sum_{p \in P_t} \tau^p_{t^p} - \sum_{p \in P_t} \tau^p_{t} \bigg) 
+\end{split}
+\label{eq:changedelay} 
+\end{equation}
+This reward function provides both punishment and reward centered around zero.
+
+\subsubsection{Delay Adjusted by Demand}
+The reward will be the same as in the point above, but divided by an estimate of the demand level.
+\begin{equation}
+    R_t = -\frac{1}{\hat{d}} \bigg( \alpha \sum_{v\in V_t}  \sum_{t^p}^t ts * \big( 1-\frac{s_v}{s_{max}} \big) + \beta \sum_{p \in P_t} \tau^p_{t} \bigg)
+\label{eq:delay}
+\end{equation}
+
+\subsection{Average Speed based Rewards}
+\subsubsection{Average Speed, Wait Time Variant}
+This reward seeks to maximise the average joint speed of all vehicles around an area of influence around the intersection. Let $\tau_{max}$ be a maximum desirable pedestrian waiting time.
+\begin{equation}
+    R_t = \alpha \frac{\sum_{v \in V_t} \frac{s}{s_{max}}}{\sum_{V_t} v}  + \beta \sum_{p \in P_t} \frac{\tau^p_{t}}{\tau_{max}}
+\label{eq:avgspeed_wait}
+\end{equation}
+
+\subsubsection{Average Speed, Occupancy Variant}
+This reward seeks to maximise the average joint speed of all vehicles around an area of influence around the intersection. Let $p_{max}$ be a maximum desirable number of pedestrians in the crossing.
+\begin{equation}
+    R_t =   \alpha \frac{ \sum_{v \in V_t} \frac{s}{s_{max}}}{\sum_{V_t} v} + \beta \sum_{p \in P_t} \frac{p}{p_{max}}
+\label{eq:avgspeed_occ}
+\end{equation}
+
+\subsubsection{Average Speed Scaled by Demand, Demand and Occupancy}
+The reward will be, as in the previous two entries, but multiplied by an estimation of the demand $\hat{d}$. This function scales the reward with the difficulty of the task.
+
+\subsection{Throughput based Rewards}
+\subsubsection{Throughput}
+The reward will be the total number of vehicles that cleared the intersection between the last time that an action was taken and now.
+\begin{equation}
+    r_t = \alpha \sum_{t_p}^t \rho_v + \beta \sum_{t_p}^t \rho_p
+\label{eq:throughput}
+\end{equation}
 
 
 \section{Experiments}
 
-\subsection{Training Process}
+\subsection{DQN Agents Training}
+The training process covered 1500 episodes running for 3000 steps of length $\delta=0.6$ seconds for a simulated time of 30 minutes (1800 seconds).
+The traffic demand is increased as the training advances, with the agent progressively facing sub-saturated, near-saturated and over-saturated scenarios, with a minimum of 1 vehicle/3 seconds (1200 vehicles/h) and a maximum of 1 vehicle/1.4 seconds (2571 vehicles/h).
 
+For each reward function, 10 copies of the agent were trained, and their performance was compared against two reference systems. These were Maximum Occupancy (longest queue first) and Vehicle Actuated System D \cite{highways}, commonly used in the UK. The agent performing best in each class was selected for scoring.
 \subsection{Evaluation and Scoring}
+Each agent is tested and its performance scored over 100 copies of 3 different scenarios with different demand levels. Each evaluation has the same length as the training episodes, and the demand is kept constant during each run.
+These 3 scenarios are aimed to test the agents during normal operation, peak times and over-saturated conditions, and will be henceforth referred to as Normal, Peak and OverSat.
+Peak Scenario uses the level of demand observed in the junction that results in saturated traffic conditions under traditional controllers.
 
+The Normal Scenario uses an arrival rate of 1 vehicle / 2.1 seconds (1714 vehicles/h). Peak Scenario uses an arrival rate of 1 vehicle / 1.7 seconds (2117 vehicles/h). OverSat Scenario uses an arrival rate of 1 vehicle / 1.4 seconds (2400 vehicles/h)
 
 \section{Results}
 
 \section{Discussion and Conclusion}
+Methods based on maximisation of the average speed seem to be Pareto Optimal in this context.
+In them, the travel times are allocated in a way, such that attempting to optimise any of our result variables (i.e. vehicle travel time and pedestrian travel time) will have a negative impact on the other one.
 
 
-
-% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class option
-% should be used if it is desired that the figures are to be displayed while
-% in draft mode.
-
-% An example of a floating figure using the graphicx package.
-% Note that \label must occur AFTER (or within) \caption.
-% For figures, \caption should occur after the \includegraphics.
-%
-%\begin{figure}
-%\centering
-%\includegraphics[width=2.5in]{myfigure}
-% where an .eps filename suffix will be assumed under latex, 
-% and a .pdf suffix will be assumed for pdflatex
-%\caption{Simulation Results}
-%\label{fig_sim}
-%\end{figure}
 
 
 % An example of a double column floating figure using two subfigures.
@@ -197,7 +388,7 @@ The abstract goes here.
 \section*{Acknowledgment}
 % optional entry into table of contents (if used)
 %\addcontentsline{toc}{section}{Acknowledgment}
-This work was part funded by InnovateUK grant 104219 andpart funded by EPSRC Grant EP/L015374. 
+This work was part funded by EPSRC Grant EP/L015374 and part funded by InnovateUK grant 104219. 
 We are also grateful to W. Chernikoff, Toyota Mobility Foundation and The Alan Turing Institute for support in the initial stages.
 
 
@@ -228,11 +419,15 @@ We are also grateful to W. Chernikoff, Toyota Mobility Foundation and The Alan T
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
 \begin{thebibliography}{1}
+\bibitem{survey2020} Haydari, A., \& Yilmaz, Y. (2020). Deep Reinforcement Learning for Intelligent Transportation Systems: A Survey. arXiv preprint arXiv:2005.00935.
 
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to {\LaTeX}}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
-
+\bibitem{sumo} Lopez, P. A., Behrisch, M., Bieker-Walz, L., Erdmann, J., Flötteröd, Y. P., Hilbrich, R., ... \& WieBner, E. (2018, November). Microscopic traffic simulation using sumo. In 2018 21st International Conference on Intelligent Transportation Systems (ITSC) (pp. 2575-2582). IEEE.
+\bibitem{suttonbarto} Sutton, R. S., \& Barto, A. G. (2018). Reinforcement learning: An introduction. MIT press.
+\bibitem{genders2018} Genders, W., \& Razavi, S. (2018). Evaluating reinforcement learning state representations for adaptive traffic signal control. Procedia computer science, 130, 26-33.
+\bibitem{pytorch} Paszke, A., Gross, S., Massa, F., Lerer, A., Bradbury, J., Chanan, G., ... \& Desmaison, A. (2019). PyTorch: An imperative style, high-performance deep learning library. In Advances in Neural Information Processing Systems (pp. 8024-8035).
+\bibitem{kiefer} Kiefer, J., \& Wolfowitz, J. (1952). Stochastic estimation of the maximum of a regression function. The Annals of Mathematical Statistics, 23(3), 462-466.
+\bibitem{adam} Kingma, D. P., \& Ba, J. (2014). Adam: A method for stochastic optimization. arXiv preprint arXiv:1412.6980.
+\bibitem{highways} Highways Agency (2002). Siting Of Inductive Loops For Vehicle Detecting Equipments At Permanent Road Traffic Signal Installations. MCE 0108 Issue C.
 \end{thebibliography}
 
 
