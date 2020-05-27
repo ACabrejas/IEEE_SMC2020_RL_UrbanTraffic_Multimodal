@@ -95,32 +95,46 @@ V^{\pi}(s) = \mathbb{E} [R_t|s,\pi]
 \label{eq:value}
 \end{equation}
 
-\subsection{Value-Based Reinforcement Learning}
+\subsection{Q Learning and Value-Based RL}
+Q-Learning\cite{watkins} is an off-policy value-based RL algorithm. For any finite MDP, it can find an optimal policy (maximise expected total discounted reward) starting from the current state\cite{melo}.
+Q-Learning aims to learn an optimal action-value function $Q^*(s,a)$, defined as the total return after being in state $s$, taking action $a$ and then following policy $\pi^*$. %as shown in Eq.\ref{eq:qlearning}.
+\begin{equation}
+Q^*(s,a) = \max_{\pi} \mathbb{E} \big[ R_t | s=s_t, a=a_t, \pi^* \big]
+\label{eq:qlearning}
+\end{equation}
+Traditional table-based Q-Learning approximates $Q^*(s,a)$ recursively through successive Bellman updates,
+\begin{equation}
+Q^{\pi}(s_t,a_t) \leftarrow Q^{\pi}(s_t,a_t) + \alpha \big( y_t - Q(s_{t+1},a) \big)
+\label{eq:bellmanupdate}
+\end{equation}
+with $y_t$ being the Temporal Difference(TD) target for the Q-function.
+\begin{equation}
+y_t = R_t + \gamma \,\,\, \max_{a_{t+1}} Q^{\pi}(s_{t+1},a_{t+1})
+\end{equation}
 
-
-using a scalar reward signal as indication of the performance of its actions.
-An optimal policy will be that which maximises the expected future discounted rewards $R_t$, choosing an optimal sequence of actions $\pi^*(s)=a^*$ to achieve it.
-The parameter regulating how far into the future is the agent optimising for, is the discount factor $\gamma$, as shown in Eq. \ref{eq:reward}.
-
-
-\subsection{Deep Reinforcement Learning}
-The concept of Deep Reinforcement Learning refers to RL algorithms in which a Deep Neural Network is used to approximate the policy function.
-
-\section{Methods}
+This table representation is not useful for high dimensionality cases, since the size of our table would increase exponentially, nor for continuous cases, since every distinct $s\in\mathcal{S}$ would require an entry.
 
 \begin{figure}                                                
 \centering                                                    
 \includegraphics[width=2.5in]{schematic_pp2.png}                                    
-\caption{Schematic representation of information transmission occurring between Agent and SUMO Environment}                                  
+\caption{Schematic representation of information transmission in Reinforcement Learning taking place between Agent and SUMO Environment}                                  
 \label{rl}                                               
 \end{figure}  
 
+\subsection{Deep Q Network}
+One way of dealing with the issues of Q-Learning in high dimensional spaces is to use a Neural Network as function approximator, called Deep Q-Network (DQN) \cite{mnih2015}.
+The Q-function approximation is denoted then in terms of the parameters $\theta$ of the DQN as $Q(s,a,\theta)$.
+One component of DQN that stabilises learning is the Target Network. DQN uses two neural networks: the main network with parameters $\theta$, which approximates the Q-function, and the target network with parameters $\theta^-$ which provides the TD targets for the DQN updates and is updated every number of episodes by copying the weights $\theta^- \leftarrow \theta$. With $Q^{\pi} (s_{t+1}, a_{t+1}, \theta^-)$ representing the target network, it results in a TD target to approximate:
+\begin{equation}
+y_t = R_t + \gamma \,\,\, \max_{a_{t+1}} Q^{\pi} (s_{t+1}, a_{t+1}, \theta^-)
+\end{equation}
+\section{Methods}
 \subsection{Reinforcement Learning Agent}
-The basic common agent used to obtain these results is a standard implementation of a Deep Q Network (DQN) in PyTorch \cite{pytorch}, optimising its weights via Stochastic Gradient Descent \cite{kiefer} using ADAM \cite{adam} as optimizer.
-The learning rate is set to $\alpha=10^{-5}$ and the discount factor to $\gamma = 0.8$ for all simulations.
+The basic common agent used to obtain these results is a standard implementation of a DQN in PyTorch \cite{pytorch}, optimising its weights via Stochastic Gradient Descent \cite{kiefer} using ADAM \cite{adam} as optimizer.
+The learning rate is $\alpha=10^{-5}$ and the discount factor is $\gamma = 0.8$ for all simulations.
 The Neural Network in the agent uses 2 hidden, fully connected layers of sizes 500 and 1000 respectively, using ReLU as an activation function.
 \subsection{Reinforcement Learning Environment}
-Our environment is modelled in the microscopic traffic simulator SUMO \cite{sumo}, representing a real-world intersection in Greater Manchester, UK.
+The environment is modelled in the microscopic traffic simulator SUMO \cite{sumo}, representing a real-world intersection in Greater Manchester, UK.
 The junction consists of four arms, with 6 incoming lanes (two each in North-South orientation, and one each in East-West orientation) and 4 pedestrian crossings.
 The real-world site also contains 4 Vivacity vision-based sensors, able to supply queue length, speed and flow data.
 The demand and turning rations at the junction have been calibrated using 3.5 months of journey time and flow data collected by these sensors.
@@ -183,8 +197,8 @@ Regarding the extensions, given that their length is smaller than that of the in
 \label{intersection}                                               
 \end{figure}     
 
-\section{Modal Prioritisation}
-The agent has to serve both vehicles and pedestrians arriving at the intersection, seeking to jointly optimise the intersection for both modes of transport.
+\subsection{Modal Prioritisation}
+The agent has to serve vehicles and pedestrians arriving at the intersection, seeking to jointly optimise the intersection for both modes of transport.
 
 All the reward functions presented in this paper follow the same structure.
 The reward, as seen by the agent, will be a linear combination of an independently calculated reward for the vehicles and another for the agents, as it can be seen in Eq. \ref{eq:modal}.
@@ -420,8 +434,10 @@ We are also grateful to W. Chernikoff, Toyota Mobility Foundation and The Alan T
 % (used to reserve space for the reference number labels box)
 \begin{thebibliography}{1}
 \bibitem{survey2020} Haydari, A., \& Yilmaz, Y. (2020). Deep Reinforcement Learning for Intelligent Transportation Systems: A Survey. arXiv preprint arXiv:2005.00935.
-
 \bibitem{sumo} Lopez, P. A., Behrisch, M., Bieker-Walz, L., Erdmann, J., Flötteröd, Y. P., Hilbrich, R., ... \& WieBner, E. (2018, November). Microscopic traffic simulation using sumo. In 2018 21st International Conference on Intelligent Transportation Systems (ITSC) (pp. 2575-2582). IEEE.
+\bibitem{watkins} Watkins, C. J., \& Dayan, P. (1992). Q-learning. Machine learning, 8(3-4), 279-292.
+\bibitem{melo} Melo, F. S. (2001). Convergence of Q-learning: A simple proof. Institute Of Systems and Robotics, Tech. Rep, 1-4.
+\bibitem{mnih2015} Mnih, V., Kavukcuoglu, K., Silver, D., Rusu, A. A., Veness, J.,  ... \& Petersen, S. (2015). Human-level control through deep reinforcement learning. Nature, 518(7540), 529-533.
 \bibitem{suttonbarto} Sutton, R. S., \& Barto, A. G. (2018). Reinforcement learning: An introduction. MIT press.
 \bibitem{genders2018} Genders, W., \& Razavi, S. (2018). Evaluating reinforcement learning state representations for adaptive traffic signal control. Procedia computer science, 130, 26-33.
 \bibitem{pytorch} Paszke, A., Gross, S., Massa, F., Lerer, A., Bradbury, J., Chanan, G., ... \& Desmaison, A. (2019). PyTorch: An imperative style, high-performance deep learning library. In Advances in Neural Information Processing Systems (pp. 8024-8035).

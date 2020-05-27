@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.24)  27 MAY 2020 15:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.24)  27 MAY 2020 18:16
 entering extended mode
 **./bare_conf.tex
 (bare_conf.tex
@@ -570,80 +570,79 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 74.
 msb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<./figures/schematic_pp2.png, id=153, 909.3975pt x 925.20656pt>
+<./figures/schematic_pp2.png, id=152, 909.3975pt x 925.20656pt>
 File: ./figures/schematic_pp2.png Graphic file (type png)
 <use ./figures/schematic_pp2.png>
-Package pdftex.def Info: ./figures/schematic_pp2.png  used on input line 113.
+Package pdftex.def Info: ./figures/schematic_pp2.png  used on input line 119.
 (pdftex.def)             Requested size: 180.67499pt x 183.8098pt.
  [1{C:/Users/acabrejasegea/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
- <./figures/schematic_pp2.png>]
-<./figures/gmaps_iso_censored.jpg, id=181, 1355.0625pt x 1227.58624pt>
+]
+<./figures/gmaps_iso_censored.jpg, id=183, 1355.0625pt x 1227.58624pt>
 File: ./figures/gmaps_iso_censored.jpg Graphic file (type jpg)
 <use ./figures/gmaps_iso_censored.jpg>
 Package pdftex.def Info: ./figures/gmaps_iso_censored.jpg  used on input line 1
-36.
+50.
 (pdftex.def)             Requested size: 180.67499pt x 163.67526pt.
-<./figures/intersection.png, id=182, 675.27281pt x 576.65437pt>
+<./figures/intersection.png, id=184, 675.27281pt x 576.65437pt>
 File: ./figures/intersection.png Graphic file (type png)
 <use ./figures/intersection.png>
-Package pdftex.def Info: ./figures/intersection.png  used on input line 143.
+Package pdftex.def Info: ./figures/intersection.png  used on input line 157.
 (pdftex.def)             Requested size: 180.67499pt x 154.2821pt.
-
-Underfull \hbox (badness 1383) in paragraph at lines 161--162
+ [2 <./figures/schematic_pp2.png> <./figures/gmaps_iso_censored.jpg> <./figures
+/intersection.png>]
+Underfull \hbox (badness 1383) in paragraph at lines 175--176
 []\OT1/ptm/m/n/10 NS1-NS4 Next Stage Bits (ASK SHAUN WHERE
  []
 
-<./figures/phases_limited.png, id=183, 426.09187pt x 453.19313pt>
+<./figures/phases_limited.png, id=194, 426.09187pt x 453.19313pt>
 File: ./figures/phases_limited.png Graphic file (type png)
 <use ./figures/phases_limited.png>
-Package pdftex.def Info: ./figures/phases_limited.png  used on input line 181.
+Package pdftex.def Info: ./figures/phases_limited.png  used on input line 195.
 (pdftex.def)             Requested size: 180.67499pt x 192.17233pt.
-[2 <./figures/gmaps_iso_censored.jpg> <./figures/intersection.png>]
 
-LaTeX Warning: Citation `prashanth2011' on page 3 undefined on input line 211.
-
-
-LaTeX Warning: Citation `aslani2019' on page 3 undefined on input line 211.
+LaTeX Warning: Citation `prashanth2011' on page 3 undefined on input line 225.
 
 
-LaTeX Warning: Citation `gendersthesis' on page 3 undefined on input line 219.
+LaTeX Warning: Citation `aslani2019' on page 3 undefined on input line 225.
 
 
-LaTeX Warning: Citation `liang2018' on page 3 undefined on input line 244.
-
-
-LaTeX Warning: Citation `wan2018' on page 3 undefined on input line 259.
+LaTeX Warning: Citation `gendersthesis' on page 3 undefined on input line 233.
 
 [3 <./figures/phases_limited.png>]
 
-LaTeX Warning: Citation `abdulhai2010' on page 4 undefined on input line 268.
+LaTeX Warning: Citation `liang2018' on page 4 undefined on input line 258.
 
 
-LaTeX Warning: Citation `mannion' on page 4 undefined on input line 268.
+LaTeX Warning: Citation `wan2018' on page 4 undefined on input line 273.
 
 
-LaTeX Warning: Citation `genders2016' on page 4 undefined on input line 268.
+LaTeX Warning: Citation `abdulhai2010' on page 4 undefined on input line 282.
 
 
-LaTeX Warning: Citation `gao2017' on page 4 undefined on input line 268.
+LaTeX Warning: Citation `mannion' on page 4 undefined on input line 282.
 
 
-LaTeX Warning: Citation `mousavi2017' on page 4 undefined on input line 268.
+LaTeX Warning: Citation `genders2016' on page 4 undefined on input line 282.
 
 
-Overfull \hbox (9.3401pt too wide) detected at line 277
+LaTeX Warning: Citation `gao2017' on page 4 undefined on input line 282.
+
+
+LaTeX Warning: Citation `mousavi2017' on page 4 undefined on input line 282.
+
+
+Overfull \hbox (9.3401pt too wide) detected at line 291
 []
  []
 
-
-Underfull \hbox (badness 3229) in paragraph at lines 422--423
+[4]
+Underfull \hbox (badness 3229) in paragraph at lines 436--437
 []\OT1/ptm/m/n/8 Haydari, A., & Yil-maz, Y. (2020). Deep Re-in-force-ment Learn
 -
  []
 
-[4]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -655,16 +654,16 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 435.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 451.
 [5
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 435.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 451.
  (bare_conf.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 435.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 435.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 451.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 451.
 Package rerunfilecheck Info: File `bare_conf.out' has not changed.
-(rerunfilecheck)             Checksum: 448D0D6250A2E9CFD0EF2C7BB2BE2B0B;2617.
+(rerunfilecheck)             Checksum: 823A6562CD5200E6F9A7F9762F0D0440;2613.
 
 
 LaTeX Warning: There were undefined references.
@@ -672,16 +671,16 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 435.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 451.
  ) 
 Here is how much of TeX's memory you used:
- 9236 strings out of 481545
- 151686 string characters out of 2909744
- 529348 words of memory out of 3000000
- 24249 multiletter control sequences out of 15000+200000
+ 9248 strings out of 481545
+ 151826 string characters out of 2909744
+ 530506 words of memory out of 3000000
+ 24254 multiletter control sequences out of 15000+200000
  564511 words of font info for 81 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
- 35i,19n,33p,406b,462s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 35i,19n,33p,507b,403s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/bas
 e/8r.enc}<C:/Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
 public/amsfonts/cm/cmex10.pfb><C:/Users/acabrejasegea/AppData/Local/Programs/Mi
@@ -690,19 +689,20 @@ ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/User
 s/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
 m/cmmi7.pfb><C:/Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
 e1/public/amsfonts/cm/cmr10.pfb><C:/Users/acabrejasegea/AppData/Local/Programs/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/acabrejasegea/AppD
-ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Use
-rs/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmsy7.pfb><C:/Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/symbols/msbm10.pfb><C:/Users/acabrejasegea/AppData/Local/Pr
-ograms/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users/acabrejasegea/AppD
-ata/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/acabr
-ejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:
-/Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/ut
-mri8a.pfb>
-Output written on bare_conf.pdf (5 pages, 1095391 bytes).
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/acabrejasegea/AppD
+ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users
+/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmsy10.pfb><C:/Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmsy7.pfb><C:/Users/acabrejasegea/AppData/Local/Programs/
+MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/acabrejaseg
+ea/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Users
+/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.
+pfb><C:/Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/t
+imes/utmr8a.pfb><C:/Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts
+/type1/urw/times/utmri8a.pfb>
+Output written on bare_conf.pdf (5 pages, 1108842 bytes).
 PDF statistics:
- 292 PDF objects out of 1000 (max. 8388607)
- 76 named destinations out of 1000 (max. 500000)
+ 303 PDF objects out of 1000 (max. 8388607)
+ 83 named destinations out of 1000 (max. 500000)
  317 words of extra memory for PDF output out of 10000 (max. 10000000)
 
