@@ -22,6 +22,9 @@
 \usepackage{lipsum}  
 \usepackage{hyperref}
 \usepackage{cite}  
+\usepackage{siunitx}
+\usepackage{booktabs}
+\sisetup{separate-uncertainty}
 
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor IEEEtran}
@@ -209,6 +212,15 @@ R_t = \alpha * R^v_t + \beta * R^p_t
 In this way, $\alpha$ and $\beta$ are the Modal Prioritisation coefficients for our rewards.
 
 \section{Reward Functions}
+\section{Results}
+\begin{figure*}                                                
+\centering                                                    
+\includegraphics[width=\textwidth]{9grid_ordered_boxplot_all.pdf}                                    
+\caption{Average waiting time for the best performing agents across all three demand scenarios.}                                  
+\label{results_9_grid}                                               
+\end{figure*}
+\section{Discussion and Conclusion}
+
 In this section the individually tested reward functions are introduced.
 
 Let $N$ be the set of lane queue sensors present in the intersection.
@@ -217,7 +229,7 @@ Let $V_t$ and $P_t$ be respectively the set of vehicles on incoming lanes, and t
 Let $s_v$ be the individual speeds of the vehicles, $\tau^v$ and $\tau^p$ the waiting times of vehicles and pedestrians respectively.
 Let $\rho_v$ and $\rho_p$ the vehicular and pedestrian flows across the junction over the length of the action.
 Let $t^p$ be the time at which the previous action was taken and $t^{pp}$ the time of the action before that.
-Lastly, let $t^v_e$ and $t^p_e$ the entry times of vehicles and pedestrians to the area covered by sensors. 
+Lastly, let $t^v_e$ and $t^p_e$ be the entry times of vehicles and pedestrians to the area covered by sensors. 
 
 \subsection{Queue Length based Rewards}
 \subsubsection{Queue Length}
@@ -339,14 +351,79 @@ Peak Scenario uses the level of demand observed in the junction that results in 
 
 The Normal Scenario uses an arrival rate of 1 vehicle / 2.1 seconds (1714 vehicles/h). Peak Scenario uses an arrival rate of 1 vehicle / 1.7 seconds (2117 vehicles/h). OverSat Scenario uses an arrival rate of 1 vehicle / 1.4 seconds (2400 vehicles/h)
 
-\section{Results}
-
-\section{Discussion and Conclusion}
 Methods based on maximisation of the average speed seem to be Pareto Optimal in this context.
 In them, the travel times are allocated in a way, such that attempting to optimise any of our result variables (i.e. vehicle travel time and pedestrian travel time) will have a negative impact on the other one.
 
 
+\begin{table*}[!htp]
+\centering
+\setlength\tabcolsep{0pt}
 
+\caption{Average waiting time in seconds for all agents across demand levels}
+\label{tab:some example table}
+
+\begin{tabular*}{\textwidth}{
+  @{\extracolsep{\fill}}
+  l
+  S[table-format=-1.2(1)]
+  S[table-format=-1.2(1)] 
+  S[table-format=-1.2(1)]
+  S[table-format=-1.2(1)]
+  S[table-format=-1.2(1)]
+  S[table-format=-1.2(1)]
+  @{}
+}
+\toprule
+& \multicolumn{2}{c}{Normal Scenario} &
+\multicolumn{2}{c}{Peak Scenario} &
+\multicolumn{2}{c}{Oversaturated Scenario} \\
+
+Scenario & {Vehicles} & {Pedestrians} & {Vehicles} & {Pedestrians}  & {Vehicles}  & {Pedestrians}\\
+\midrule
+Queues                 & 7.87\pm 0.83 & 16.47\pm 3.95 & 10.68\pm 2.06 & 17.73\pm 3.64 & 19.80\pm 6.01 & 17.94\pm 3.48  \\
+Queues Sq.             & 7.79\pm 0.93 & 18.55\pm 4.47 & 10.92\pm 2.41 & 18.60\pm 4.81 & 20.80\pm 6.88 & 19.02\pm 4.38  \\
+Queues PLN             & 14.57\pm 4.91 & 20.31\pm 4.94 & 32.90\pm 6.36 & 19.59\pm 4.78 & 38.04\pm 3.93 & 19.28\pm 4.87  \\
+$\Delta$ Queues        &  8.34\pm 1.04 & 18.37\pm 3.94 & 11.63\pm 3.09 & 19.45\pm 3.75 & 24.40\pm 7.20 & 19.70\pm 3.80  \\
+$\Delta$ Queues PLN    & 10.37\pm 1.10 & 17.45\pm 3.59 & 16.11\pm 4.38 & 18.44\pm 4.45 & 30.64\pm 5.00 & 19.49\pm 4.32  \\
+\midrule
+Wait Time              & 7.80\pm 0.90 & 41.05\pm 19.40 & 14.65\pm 4.73 & 110.34\pm 59.56 & 28.82\pm 4.83 & 228.46\pm 159.81  \\
+Wait Time AD           & 7.83\pm 0.99 & 56.00\pm 30.22 & 14.84\pm 4.84 & 169.11\pm 92.44 & 27.52\pm 5.01 & 324.12\pm 212.37  \\
+$\Delta$ Wait Time     & 9.12\pm 1.23 & 82.57\pm 36.55 & 15.28\pm 5.09 & 326.07\pm 175.84 & 24.16\pm 6.77 & 594.03\pm 273.64  \\
+\midrule
+Wait Time P80          & 8.20\pm 1.26 & 28.80\pm 9.05 & 14.94\pm 4.81 & 54.29\pm 35.00 & 30.01\pm 4.84 & 113.68\pm 52.00  \\
+Wait Time AD P80       & 8.25\pm 1.13 & 23.52\pm 5.73 & 17.05\pm 5.91 & 27.35\pm 6.29 & 31.43\pm 4.95 & 32.69\pm 9.67  \\
+$\Delta$ Wait Time P80 & 8.94\pm 1.38 & 33.35\pm 17.34 & 16.68\pm 4.65 & 81.64\pm 49.48 & 30.38\pm 4.50 & 149.79\pm 105.07  \\
+\midrule
+Wait Time P95          & 8.26\pm 1.15 & 19.00\pm 4.67 & 16.51\pm 5.94 & 19.24\pm 4.44 & 31.02\pm 5.26 & 20.14\pm 4.16  \\
+Wait Time AD P95       & 8.48\pm 1.19 & 18.07\pm 4.75 & 17.88\pm 6.25 & 18.30\pm 5.02 & 32.67\pm 5.28 & 18.78\pm 4.37  \\
+$\Delta$ Wait Time P95 & 10.02\pm 1.66 & 42.36\pm 16.59 & 16.27\pm 5.33 & 72.27\pm 44.89 & 26.88\pm 6.22 & 174.85\pm 109.01  \\
+\midrule
+Delay                  & 6.39\pm 0.40 & 849.52\pm 318.33 & 8.59\pm 0.89 & 849.52\pm 318.33 & 14.43\pm 3.16 & 849.52\pm 318.33  \\
+Delay AD               & 6.71\pm 0.43 & 811.38\pm 352.38 & 8.79\pm 0.96 & 811.38\pm 352.38 & 14.08\pm 3.31 & 811.38\pm 352.38  \\
+$\Delta$ Delay         & 11.18\pm 2.93 & 211.41\pm 116.86 & 26.98\pm 6.75 & 546.51\pm 263.71 & 34.97\pm 3.45 & 393.81\pm 267.95  \\
+\midrule
+Delay P80              & 8.39\pm 1.10 & 46.78\pm 16.52 & 11.52\pm 2.36 & 78.91\pm 35.73 & 20.93\pm 7.02 & 143.27\pm 72.39  \\
+Delay AD P80           & 7.74\pm 0.81 & 44.55\pm 17.51 & 10.68\pm 1.95 & 122.05\pm 112.18 & 18.92\pm 6.46 & 404.54\pm 252.47  \\
+$\Delta$ Delay P80     & 10.62\pm 2.34 & 66.46\pm 30.32 & 20.51\pm 6.04 & 180.64\pm 107.80 & 29.70\pm 4.97 & 307.76\pm 218.11  \\
+\midrule
+Delay P95              & 7.92\pm 0.89 & 26.21\pm 4.86 &  11.38\pm 2.42 & 30.30\pm 7.64 & 20.99\pm 6.29 & 47.34\pm 23.27  \\
+Delay AD P95           & 7.83\pm 0.84 & 48.76\pm 24.28 & 11.62\pm 3.02 & 180.59\pm 123.18 & 21.77\pm 6.82 & 425.35\pm 234.33  \\
+$\Delta$ Delay P95     & 8.23\pm 1.29 & 99.40\pm 59.76 & 15.22\pm 4.97 & 221.92\pm 133.24 & 25.35\pm 6.43 & 398.13\pm 240.03  \\
+\midrule
+Throughput             & 18.71\pm 4.79 & 23.60\pm 6.88 & 35.28\pm 5.60 & 26.26\pm 8.14 & 39.24\pm 3.72 & 34.86\pm 28.54  \\
+Throughput P80         & 35.53\pm 10.87 & 51.96\pm 31.20 & 47.60\pm 5.99 & 65.91\pm 37.86 & 47.85\pm 5.15 & 84.93\pm 49.08  \\
+Throughput P95         & 26.28\pm 8.81 & 101.07\pm 65.21 & 56.39\pm 10.72 & 130.98\pm 84.11 & 74.10\pm 13.94 & 74.46\pm 57.96  \\
+\midrule
+Average Speed - Wait     & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0  \\
+Average Speed - Occ      & 7.86\pm 0.94 & 14.79\pm 3.97 & 12.34\pm 3.44 & 15.43\pm 3.84 & 24.84\pm 7.31 & 15.56\pm 4.49  \\
+Average Speed AD - Wait  & 8.20\pm 0.80 & 15.37\pm 3.48 & 10.85\pm 2.11 & 15.55\pm 3.84 & 17.89\pm 5.68 & 14.95\pm 3.80  \\
+Average Speed AD - Occ   & 7.85\pm 0.88 & 16.68\pm 4.83 & 11.10\pm 2.44 & 17.20\pm 4.93 & 20.93\pm 6.83 & 17.66\pm 5.01  \\
+\midrule
+Vehicle Actuated System D  & 10.62\pm 1.17 & 38.36\pm 12.66 & 18.73\pm 2.92 & 51.62\pm 16.50 & 38.10\pm 8.26 & 56.32\pm 19.58  \\
+Maximum Occupancy     & 6.92\pm 0.54 & 196.09\pm 130.04 & 10.02\pm 1.75 & 397.20\pm 213.06 & 21.57\pm 5.10 & 596.32\pm 253.80  \\
+\bottomrule
+\end{tabular*}
+\end{table*}
 
 % An example of a double column floating figure using two subfigures.
 %(The subfigure.sty package must be loaded for this to work.)
