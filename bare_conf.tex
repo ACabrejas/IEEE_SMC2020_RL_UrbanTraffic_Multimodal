@@ -67,11 +67,15 @@ The abstract goes here.
 %\lipsum(1)
 
 \section{Related Work}
-%\lipsum()
+The use of Reinforcement Learning (RL) for Urban Traffic Control has been previously explored and discussed in a variety of pieces of research, aiming to substitute existing adaptive control methods such as SCOOT\cite{scoot}, MOVA\cite{mova} and SCATS\cite{scats}.
+The field has evolved from early inquiries about its theoretical potential use \cite{wiering2000} \cite{abdul2003} \cite{abdoos2011}, to more applied and realistic scenarios \cite{survey2014} \cite{liang2017} \cite{genders2019} that look towards real-world use and deployment.
+These use different methods, such as complex pixel-based inputs passed to a CNN or per-lane state signals using fully connected neural networks; although recent research suggests that more complex state representations only provide with marginal gains, if any\cite{gendersstate}.
+Recently, extensive reviews are being carried out \cite{survey2020} \cite{survey2020wei}, indexing the different approaches taken and pushing the field towards maturity.
 
-As indicated in \cite{survey2020}, pedestrian implementation has a high impact on learning performance, being often discarded as unimportant or left for future work.
-
-In this paper we attempt to cover this gap in the literature, providing with a performance assessment of RL agents serving both vehicles and pedestrians, using a variety of rewards in a calibrated model of a real-world junction.
+A common thread in most of the previous works is the need for approximations about the network being studied and the lack of pedestrian modelling, joint optimisation for vehicles and pedestrians' travel times or the effect, and RL traffic control in the latter.
+As indicated in \cite{survey2020}, pedestrian implementation has a high impact on learning performance, being often discarded as unimportant or left for future work save for two exceptions \cite{geneticped} \cite{liu2017} \cite{chen2020}, one of which uses a genetic algorithm.
+In this paper we attempt to cover this gap in the literature, providing with a robust performance assessment of for RL agents serving both vehicles and pedestrians, using a variety of rewards, both novel and from the literature.
+These are used in a calibrated model of a real-world junction, using real geometry, calibrated demand, realistic sensory inputs and emulated traffic light controllers, making it immediately portable to the actual intersection.
 \section{Problem Definition}
 \subsection{Markov Decision Processes and Reinforcement Learning}
 The problem is framed as a Markov Decision Process (MDP), satisfying the Markov property: given a current state $s_t$, the next state $s_{t+1}$ is independent of the succession of previous states $\{s_{t-1}, s_{t-2}, ..., s_0\}$.
@@ -89,7 +93,7 @@ The objective of an MDP agent is to find an optimal policy $\pi^*$, mapping stat
 R_t = \mathbb{E} \bigg{[} \sum^{\infty}_{i=0} \gamma^i r_{t+i} \bigg{]} 
 \label{eq:reward}
 \end{equation}
-In this case, $\mathcal{T}$ is unknown, only allowing for model-free Reinforcement Learning (RL).
+In this case, $\mathcal{T}$ is unknown, only allowing for model-free RL).
 
 Model-Free RL is an area of Machine Learning covering how independent agents can take sequential decisions in an unknown environment and learn from these in order to obtain $\pi^*$. 
 There are two main approaches: Policy-Based RL, in which states are mapped to a distribution of potential actions, and Value-Based RL, which is used in this paper and estimates the value (expected return) of the different state-action pairs under a given policy $\pi$ as defined in Eq. \ref{eq:value}.
@@ -200,27 +204,33 @@ Regarding the extensions, given that their length is smaller than that of the in
 \label{intersection}                                               
 \end{figure}     
 
-\subsection{Modal Prioritisation}
+\subsection{Modal Prioritisation and Adjusting by Demand}
 The agent has to serve vehicles and pedestrians arriving at the intersection, seeking to jointly optimise the intersection for both modes of transport.
 
 All the reward functions presented in this paper follow the same structure.
 The reward, as seen by the agent, will be a linear combination of an independently calculated reward for the vehicles and another for the agents, as it can be seen in Eq. \ref{eq:modal}.
 \begin{equation}
-R_t = \alpha * R^v_t + \beta * R^p_t
+R_t = \alpha * R^p_t + \beta * R^v_t;\,\,\,\,\,\,\ \alpha+\beta = 1
 \label{eq:modal}
 \end{equation}
 In this way, $\alpha$ and $\beta$ are the Modal Prioritisation coefficients for our rewards.
 
+Of the rewards presented in the following section, those that were more sensitive towards the relative ratio of the demand between pedestrian and vehicles require of manual tuning of the modal prioritisation parameters.
+Even if this is undesirable from a modeller and operator point of view, since it partially counters the benefits that RL provides in terms of self-adjustment, they have been provided so potential users and researchers can evaluate the trade-offs between potential increased performance and increased configuration effort.
+The mentioned series will be identified by the weight applied to the pedestrians.
+As such, series identified as P80 and P95 represent those in which the weights were $\alpha=0.8$, $\beta=0.2$, and $\alpha=0.95$, $\beta=0.05$ respectively. 
+Those series without an identifier did not require of modal prioritisation.
+
+Another addition that can be made to the rewards is to add a term scaling the difficulty with the demand level, implicitly accepting that higher demand typically worsens the performance of a network, independently of the actions of the controlling agent.
+These series are identified with the suffix AD (Adjusted by Demand).
+
 \section{Reward Functions}
-\section{Results}
 \begin{figure*}                                                
 \centering                                                    
 \includegraphics[width=\textwidth]{9grid_ordered_boxplot_all.pdf}                                    
 \caption{Average waiting time for the best performing agents across all three demand scenarios.}                                  
 \label{results_9_grid}                                               
 \end{figure*}
-\section{Discussion and Conclusion}
-
 In this section the individually tested reward functions are introduced.
 
 Let $N$ be the set of lane queue sensors present in the intersection.
@@ -386,44 +396,50 @@ Queues PLN             & 14.57\pm 4.91 & 20.31\pm 4.94 & 32.90\pm 6.36 & 19.59\p
 $\Delta$ Queues        &  8.34\pm 1.04 & 18.37\pm 3.94 & 11.63\pm 3.09 & 19.45\pm 3.75 & 24.40\pm 7.20 & 19.70\pm 3.80  \\
 $\Delta$ Queues PLN    & 10.37\pm 1.10 & 17.45\pm 3.59 & 16.11\pm 4.38 & 18.44\pm 4.45 & 30.64\pm 5.00 & 19.49\pm 4.32  \\
 \midrule
+Average Speed - Wait     & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0  \\
+Average Speed - Occ      & 7.86\pm 0.94 & 14.79\pm 3.97 & 12.34\pm 3.44 & 15.43\pm 3.84 & 24.84\pm 7.31 & 15.56\pm 4.49  \\
+Average Speed AD - Wait  & 8.20\pm 0.80 & 15.37\pm 3.48 & 10.85\pm 2.11 & 15.55\pm 3.84 & 17.89\pm 5.68 & 14.95\pm 3.80  \\
+Average Speed AD - Occ   & 7.85\pm 0.88 & 16.68\pm 4.83 & 11.10\pm 2.44 & 17.20\pm 4.93 & 20.93\pm 6.83 & 17.66\pm 5.01  \\
+\midrule
 Wait Time              & 7.80\pm 0.90 & 41.05\pm 19.40 & 14.65\pm 4.73 & 110.34\pm 59.56 & 28.82\pm 4.83 & 228.46\pm 159.81  \\
-Wait Time AD           & 7.83\pm 0.99 & 56.00\pm 30.22 & 14.84\pm 4.84 & 169.11\pm 92.44 & 27.52\pm 5.01 & 324.12\pm 212.37  \\
-$\Delta$ Wait Time     & 9.12\pm 1.23 & 82.57\pm 36.55 & 15.28\pm 5.09 & 326.07\pm 175.84 & 24.16\pm 6.77 & 594.03\pm 273.64  \\
-\midrule
 Wait Time P80          & 8.20\pm 1.26 & 28.80\pm 9.05 & 14.94\pm 4.81 & 54.29\pm 35.00 & 30.01\pm 4.84 & 113.68\pm 52.00  \\
-Wait Time AD P80       & 8.25\pm 1.13 & 23.52\pm 5.73 & 17.05\pm 5.91 & 27.35\pm 6.29 & 31.43\pm 4.95 & 32.69\pm 9.67  \\
-$\Delta$ Wait Time P80 & 8.94\pm 1.38 & 33.35\pm 17.34 & 16.68\pm 4.65 & 81.64\pm 49.48 & 30.38\pm 4.50 & 149.79\pm 105.07  \\
-\midrule
 Wait Time P95          & 8.26\pm 1.15 & 19.00\pm 4.67 & 16.51\pm 5.94 & 19.24\pm 4.44 & 31.02\pm 5.26 & 20.14\pm 4.16  \\
+\midrule
+Wait Time AD           & 7.83\pm 0.99 & 56.00\pm 30.22 & 14.84\pm 4.84 & 169.11\pm 92.44 & 27.52\pm 5.01 & 324.12\pm 212.37  \\
+Wait Time AD P80       & 8.25\pm 1.13 & 23.52\pm 5.73 & 17.05\pm 5.91 & 27.35\pm 6.29 & 31.43\pm 4.95 & 32.69\pm 9.67  \\
 Wait Time AD P95       & 8.48\pm 1.19 & 18.07\pm 4.75 & 17.88\pm 6.25 & 18.30\pm 5.02 & 32.67\pm 5.28 & 18.78\pm 4.37  \\
+\midrule
+$\Delta$ Wait Time     & 9.12\pm 1.23 & 82.57\pm 36.55 & 15.28\pm 5.09 & 326.07\pm 175.84 & 24.16\pm 6.77 & 594.03\pm 273.64  \\
+$\Delta$ Wait Time P80 & 8.94\pm 1.38 & 33.35\pm 17.34 & 16.68\pm 4.65 & 81.64\pm 49.48 & 30.38\pm 4.50 & 149.79\pm 105.07  \\
 $\Delta$ Wait Time P95 & 10.02\pm 1.66 & 42.36\pm 16.59 & 16.27\pm 5.33 & 72.27\pm 44.89 & 26.88\pm 6.22 & 174.85\pm 109.01  \\
 \midrule
 Delay                  & 6.39\pm 0.40 & 849.52\pm 318.33 & 8.59\pm 0.89 & 849.52\pm 318.33 & 14.43\pm 3.16 & 849.52\pm 318.33  \\
-Delay AD               & 6.71\pm 0.43 & 811.38\pm 352.38 & 8.79\pm 0.96 & 811.38\pm 352.38 & 14.08\pm 3.31 & 811.38\pm 352.38  \\
-$\Delta$ Delay         & 11.18\pm 2.93 & 211.41\pm 116.86 & 26.98\pm 6.75 & 546.51\pm 263.71 & 34.97\pm 3.45 & 393.81\pm 267.95  \\
-\midrule
 Delay P80              & 8.39\pm 1.10 & 46.78\pm 16.52 & 11.52\pm 2.36 & 78.91\pm 35.73 & 20.93\pm 7.02 & 143.27\pm 72.39  \\
-Delay AD P80           & 7.74\pm 0.81 & 44.55\pm 17.51 & 10.68\pm 1.95 & 122.05\pm 112.18 & 18.92\pm 6.46 & 404.54\pm 252.47  \\
-$\Delta$ Delay P80     & 10.62\pm 2.34 & 66.46\pm 30.32 & 20.51\pm 6.04 & 180.64\pm 107.80 & 29.70\pm 4.97 & 307.76\pm 218.11  \\
-\midrule
 Delay P95              & 7.92\pm 0.89 & 26.21\pm 4.86 &  11.38\pm 2.42 & 30.30\pm 7.64 & 20.99\pm 6.29 & 47.34\pm 23.27  \\
+\midrule
+Delay AD               & 6.71\pm 0.43 & 811.38\pm 352.38 & 8.79\pm 0.96 & 811.38\pm 352.38 & 14.08\pm 3.31 & 811.38\pm 352.38  \\
+Delay AD P80           & 7.74\pm 0.81 & 44.55\pm 17.51 & 10.68\pm 1.95 & 122.05\pm 112.18 & 18.92\pm 6.46 & 404.54\pm 252.47  \\
 Delay AD P95           & 7.83\pm 0.84 & 48.76\pm 24.28 & 11.62\pm 3.02 & 180.59\pm 123.18 & 21.77\pm 6.82 & 425.35\pm 234.33  \\
+\midrule
+$\Delta$ Delay         & 11.18\pm 2.93 & 211.41\pm 116.86 & 26.98\pm 6.75 & 546.51\pm 263.71 & 34.97\pm 3.45 & 393.81\pm 267.95  \\
+$\Delta$ Delay P80     & 10.62\pm 2.34 & 66.46\pm 30.32 & 20.51\pm 6.04 & 180.64\pm 107.80 & 29.70\pm 4.97 & 307.76\pm 218.11  \\
 $\Delta$ Delay P95     & 8.23\pm 1.29 & 99.40\pm 59.76 & 15.22\pm 4.97 & 221.92\pm 133.24 & 25.35\pm 6.43 & 398.13\pm 240.03  \\
 \midrule
 Throughput             & 18.71\pm 4.79 & 23.60\pm 6.88 & 35.28\pm 5.60 & 26.26\pm 8.14 & 39.24\pm 3.72 & 34.86\pm 28.54  \\
 Throughput P80         & 35.53\pm 10.87 & 51.96\pm 31.20 & 47.60\pm 5.99 & 65.91\pm 37.86 & 47.85\pm 5.15 & 84.93\pm 49.08  \\
 Throughput P95         & 26.28\pm 8.81 & 101.07\pm 65.21 & 56.39\pm 10.72 & 130.98\pm 84.11 & 74.10\pm 13.94 & 74.46\pm 57.96  \\
 \midrule
-Average Speed - Wait     & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0  \\
-Average Speed - Occ      & 7.86\pm 0.94 & 14.79\pm 3.97 & 12.34\pm 3.44 & 15.43\pm 3.84 & 24.84\pm 7.31 & 15.56\pm 4.49  \\
-Average Speed AD - Wait  & 8.20\pm 0.80 & 15.37\pm 3.48 & 10.85\pm 2.11 & 15.55\pm 3.84 & 17.89\pm 5.68 & 14.95\pm 3.80  \\
-Average Speed AD - Occ   & 7.85\pm 0.88 & 16.68\pm 4.83 & 11.10\pm 2.44 & 17.20\pm 4.93 & 20.93\pm 6.83 & 17.66\pm 5.01  \\
-\midrule
 Vehicle Actuated System D  & 10.62\pm 1.17 & 38.36\pm 12.66 & 18.73\pm 2.92 & 51.62\pm 16.50 & 38.10\pm 8.26 & 56.32\pm 19.58  \\
 Maximum Occupancy     & 6.92\pm 0.54 & 196.09\pm 130.04 & 10.02\pm 1.75 & 397.20\pm 213.06 & 21.57\pm 5.10 & 596.32\pm 253.80  \\
 \bottomrule
 \end{tabular*}
 \end{table*}
+
+\section{Discussion and Conclusion}
+
+The suitability of a given choice of modal prioritisation weights is further affected by the functional form of the reward.
+In the results, it can be observed that while in general the choice (5,95) seems to be working best, for certain functional choices the prioritisation(20,80) produces best results, which would not be the case if the suitability of the weights was only affected by the relative demand ratios between vehicles and pedestrians (e.g. Throughput rewards).
+
 
 % An example of a double column floating figure using two subfigures.
 %(The subfigure.sty package must be loaded for this to work.)
@@ -510,7 +526,21 @@ We are also grateful to W. Chernikoff, Toyota Mobility Foundation and The Alan T
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
 \begin{thebibliography}{1}
+\bibitem{mova} Vincent, R. A., \& Peirce, J. R. (1988). 'MOVA': Traffic Responsive, Self-optimising Signal Control for Isolated Intersections. Traffic Management Division, Traffic Group, Transport and Road Research Laboratory.
+\bibitem{scoot} Hunt, P. B., Robertson, D. I., Bretherton, R. D., \& Royle, M. C. (1982). The SCOOT on-line traffic signal optimisation technique. Traffic Engineering \& Control, 23(4).
+\bibitem{scats} Lowrie, P. R. (1990). Scats, sydney co-ordinated adaptive traffic system: A traffic responsive method of controlling urban traffic.
+\bibitem{wiering2000} Wiering, M. A. (2000). Multi-agent reinforcement learning for traffic light control. In Machine Learning: Proceedings of the Seventeenth International Conference (ICML'2000) (pp. 1151-1158).
+\bibitem{abdul2003} Abdulhai, B., Pringle, R., \& Karakoulas, G. J. (2003). Reinforcement learning for true adaptive traffic signal control. Journal of Transportation Engineering, 129(3), 278-285.
+\bibitem{abdoos2011} Abdoos, M., Mozayani, N., \& Bazzan, A. L. (2011, October). Traffic light control in non-stationary environments based on multi agent Q-learning. In 2011 14th International IEEE conference on intelligent transportation systems (ITSC) (pp. 1580-1585). IEEE.
+\bibitem{survey2014} El-Tantawy, S., Abdulhai, B., \& Abdelgawad, H. (2014). Design of reinforcement learning parameters for seamless application of adaptive traffic signal control. Journal of Intelligent Transportation Systems, 18(3), 227-245.
+\bibitem{liang2017} Liang, X., Du, X., Wang, G., \& Han, Z. (2019). A deep reinforcement learning network for traffic light cycle control. IEEE Transactions on Vehicular Technology, 68(2), 1243-1253.
+\bibitem{genders2019} Genders, W., \& Razavi, S. (2019). Asynchronous n-step Q-learning adaptive traffic signal control. Journal of Intelligent Transportation Systems, 23(4), 319-331.
+\bibitem{gendersstate} Genders, W., \& Razavi, S. (2018). Evaluating reinforcement learning state representations for adaptive traffic signal control. Procedia computer science, 130, 26-33.
 \bibitem{survey2020} Haydari, A., \& Yilmaz, Y. (2020). Deep Reinforcement Learning for Intelligent Transportation Systems: A Survey. arXiv preprint arXiv:2005.00935.
+\bibitem{survey2020wei} Wei, H., Zheng, G., Gayah, V., \& Li, Z. (2019). A Survey on Traffic Signal Control Methods. arXiv preprint arXiv:1904.08117.
+\bibitem{geneticped} Turky, A. M., Ahmad, M. S., Yusoff, M. Z. M., \& Hammad, B. T. (2009, July). Using genetic algorithm for traffic light control system with a pedestrian crossing. In International Conference on Rough Sets and Knowledge Technology (pp. 512-519). Springer, Berlin, Heidelberg.
+\bibitem{liu2017} Liu, Y., Liu, L., \& Chen, W. P. (2017, October). Intelligent traffic light control using distributed multi-agent Q learning. In 2017 IEEE 20th International Conference on Intelligent Transportation Systems (ITSC) (pp. 1-8). IEEE.
+\bibitem{chen2020} Chacha Chen, H. W., Xu, N., Zheng, G., Yang, M., Xiong, Y., Xu, K., \& Li, Z. Toward A Thousand Lights: Decentralized Deep Reinforcement Learning for Large-Scale Traffic Signal Control.
 \bibitem{sumo} Lopez, P. A., Behrisch, M., Bieker-Walz, L., Erdmann, J., Flötteröd, Y. P., Hilbrich, R., ... \& WieBner, E. (2018, November). Microscopic traffic simulation using sumo. In 2018 21st International Conference on Intelligent Transportation Systems (ITSC) (pp. 2575-2582). IEEE.
 \bibitem{watkins} Watkins, C. J., \& Dayan, P. (1992). Q-learning. Machine learning, 8(3-4), 279-292.
 \bibitem{melo} Melo, F. S. (2001). Convergence of Q-learning: A simple proof. Institute Of Systems and Robotics, Tech. Rep, 1-4.
