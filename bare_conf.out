@@ -14,23 +14,25 @@
 \BOOKMARK [2][-]{subsection.5.1}{Queue Length based Rewards}{section.5}% 14
 \BOOKMARK [3][-]{subsubsection.5.1.1}{Queue Length}{subsection.5.1}% 15
 \BOOKMARK [3][-]{subsubsection.5.1.2}{Queue Squared}{subsection.5.1}% 16
-\BOOKMARK [3][-]{subsubsection.5.1.3}{Delta Queue}{subsection.5.1}% 17
-\BOOKMARK [2][-]{subsection.5.2}{Waiting Time based Rewards}{section.5}% 18
-\BOOKMARK [3][-]{subsubsection.5.2.1}{Wait Time}{subsection.5.2}% 19
-\BOOKMARK [3][-]{subsubsection.5.2.2}{Delta Wait Time}{subsection.5.2}% 20
-\BOOKMARK [3][-]{subsubsection.5.2.3}{Waiting Time Adjusted by Demand}{subsection.5.2}% 21
-\BOOKMARK [2][-]{subsection.5.3}{Time Lost based Rewards}{section.5}% 22
-\BOOKMARK [3][-]{subsubsection.5.3.1}{Time Lost}{subsection.5.3}% 23
-\BOOKMARK [3][-]{subsubsection.5.3.2}{Delta Time Lost}{subsection.5.3}% 24
-\BOOKMARK [3][-]{subsubsection.5.3.3}{Delay Adjusted by Demand}{subsection.5.3}% 25
-\BOOKMARK [2][-]{subsection.5.4}{Average Speed based Rewards}{section.5}% 26
-\BOOKMARK [3][-]{subsubsection.5.4.1}{Average Speed, Wait Time Variant}{subsection.5.4}% 27
-\BOOKMARK [3][-]{subsubsection.5.4.2}{Average Speed, Occupancy Variant}{subsection.5.4}% 28
-\BOOKMARK [3][-]{subsubsection.5.4.3}{Average Speed Scaled by Demand, Demand and Occupancy}{subsection.5.4}% 29
-\BOOKMARK [2][-]{subsection.5.5}{Throughput based Rewards}{section.5}% 30
-\BOOKMARK [3][-]{subsubsection.5.5.1}{Throughput}{subsection.5.5}% 31
-\BOOKMARK [1][-]{section.6}{Experiments}{}% 32
-\BOOKMARK [2][-]{subsection.6.1}{DQN Agents Training}{section.6}% 33
-\BOOKMARK [2][-]{subsection.6.2}{Evaluation and Scoring}{section.6}% 34
-\BOOKMARK [1][-]{section.7}{Discussion and Conclusion}{}% 35
-\BOOKMARK [1][-]{section*.2}{References}{}% 36
+\BOOKMARK [3][-]{subsubsection.5.1.3}{Queues PLN}{subsection.5.1}% 17
+\BOOKMARK [3][-]{subsubsection.5.1.4}{Delta Queue}{subsection.5.1}% 18
+\BOOKMARK [3][-]{subsubsection.5.1.5}{Delta Queue PLN}{subsection.5.1}% 19
+\BOOKMARK [2][-]{subsection.5.2}{Waiting Time based Rewards}{section.5}% 20
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Wait Time}{subsection.5.2}% 21
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Delta Wait Time}{subsection.5.2}% 22
+\BOOKMARK [3][-]{subsubsection.5.2.3}{Waiting Time Adjusted by Demand}{subsection.5.2}% 23
+\BOOKMARK [2][-]{subsection.5.3}{Delay based Rewards}{section.5}% 24
+\BOOKMARK [3][-]{subsubsection.5.3.1}{Delay}{subsection.5.3}% 25
+\BOOKMARK [3][-]{subsubsection.5.3.2}{Delta Delay}{subsection.5.3}% 26
+\BOOKMARK [3][-]{subsubsection.5.3.3}{Delay Adjusted by Demand}{subsection.5.3}% 27
+\BOOKMARK [2][-]{subsection.5.4}{Average Speed based Rewards}{section.5}% 28
+\BOOKMARK [3][-]{subsubsection.5.4.1}{Average Speed, Wait Time Variant}{subsection.5.4}% 29
+\BOOKMARK [3][-]{subsubsection.5.4.2}{Average Speed, Occupancy Variant}{subsection.5.4}% 30
+\BOOKMARK [3][-]{subsubsection.5.4.3}{Average Speed Adjusted by Demand, Demand and Occupancy Variants}{subsection.5.4}% 31
+\BOOKMARK [2][-]{subsection.5.5}{Throughput based Rewards}{section.5}% 32
+\BOOKMARK [3][-]{subsubsection.5.5.1}{Throughput}{subsection.5.5}% 33
+\BOOKMARK [1][-]{section.6}{Experiments}{}% 34
+\BOOKMARK [2][-]{subsection.6.1}{DQN Agents Training}{section.6}% 35
+\BOOKMARK [2][-]{subsection.6.2}{Evaluation and Scoring}{section.6}% 36
+\BOOKMARK [1][-]{section.7}{Results and Discussion}{}% 37
+\BOOKMARK [1][-]{section*.2}{References}{}% 38
