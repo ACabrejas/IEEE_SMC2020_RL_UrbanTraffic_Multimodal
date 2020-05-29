@@ -68,10 +68,30 @@ We find that those rewards maximising the speed of the network obtain the lowest
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
+Effective traffic signal control is one of the key issues in Urban Traffic Control (UTC), effectively controlling how the available resources (green time) in our urban travel network are allocated.
+The efficiency associated with this allocation has an important impact in travel times, harmful emissions and economic activity.
 
+First, fixed time controllers, and later adaptive systems have been used to further optimise the global flow through our cities.
+Recent improvements in CPU and especially GPU power are allowing for vision-based sensors to gather large amounts of real-time data that a few years ago seemed unattainable, such as individual vehicle position and speeds, all in a much cheaper way than with traditional actuated sensors.
+As a side effect of these developments, not only the area covered by them is ever increasing, but it is also becoming possible to direct some of these towards the pedestrians.
+This allows for the development of novel smart control approaches, that harness the power of real-time data to deliver cheap, responsive and flexible systems that can adapt to a variety of situations.
+
+Reinforcement Learning (RL) approaches have been showing promising results in this field.
+However, most of the available works do not try to jointly optimise vehicular and pedestrian travel times, even when pedestrians are allowed and present in the great majority of urban intersections in any city.
+
+This paper compares the performance of RL agents using 31 different reward functions split into 5 different classes by the magnitudes they use, when controlling a simulation of a real-world junction in Greater Manchester (UK) that has been calibrated using 3.5 months of data gathered from Vivacity Labs vision-based sensors.
+
+The paper is structured as follows:
+Section \ref{lit} reviews previous literature in the field.
+Section \ref{problem} states the mathematical framework used and provides with some theoretical background.  
+Section \ref{methods} reviews the environment, the agents and their implementation.
+Section \ref{rewards} introduces the reward functions tested in this paper and provides analytical expressions for them.
+Section \ref{experiments} contains details about the training and evaluation of the agents.
+Lastly, Section \ref{results} provides the experimental results and the discussion.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related Work}
-The use of Reinforcement Learning (RL) for Urban Traffic Control (UTC) has been previously explored and discussed in a variety of pieces of research, aiming to substitute existing adaptive control methods such as SCOOT\cite{scoot}, MOVA\cite{mova} and SCATS\cite{scats}.
+\label{lit}
+RL for UTC has been previously explored and discussed in a variety of pieces of research, aiming to substitute existing adaptive control methods such as SCOOT\cite{scoot}, MOVA\cite{mova} and SCATS\cite{scats}.
 The field has evolved from early inquiries about its theoretical potential use \cite{wiering2000} \cite{abdul2003} \cite{pra2010} \cite{abdulhai2010} \cite{abdoos2011}, to more applied and realistic scenarios \cite{survey2014} \cite{genders2016} \cite{liang2017} \cite{gendersthesis} \cite{gao2017} \cite{mousavi2017} \cite{wan2018} \cite{liang2018} \cite{aslani2019} \cite{genders2019} that look towards real-world use and deployment.
 These use different methods, such as complex pixel-based inputs passed to a CNN or per-lane state signals using fully connected neural networks; although recent research suggests that more complex state representations only provide with marginal gains, if any\cite{gendersstate}.
 Recently, extensive reviews are being carried out \cite{mannion} \cite{survey2020} \cite{survey2020wei}, indexing the different approaches taken and pushing the field towards maturity.
@@ -171,29 +191,19 @@ The site features 4 Vivacity vision-based sensors which can provide flow, queue 
 \begin{figure}                                                
 \centering                                                    
 \includegraphics[width=2.5in]{intersection}                                    
-\caption{Study Junction model in SUMO with a schematic representation of the areas covered by sensors.}                                  
+\caption{Study Junction model in SUMO with a schematic representation of the areas covered by vision-based sensors.}                                  
 \label{intersection}                                               
 \end{figure}     
 
 \subsection{State Representation}
-The agent receives an observation of the simulator state as input, which remains constant across all experiments here presented.
-This observation is a combination of the state of the traffic controller (which stage is active) and data from the sensors.
-The data from the sensors is comprised of the occupancy in each lane area detector and a binary signal representing whether the "Pedestrian Cross" button has been pushed or not.
+The agent receives an observation of the simulator state as input, the contents of which remains constant across all experiments here presented.
+Each observation is a combination of the state of the traffic controller (which stage is active) and data from the sensors.
+The data from the sensors is comprised of the occupancy in each lane area detector and a binary signal representing whether the pedestrian crossing button has been pushed or not.
 A series of these, covering the last 12 seconds at a resolution of 0.6 seconds (20 state-entries) are provided to the agent.
 
 While there is a variety of state representations available in the literature, often being more information dense, many of their features are not obtainable in practice with available sensors.
-Furthermore, recent studies \cite{gendersstate} show that more information-dense states provide marginal improvements, if any, being able to control isolated intersections with simple inputs.
-
-\begin{itemize}
-\item 7 * Area sensor occupancies
-\item VDR3 Pedestrian Button Push
-\item G1-G4 Stage bits (Binary, active/inactive)
-\item NS1-NS4 Next Stage Bits
-\end{itemize}
-
+As stated in Section \ref{lit}, recent studies \cite{gendersstate} show that more information-dense states provide marginal improvements, if any, being possible to control isolated intersections with simple inputs.
 \subsection{Actions of the Agent}
-The actions available to the agent
-
 The junction is configured to have 4 available stages. 
 The Agent is able to choose Stage 2, Stage 3 or Stage 4, yielding an action space size of 3.
 Stage 1 serves a leading right turn phase from the main road, and was excluded by suggestion of the transport authority, since it is an intermediary stage that the controller will go through in order to reach Stage 2, which serves the main road.
@@ -203,7 +213,7 @@ In each timestep when a stage has been active longer than the minimum green time
 The extension can be chosen indefinitely, as long as the agent identifies it as the best action.
 
 The complexity in the decision-making stems from the combination of using of Stage 1 as an intermediate state and the extensions to the stage duration.
-Traditional RL for Urban Traffic Control regards each Stage as an action for the agent to take, based on the instantaneous state of the system.
+Traditional RL for UTC regards each Stage as an action for the agent to take, based on the instantaneous state of the system.
 However, in the case of the intermediate Stage 1, the agent has to choose when to start the transition without knowledge of the future state when Stage 2 begins.
 Regarding the extensions, given that their length is smaller than that of the initial phase, their impact on the state will be smaller, generating a distribution of reward and state-action value outcomes that the agent needs to approximate.
 \begin{figure}                                                
@@ -233,12 +243,7 @@ Another addition that can be made to the rewards is to add a term scaling the di
 These series are identified with the suffix AD (Adjusted by Demand).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Reward Functions}
-\begin{figure*}                                                
-\centering                                                    
-\includegraphics[width=\textwidth]{9grid_ordered_boxplot_all.pdf}                                    
-\caption{Average waiting time for the best performing agents across all three demand scenarios.}                                  
-\label{fig:results_9_grid}                                               
-\end{figure*}
+\label{rewards}
 In this section the individually tested reward functions are introduced.
 
 Let $N$ be the set of lane queue sensors present in the intersection.
@@ -248,79 +253,6 @@ Let $s_v$ be the individual speeds of the vehicles, $\tau^v$ and $\tau^p$ the wa
 Let $\rho_v$ and $\rho_p$ the vehicular and pedestrian flows across the junction over the length of the action.
 Let $t^p$ be the time at which the previous action was taken and $t^{pp}$ the time of the action before that.
 Lastly, let $t^v_e$ and $t^p_e$ be the entry times of vehicles and pedestrians to the area covered by sensors. 
-
-
-
-\begin{table*}[!htp]
-\centering
-\setlength\tabcolsep{0pt}
-
-\caption{Average waiting time in seconds for all agents across demand levels}
-\label{tab:some example table}
-
-\begin{tabular*}{\textwidth}{
-  @{\extracolsep{\fill}}
-  l
-  S[table-format=-1.2(1)]
-  S[table-format=-1.2(1)] 
-  S[table-format=-1.2(1)]
-  S[table-format=-1.2(1)]
-  S[table-format=-1.2(1)]
-  S[table-format=-1.2(1)]
-  @{}
-}
-\toprule
-& \multicolumn{2}{c}{Normal Scenario} &
-\multicolumn{2}{c}{Peak Scenario} &
-\multicolumn{2}{c}{Oversaturated Scenario} \\
-
-Scenario & {Vehicles} & {Pedestrians} & {Vehicles} & {Pedestrians}  & {Vehicles}  & {Pedestrians}\\
-\midrule
-Queues                 & 7.87\pm 0.83 & 16.47\pm 3.95 & 10.68\pm 2.06 & 17.73\pm 3.64 & 19.80\pm 6.01 & 17.94\pm 3.48  \\
-Queues Sq.             & 7.79\pm 0.93 & 18.55\pm 4.47 & 10.92\pm 2.41 & 18.60\pm 4.81 & 20.80\pm 6.88 & 19.02\pm 4.38  \\
-Queues PLN             & 14.57\pm 4.91 & 20.31\pm 4.94 & 32.90\pm 6.36 & 19.59\pm 4.78 & 38.04\pm 3.93 & 19.28\pm 4.87  \\
-$\Delta$ Queues        &  8.34\pm 1.04 & 18.37\pm 3.94 & 11.63\pm 3.09 & 19.45\pm 3.75 & 24.40\pm 7.20 & 19.70\pm 3.80  \\
-$\Delta$ Queues PLN    & 10.37\pm 1.10 & 17.45\pm 3.59 & 16.11\pm 4.38 & 18.44\pm 4.45 & 30.64\pm 5.00 & 19.49\pm 4.32  \\
-\midrule
-%Average Speed - Wait     & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0  \\
-Average Speed - Occ      & 7.86\pm 0.94 & 14.79\pm 3.97 & 12.34\pm 3.44 & 15.43\pm 3.84 & 24.84\pm 7.31 & 15.56\pm 4.49  \\
-Average Speed AD - Wait  & 8.20\pm 0.80 & 15.37\pm 3.48 & 10.85\pm 2.11 & 15.55\pm 3.84 & 17.89\pm 5.68 & 14.95\pm 3.80  \\
-Average Speed AD - Occ   & 7.85\pm 0.88 & 16.68\pm 4.83 & 11.10\pm 2.44 & 17.20\pm 4.93 & 20.93\pm 6.83 & 17.66\pm 5.01  \\
-\midrule
-Wait Time              & 7.80\pm 0.90 & 41.05\pm 19.40 & 14.65\pm 4.73 & 110.34\pm 59.56 & 28.82\pm 4.83 & 228.46\pm 159.81  \\
-Wait Time P80          & 8.20\pm 1.26 & 28.80\pm 9.05 & 14.94\pm 4.81 & 54.29\pm 35.00 & 30.01\pm 4.84 & 113.68\pm 52.00  \\
-Wait Time P95          & 8.26\pm 1.15 & 19.00\pm 4.67 & 16.51\pm 5.94 & 19.24\pm 4.44 & 31.02\pm 5.26 & 20.14\pm 4.16  \\
-\midrule
-Wait Time AD           & 7.83\pm 0.99 & 56.00\pm 30.22 & 14.84\pm 4.84 & 169.11\pm 92.44 & 27.52\pm 5.01 & 324.12\pm 212.37  \\
-Wait Time AD P80       & 8.25\pm 1.13 & 23.52\pm 5.73 & 17.05\pm 5.91 & 27.35\pm 6.29 & 31.43\pm 4.95 & 32.69\pm 9.67  \\
-Wait Time AD P95       & 8.48\pm 1.19 & 18.07\pm 4.75 & 17.88\pm 6.25 & 18.30\pm 5.02 & 32.67\pm 5.28 & 18.78\pm 4.37  \\
-\midrule
-$\Delta$ Wait Time     & 9.12\pm 1.23 & 82.57\pm 36.55 & 15.28\pm 5.09 & 326.07\pm 175.84 & 24.16\pm 6.77 & 594.03\pm 273.64  \\
-$\Delta$ Wait Time P80 & 8.94\pm 1.38 & 33.35\pm 17.34 & 16.68\pm 4.65 & 81.64\pm 49.48 & 30.38\pm 4.50 & 149.79\pm 105.07  \\
-$\Delta$ Wait Time P95 & 10.02\pm 1.66 & 42.36\pm 16.59 & 16.27\pm 5.33 & 72.27\pm 44.89 & 26.88\pm 6.22 & 174.85\pm 109.01  \\
-\midrule
-Delay                  & 6.39\pm 0.40 & 849.52\pm 318.33 & 8.59\pm 0.89 & 849.52\pm 318.33 & 14.43\pm 3.16 & 849.52\pm 318.33  \\
-Delay P80              & 8.39\pm 1.10 & 46.78\pm 16.52 & 11.52\pm 2.36 & 78.91\pm 35.73 & 20.93\pm 7.02 & 143.27\pm 72.39  \\
-Delay P95              & 7.92\pm 0.89 & 26.21\pm 4.86 &  11.38\pm 2.42 & 30.30\pm 7.64 & 20.99\pm 6.29 & 47.34\pm 23.27  \\
-\midrule
-Delay AD               & 6.71\pm 0.43 & 811.38\pm 352.38 & 8.79\pm 0.96 & 811.38\pm 352.38 & 14.08\pm 3.31 & 811.38\pm 352.38  \\
-Delay AD P80           & 7.74\pm 0.81 & 44.55\pm 17.51 & 10.68\pm 1.95 & 122.05\pm 112.18 & 18.92\pm 6.46 & 404.54\pm 252.47  \\
-Delay AD P95           & 7.83\pm 0.84 & 48.76\pm 24.28 & 11.62\pm 3.02 & 180.59\pm 123.18 & 21.77\pm 6.82 & 425.35\pm 234.33  \\
-\midrule
-$\Delta$ Delay         & 11.18\pm 2.93 & 211.41\pm 116.86 & 26.98\pm 6.75 & 546.51\pm 263.71 & 34.97\pm 3.45 & 393.81\pm 267.95  \\
-$\Delta$ Delay P80     & 10.62\pm 2.34 & 66.46\pm 30.32 & 20.51\pm 6.04 & 180.64\pm 107.80 & 29.70\pm 4.97 & 307.76\pm 218.11  \\
-$\Delta$ Delay P95     & 8.23\pm 1.29 & 99.40\pm 59.76 & 15.22\pm 4.97 & 221.92\pm 133.24 & 25.35\pm 6.43 & 398.13\pm 240.03  \\
-\midrule
-Throughput             & 18.71\pm 4.79 & 23.60\pm 6.88 & 35.28\pm 5.60 & 26.26\pm 8.14 & 39.24\pm 3.72 & 34.86\pm 28.54  \\
-Throughput P80         & 35.53\pm 10.87 & 51.96\pm 31.20 & 47.60\pm 5.99 & 65.91\pm 37.86 & 47.85\pm 5.15 & 84.93\pm 49.08  \\
-Throughput P95         & 26.28\pm 8.81 & 101.07\pm 65.21 & 56.39\pm 10.72 & 130.98\pm 84.11 & 74.10\pm 13.94 & 74.46\pm 57.96  \\
-\midrule
-Vehicle Actuated System D  & 10.62\pm 1.17 & 38.36\pm 12.66 & 18.73\pm 2.92 & 51.62\pm 16.50 & 38.10\pm 8.26 & 56.32\pm 19.58  \\
-Maximum Occupancy     & 6.92\pm 0.54 & 196.09\pm 130.04 & 10.02\pm 1.75 & 397.20\pm 213.06 & 21.57\pm 5.10 & 596.32\pm 253.80  \\
-\bottomrule
-\label{table}
-\end{tabular*}
-\end{table*}
 
 \subsection{Queue Length based Rewards}
 \subsubsection{Queue Length}
@@ -444,7 +376,87 @@ The reward is the sum of the pedestrians and vehicles that cleared the intersect
 \label{eq:throughput}
 \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}                                                
+\centering                                                    
+\includegraphics[width=\textwidth]{9grid_ordered_boxplot_all.pdf}                                    
+\caption{Average waiting time for the best performing agents across all three demand scenarios.}                                  
+\label{fig:results_9_grid}                                               
+\end{figure*}
+
+\begin{table*}[!htp]
+\centering
+\setlength\tabcolsep{0pt}
+
+\caption{Average waiting time in seconds for all agents across demand levels}
+\label{tab:some example table}
+
+\begin{tabular*}{\textwidth}{
+  @{\extracolsep{\fill}}
+  l
+  S[table-format=-1.2(1)]
+  S[table-format=-1.2(1)] 
+  S[table-format=-1.2(1)]
+  S[table-format=-1.2(1)]
+  S[table-format=-1.2(1)]
+  S[table-format=-1.2(1)]
+  @{}
+}
+\toprule
+& \multicolumn{2}{c}{Normal Scenario} &
+\multicolumn{2}{c}{Peak Scenario} &
+\multicolumn{2}{c}{Oversaturated Scenario} \\
+
+Scenario & {Vehicles} & {Pedestrians} & {Vehicles} & {Pedestrians}  & {Vehicles}  & {Pedestrians}\\
+\midrule
+Queues                 & 7.87\pm 0.83 & 16.47\pm 3.95 & 10.68\pm 2.06 & 17.73\pm 3.64 & 19.80\pm 6.01 & 17.94\pm 3.48  \\
+Queues Sq.             & 7.79\pm 0.93 & 18.55\pm 4.47 & 10.92\pm 2.41 & 18.60\pm 4.81 & 20.80\pm 6.88 & 19.02\pm 4.38  \\
+Queues PLN             & 14.57\pm 4.91 & 20.31\pm 4.94 & 32.90\pm 6.36 & 19.59\pm 4.78 & 38.04\pm 3.93 & 19.28\pm 4.87  \\
+$\Delta$ Queues        &  8.34\pm 1.04 & 18.37\pm 3.94 & 11.63\pm 3.09 & 19.45\pm 3.75 & 24.40\pm 7.20 & 19.70\pm 3.80  \\
+$\Delta$ Queues PLN    & 10.37\pm 1.10 & 17.45\pm 3.59 & 16.11\pm 4.38 & 18.44\pm 4.45 & 30.64\pm 5.00 & 19.49\pm 4.32  \\
+\midrule
+%Average Speed - Wait     & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0  \\
+Average Speed - Occ      & 7.86\pm 0.94 & 14.79\pm 3.97 & 12.34\pm 3.44 & 15.43\pm 3.84 & 24.84\pm 7.31 & 15.56\pm 4.49  \\
+Average Speed AD - Wait  & 8.20\pm 0.80 & 15.37\pm 3.48 & 10.85\pm 2.11 & 15.55\pm 3.84 & 17.89\pm 5.68 & 14.95\pm 3.80  \\
+Average Speed AD - Occ   & 7.85\pm 0.88 & 16.68\pm 4.83 & 11.10\pm 2.44 & 17.20\pm 4.93 & 20.93\pm 6.83 & 17.66\pm 5.01  \\
+\midrule
+Wait Time              & 7.80\pm 0.90 & 41.05\pm 19.40 & 14.65\pm 4.73 & 110.34\pm 59.56 & 28.82\pm 4.83 & 228.46\pm 159.81  \\
+Wait Time P80          & 8.20\pm 1.26 & 28.80\pm 9.05 & 14.94\pm 4.81 & 54.29\pm 35.00 & 30.01\pm 4.84 & 113.68\pm 52.00  \\
+Wait Time P95          & 8.26\pm 1.15 & 19.00\pm 4.67 & 16.51\pm 5.94 & 19.24\pm 4.44 & 31.02\pm 5.26 & 20.14\pm 4.16  \\
+\midrule
+Wait Time AD           & 7.83\pm 0.99 & 56.00\pm 30.22 & 14.84\pm 4.84 & 169.11\pm 92.44 & 27.52\pm 5.01 & 324.12\pm 212.37  \\
+Wait Time AD P80       & 8.25\pm 1.13 & 23.52\pm 5.73 & 17.05\pm 5.91 & 27.35\pm 6.29 & 31.43\pm 4.95 & 32.69\pm 9.67  \\
+Wait Time AD P95       & 8.48\pm 1.19 & 18.07\pm 4.75 & 17.88\pm 6.25 & 18.30\pm 5.02 & 32.67\pm 5.28 & 18.78\pm 4.37  \\
+\midrule
+$\Delta$ Wait Time     & 9.12\pm 1.23 & 82.57\pm 36.55 & 15.28\pm 5.09 & 326.07\pm 175.84 & 24.16\pm 6.77 & 594.03\pm 273.64  \\
+$\Delta$ Wait Time P80 & 8.94\pm 1.38 & 33.35\pm 17.34 & 16.68\pm 4.65 & 81.64\pm 49.48 & 30.38\pm 4.50 & 149.79\pm 105.07  \\
+$\Delta$ Wait Time P95 & 10.02\pm 1.66 & 42.36\pm 16.59 & 16.27\pm 5.33 & 72.27\pm 44.89 & 26.88\pm 6.22 & 174.85\pm 109.01  \\
+\midrule
+Delay                  & 6.39\pm 0.40 & 849.52\pm 318.33 & 8.59\pm 0.89 & 849.52\pm 318.33 & 14.43\pm 3.16 & 849.52\pm 318.33  \\
+Delay P80              & 8.39\pm 1.10 & 46.78\pm 16.52 & 11.52\pm 2.36 & 78.91\pm 35.73 & 20.93\pm 7.02 & 143.27\pm 72.39  \\
+Delay P95              & 7.92\pm 0.89 & 26.21\pm 4.86 &  11.38\pm 2.42 & 30.30\pm 7.64 & 20.99\pm 6.29 & 47.34\pm 23.27  \\
+\midrule
+Delay AD               & 6.71\pm 0.43 & 811.38\pm 352.38 & 8.79\pm 0.96 & 811.38\pm 352.38 & 14.08\pm 3.31 & 811.38\pm 352.38  \\
+Delay AD P80           & 7.74\pm 0.81 & 44.55\pm 17.51 & 10.68\pm 1.95 & 122.05\pm 112.18 & 18.92\pm 6.46 & 404.54\pm 252.47  \\
+Delay AD P95           & 7.83\pm 0.84 & 48.76\pm 24.28 & 11.62\pm 3.02 & 180.59\pm 123.18 & 21.77\pm 6.82 & 425.35\pm 234.33  \\
+\midrule
+$\Delta$ Delay         & 11.18\pm 2.93 & 211.41\pm 116.86 & 26.98\pm 6.75 & 546.51\pm 263.71 & 34.97\pm 3.45 & 393.81\pm 267.95  \\
+$\Delta$ Delay P80     & 10.62\pm 2.34 & 66.46\pm 30.32 & 20.51\pm 6.04 & 180.64\pm 107.80 & 29.70\pm 4.97 & 307.76\pm 218.11  \\
+$\Delta$ Delay P95     & 8.23\pm 1.29 & 99.40\pm 59.76 & 15.22\pm 4.97 & 221.92\pm 133.24 & 25.35\pm 6.43 & 398.13\pm 240.03  \\
+\midrule
+Throughput             & 18.71\pm 4.79 & 23.60\pm 6.88 & 35.28\pm 5.60 & 26.26\pm 8.14 & 39.24\pm 3.72 & 34.86\pm 28.54  \\
+Throughput P80         & 35.53\pm 10.87 & 51.96\pm 31.20 & 47.60\pm 5.99 & 65.91\pm 37.86 & 47.85\pm 5.15 & 84.93\pm 49.08  \\
+Throughput P95         & 26.28\pm 8.81 & 101.07\pm 65.21 & 56.39\pm 10.72 & 130.98\pm 84.11 & 74.10\pm 13.94 & 74.46\pm 57.96  \\
+\midrule
+Vehicle Actuated System D  & 10.62\pm 1.17 & 38.36\pm 12.66 & 18.73\pm 2.92 & 51.62\pm 16.50 & 38.10\pm 8.26 & 56.32\pm 19.58  \\
+Maximum Occupancy     & 6.92\pm 0.54 & 196.09\pm 130.04 & 10.02\pm 1.75 & 397.20\pm 213.06 & 21.57\pm 5.10 & 596.32\pm 253.80  \\
+\bottomrule
+\label{table}
+\end{tabular*}
+\end{table*}
+
+
 \section{Experiments}
+\label{experiments}
 \subsection{DQN Agents Training}
 The training process covered 1500 episodes running for 3000 steps of length $\delta=0.6$ seconds for a simulated time of 30 minutes (1800 seconds).
 The traffic demand is increased as the training advances, with the agent progressively facing sub-saturated, near-saturated and over-saturated scenarios, with a minimum of 1 vehicle/3 seconds (1200 vehicles/h) and a maximum of 1 vehicle/1.4 seconds (2571 vehicles/h).
@@ -460,6 +472,7 @@ The Normal Scenario uses an arrival rate of 1 vehicle / 2.1 seconds (1714 vehicl
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results and Discussion}
+\label{results}
 The results obtained from the simulations of the different reward functions for DQN agents are summarised in Fig. \ref{fig:results_9_grid}, including the performance of the 14 rewards found to have lower waiting times and seeming most desirable in practice, and detailed for all 31 rewards in Table \ref{table}.
 In Fig. \ref{fig:results_9_grid}, the distribution of pedestrian and vehicle waiting times, and the combination of mean performances for both modes of transportation across 100 repetitions of each demand level are presented.
 Table \ref{table} shows the mean waiting time for each distribution and their standard deviation, also calculated across all three demand levels. 
@@ -478,7 +491,7 @@ Prioritised rewards based on Waiting Time had acceptable performance, although t
 This is similar to the behaviour shown by the Delay-based rewards, which overall perform worse.
 Without a weight configuration heavily favouring the pedestrians, these reward functions were found to converge for vehicles only, obtaining the lowest vehicle waiting times overall in the case of the Delay functions, at the expense of rarely, if ever, serving pedestrians.
 The suitability of a given choice of modal prioritisation weights is further affected by the functional form of the reward.
-In the results, it can be observed that while in general the choice $(\alpha=5,\beta=95)$ seems to be working best (Wait Time, Delay), for certain functional choices the prioritisation $(\alpha=20,\beta=80)$ produces best results, which would not be the case if the suitability of the weights was only affected by the relative demand ratios between vehicles and pedestrians. 
+In the results, it can be observed that while in general the choice $(\alpha=5,\beta=95)$ obtains better results (e.g. Wait Time and Delay), for certain functional choices the prioritisation $(\alpha=20,\beta=80)$ produces best results, which would not be the case if the suitability of the weights was only affected by the relative demand ratios between vehicles and pedestrians. 
 This is the case with Throughput based functions, which unlike the Wait and Delay functions, obtained lower waiting times with equal modal weights, and a general increase as the weights become more skewed towards the pedestrians.
 
 Rewards using Differences in Delay or Wait Time, having good performance in the literature, were found either not to converge for pedestrians or to produce mediocre results.
@@ -564,7 +577,7 @@ We are also grateful to W. Chernikoff, Toyota Mobility Foundation and The Alan T
 % number - used to balance the columns on the last page
 % adjust value as needed - may need to be readjusted if
 % the document is modified later
-%\IEEEtriggeratref{8}
+\IEEEtriggeratref{11}
 % The "triggered" command can be changed if desired:
 %\IEEEtriggercmd{\enlargethispage{-5in}}
 
