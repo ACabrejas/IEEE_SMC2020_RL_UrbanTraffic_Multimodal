@@ -507,14 +507,15 @@ The addition of a demand scaling term generates, in general, a slight improvemen
 Average Speed rewards do not seem to benefit from this term, with all variants scoring similarly.
 
 Overall, the dominance shown by speed maximisation methods could be attributed to several factors.
-On one side, Average Speed based functions 
-It can also be argued that due speed maximisation rewards are better suited for the underlying MDP than others, due to their independence of the correspondence between agent actions and time-steps in the environment, . In the specific case of RL for UTC, the values of the reward received by the agent using a reward based on Queues, Delay, Wait or Throughput are a function of the length of the phase that generated them.
-Lastly, speed maximisation and queue minimisation have an extra benefit that makes them into serious candidates for expansive real-world use: the lack of need for modal prioritisation tuning.
-One of the main selling points of ML and RL methods stems from their ability to perform equal or better than traditional systems at a lower cost.
-However, a lengthy manual tuning process in order to find the exact weights for a given situation is not only untranslatable to any other location but also may not result in reduced planning times compared with traditional control.
-The lack of need for manual tuning, especially in the case of Average Speed functions, which are specifically crafted to avoid it, make them more applicable in a wider and faster manner than any of the other reward functions here presented.
+On one side, Average Speed based functions, as Queue based functions, obtain an instantaneous snapshot of a magnitude that does not intrinsically grow over time, as opposed to Delay, Wait and Throughput, so it exclusively encodes information about the moment the action is requested.
+It can also be argued that speed maximisation rewards are not affected by the correspondence between agent actions and time-steps in the environment . In the specific case of RL for UTC, the values of the reward received by the agent using a reward based on Queues, Delay, Wait or Throughput are a function of the length of the phase that generated them, making them theoretically less suitable for the underlying MDP than speed maximisation..
 
-A limitation of this paper, is that the results are only relevant in the case of value-based DQN agents as introduced in Section \ref{problem} and Section \ref{methods}, not being relevant for CNN or Policy Gradient architectures.
+Lastly, speed maximisation and queue minimisation have an extra benefit that makes them into serious candidates for expansive real-world use: the lack of need for modal prioritisation tuning.
+One of the main selling points of ML and RL methods stems from their ability to perform equal or better than traditional systems at a lower cost in a variety of situations.
+However, a lengthy manual tuning process in order to find the exact weights for a given junction is not only untranslatable to any other junction but also may not result in reduced planning and execution times compared with traditional control.
+The lack of need for manual tuning, especially in the case of Average Speed functions, which are specifically crafted to avoid it, make them in our view more applicable in a wider and faster manner than any of the other reward functions here presented.
+
+One limitation of this paper is that the results are only relevant in the case of value-based DQN agents as introduced in Section \ref{problem} and Section \ref{methods}, not being relevant for CNN or Policy Gradient architectures.
 
 This work could be extended to account for other modes of transportation, performing a similar optimisation based on different vehicle classes (buses, cyclist, personal vehicles, trucks, etc). The optimisation could seek to prioritise them based on different criteria (e.g. priority to cyclists and public transport during rush hours).
 
