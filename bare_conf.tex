@@ -53,7 +53,7 @@ Email: c.p.connaughton@warwick.ac.uk}
 \maketitle
 
 \begin{abstract}
-Traffic Signal Control is an important real-world challenge that has direct impact over the economic performance of urban areas.
+Optimisation of Traffic Signal Control Systems is an important real-world challenge that has direct impact over the economic performance of urban areas.
 Recently, Reinforcement Learning is proving to be a successful tool that can effectively manage urban intersections with a fraction of the effort required to curate traditional Urban Traffic Controllers. However, literature dealing with the introduction and control of pedestrians in such intersections is scarce, and comparisons between the effect of the different approaches that can be taken in terms of architecture, state space or rewards are uncommon.
 
 This paper performs a robust comparison between different 31 different Reinforcement Learning reward functions for controlling intersections serving vehicles and pedestrians. 
@@ -71,36 +71,38 @@ We find that those rewards maximising the speed of the network obtain the lowest
 Effective traffic signal control is one of the key issues in Urban Traffic Control (UTC), effectively controlling how the available resources (green time) in our urban travel network are allocated.
 The efficiency associated with this allocation has an important impact in travel times, harmful emissions and economic activity.
 
-First, fixed time controllers, and later adaptive systems have been used to further optimise the global flow through our cities.
-Recent improvements in CPU and especially GPU power are allowing for vision-based sensors to gather large amounts of real-time data that a few years ago seemed unattainable, such as individual vehicle position and speeds, all in a much cheaper way than with traditional actuated sensors.
-As a side effect of these developments, not only the area covered by them is ever increasing, but it is also becoming possible to direct some of these towards the pedestrians.
-This allows for the development of novel smart control approaches, that harness the power of real-time data to deliver cheap, responsive and flexible systems that can adapt to a variety of situations.
+First, fixed time controllers, and later adaptive systems have been used to further optimise the global traffic flow in our cities.
+Recent improvements in CPU and especially GPU power are allowing for vision-based sensors to gather large amounts of real-time data that a few years ago seemed unattainable, such as individual vehicle position and speeds.
+These data is now generated at a much lower marginal cost than with traditional actuated sensors.
+As a side effect of these developments, not only the area covered by sensors is ever increasing, also becoming possible to direct some of these towards pedestrians.
+This allows the development of novel smart control approaches, harnessing the power of real-time data to deliver cheap and responsive systems that can adapt to a variety of situations.
 
 Reinforcement Learning (RL) approaches have been showing promising results in this field.
-However, most of the available works do not try to jointly optimise vehicular and pedestrian travel times, even when pedestrians are allowed and present in the great majority of urban intersections in any city.
+However, most of the existing works do not try to jointly optimise vehicular and pedestrian travel times, even though pedestrians are allowed and present in the great majority of urban intersections.
 
-This paper compares the performance of RL agents using 31 different reward functions split into 5 different classes by the magnitudes they use, when controlling a simulation of a real-world junction in Greater Manchester (UK) that has been calibrated using 3.5 months of data gathered from Vivacity Labs vision-based sensors.
+This paper compares the performance of RL agents using 31 different reward functions split into 5 different classes based on the magnitudes they use, when controlling a simulation of a real-world junction in Greater Manchester (UK) that has been calibrated using 3.5 months of data gathered from Vivacity Labs vision-based sensors.
 
 The paper is structured as follows:
 Section \ref{lit} reviews previous literature in the field.
 Section \ref{problem} states the mathematical framework used and provides with some theoretical background.  
 Section \ref{methods} reviews the environment, the agents and their implementation.
-Section \ref{rewards} introduces the reward functions tested in this paper and provides analytical expressions for them.
+Section \ref{rewards} introduces the reward functions tested in this paper and provides their analytical expressions.
 Section \ref{experiments} contains details about the training and evaluation of the agents.
-Lastly, Section \ref{results} provides the experimental results and the discussion.
+Lastly, Section \ref{results} provides the experimental results and discusses them.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related Work}
 \label{lit}
-RL for UTC has been previously explored and discussed in a variety of pieces of research, aiming to substitute existing adaptive control methods such as SCOOT\cite{scoot}, MOVA\cite{mova} and SCATS\cite{scats}.
+RL for UTC has been previously explored and discussed in a variety of pieces of research, aiming to eventually substitute existing adaptive control methods such as SCOOT\cite{scoot}, MOVA\cite{mova} and SCATS\cite{scats}.
 The field has evolved from early inquiries about its theoretical potential use \cite{wiering2000} \cite{abdul2003} \cite{pra2010} \cite{abdulhai2010} \cite{abdoos2011}, to more applied and realistic scenarios \cite{survey2014} \cite{genders2016} \cite{liang2017} \cite{gendersthesis} \cite{gao2017} \cite{mousavi2017} \cite{wan2018} \cite{liang2018} \cite{aslani2019} \cite{genders2019} that look towards real-world use and deployment.
 These use different methods, such as complex pixel-based inputs passed to a CNN or per-lane state signals using fully connected neural networks; although recent research suggests that more complex state representations only provide with marginal gains, if any\cite{gendersstate}.
 Recently, extensive reviews are being carried out \cite{mannion} \cite{survey2020} \cite{survey2020wei}, indexing the different approaches taken and pushing the field towards maturity.
 
 A common thread in most of the previous works is the need for approximations about the network being studied and the lack of pedestrian modelling and joint optimisation for vehicles and pedestrians' travel times.
 
-As indicated in \cite{survey2020}, pedestrian implementation has a high impact on learning performance, being often discarded as unimportant or left for future work save for three exceptions \cite{geneticped} \cite{liu2017} \cite{chen2020}, one of which uses a genetic algorithm.
+As indicated in \cite{survey2020}, pedestrian implementation has a high impact on learning performance, being often discarded as unimportant or left for future work save for three exceptions \cite{geneticped} \cite{liu2017} \cite{chen2020}, the first of which uses a genetic algorithm instead of RL.
 In this paper we attempt to cover this gap in the literature, providing with a robust performance assessment of for RL agents serving both vehicles and pedestrians, using a variety of rewards, both novel and from the literature.
-These are used in a calibrated model of a real-world junction, using real geometry, calibrated demand, realistic sensory inputs and emulated traffic light controllers, making it immediately portable to the actual intersection.
+These are used in a calibrated model of a real-world junction, using real geometry, calibrated demand, realistic sensory inputs and emulated traffic light controllers, having deployed some of these agents to control real traffic.
+This piece follows the outlined Future Work indicated in \cite{previous}, shifting the focus towards pedestrians and multi-objective optimisation, while keeping the approaches grounded in the real world.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem Definition}
 \label{problem}
@@ -120,9 +122,8 @@ The objective of an MDP optimisation is to find an optimal policy $\pi^*$, mappi
 R_t = \mathbb{E} \bigg{[} \sum^{\infty}_{i=0} \gamma^i r_{t+i} \bigg{]} 
 \label{eq:reward}
 \end{equation}
-In the case of RL for UTC, $\mathcal{T}$ is unknown, only allowing for model-free RL.
-
-Model-Free RL is an sub-field of RL covering how independent agents can take sequential decisions in an unknown environment and learn from these in order to obtain $\pi^*$. 
+In the case of RL for UTC, $\mathcal{T}$ is unknown, making it necessary to approach it from a model-free RL perspective.
+Model-Free RL is an sub-field of RL covering how independent agents can take sequential decisions in an unknown environment and learn from their interactions in order to obtain $\pi^*$. 
 There are two main approaches: Policy-Based RL, in which states are mapped to a distribution of potential actions, and Value-Based RL, which is used in this paper and estimates the value (expected return) of the different state-action pairs under a given policy $\pi$ as defined in Eq. \ref{eq:value}.
 \begin{equation}
 V^{\pi}(s) = \mathbb{E} [R_t|s,\pi]
@@ -130,7 +131,7 @@ V^{\pi}(s) = \mathbb{E} [R_t|s,\pi]
 \end{equation}
 
 \subsection{Q Learning and Value-Based RL}
-Q-Learning\cite{watkins} is an off-policy model-free value-based RL algorithm. For any finite MDP, it can find an optimal policy which maximises expected total discounted reward, starting from the current state\cite{melo}.
+Q-Learning\cite{watkins} is an off-policy model-free value-based RL algorithm. For any finite MDP, it can find an optimal policy which maximises expected total discounted reward, starting from any state\cite{melo}.
 Q-Learning aims to learn an optimal action-value function $Q^*(s,a)$, defined as the total return after being in state $s$, taking action $a$ and then following policy $\pi^*$. %as shown in Eq.\ref{eq:qlearning}.
 \begin{equation}
 Q^*(s,a) = \max_{\pi} \mathbb{E} \big[ R_t | s=s_t, a=a_t, \pi^* \big]
@@ -156,7 +157,7 @@ This table representation is not useful for high dimensionality cases, since the
 \end{figure}  
 
 \subsection{Deep Q Network}
-One way of dealing with the issues of Q-Learning in high dimensional spaces is to use a Neural Network as function approximator, called Deep Q-Network (DQN) \cite{mnih2015}.
+One way of addressing the issues of Q-Learning in high dimensional spaces is to use a Neural Network as function approximator, called Deep Q-Network (DQN) \cite{mnih2015}.
 The Q-function approximation is denoted then in terms of the parameters $\theta$ of the DQN as $Q(s,a,\theta)$.
 One component of DQN that stabilises learning is the Target Network. DQN uses two neural networks: the main network with parameters $\theta$, which approximates the Q-function, and the target network with parameters $\theta^-$ which provides the TD targets for the DQN updates and is updated every number of episodes by copying the weights $\theta^- \leftarrow \theta$. With $Q^{\pi} (s_{t+1}, a_{t+1}, \theta^-)$ representing the target network, it results in a TD target to approximate:
 \begin{equation}
@@ -166,7 +167,7 @@ y_t = R_t + \gamma \,\,\, \max_{a_{t+1}} Q^{\pi} (s_{t+1}, a_{t+1}, \theta^-)
 \section{Methods}
 \label{methods}
 \subsection{Reinforcement Learning Agent}
-The basic common agent used to obtain these results is a standard implementation of a DQN in PyTorch \cite{pytorch}, optimising its weights via Stochastic Gradient Descent \cite{kiefer} using ADAM \cite{adam} as optimizer.
+The basic common agent used to obtain these results is a standard implementation of a DQN in PyTorch \cite{pytorch}, optimising its weights via Stochastic Gradient Descent \cite{kiefer} with ADAM \cite{adam} being used as optimizer.
 The learning rate is $\alpha=10^{-5}$ and the discount factor is $\gamma = 0.8$ for all simulations.
 The Neural Network in the agent uses 2 hidden, fully connected layers of sizes 500 and 1000 respectively, using ReLU as an activation function.
 \subsection{Reinforcement Learning Environment}
@@ -178,15 +179,15 @@ The Neural Network in the agent uses 2 hidden, fully connected layers of sizes 5
 \end{figure}
 The environment is modelled in the microscopic traffic simulator SUMO \cite{sumo}, representing a real-world intersection in Greater Manchester, UK.
 The junction consists of four arms, with 6 incoming lanes (two each in North-South orientation, and one each in East-West orientation) and 4 pedestrian crossings.
-The real-world site also contains 4 Vivacity vision-based sensors, able to supply queue length, speed and flow data.
-The demand and turning rations at the junction have been calibrated using 3.5 months of journey time and flow data collected by these sensors.
+The real-world site also contains 4 Vivacity vision-based sensors, able to supply occupancy, queue length, waiting time, speed and flow data.
+The demand and turning ratios at the junction have been calibrated using 3.5 months of journey time and flow data collected by these sensors.
 The environment includes an emulated traffic signal controller, responsible of changing between the different stages in the intersection and enforcing the operational limitations, focused on safety.
 This includes enforcing green times, intergreen times, as well as determining allowed stages.  
 
-A stage is defined as a group of non-conflicting green lights (phases) in a junction which move at the same time.
+A stage is defined as a group of non-conflicting green lights (phases) in a junction which change at the same time.
 
 The Agent decides which stage to select next and requests this from an emulated traffic signal controller, which moves to that stage subject to its limitations, which are primarily safety-related.
-The site features 4 Vivacity vision-based sensors which can provide flow, queue length and speed data. The data available to the agent is restricted to what can be obtained from these sensors.     
+The data available to the agent is restricted to what can be obtained from these sensors.     
 
 \begin{figure}                                                
 \centering                                                    
@@ -196,26 +197,32 @@ The site features 4 Vivacity vision-based sensors which can provide flow, queue 
 \end{figure}     
 
 \subsection{State Representation}
-The agent receives an observation of the simulator state as input, the contents of which remains constant across all experiments here presented.
+The agent receives an observation of the simulator state as input, using the same state information across all experiments here presented.
 Each observation is a combination of the state of the traffic controller (which stage is active) and data from the sensors.
-The data from the sensors is comprised of the occupancy in each lane area detector and a binary signal representing whether the pedestrian crossing button has been pushed or not.
-A series of these, covering the last 12 seconds at a resolution of 0.6 seconds (20 state-entries) are provided to the agent.
+The data from the sensors is comprised of the occupancy in each lane area detector and a binary signal representing whether the pedestrian crossing button has been pushed.
+The agent receives a concatenation of the last 20 measurements at a time, covering the previous 12 seconds at a resolution of 0.6 seconds.
 
-While there is a variety of state representations available in the literature, often being more information dense, many of their features are not obtainable in practice with available sensors.
-As stated in Section \ref{lit}, recent studies \cite{gendersstate} show that more information-dense states provide marginal improvements, if any, being possible to control isolated intersections with simple inputs.
 \subsection{Actions of the Agent}
 The junction is configured to have 4 available stages. 
 The Agent is able to choose Stage 2, Stage 3 or Stage 4, yielding an action space size of 3.
-Stage 1 serves a leading right turn phase from the main road, and was excluded by suggestion of the transport authority, since it is an intermediary stage that the controller will go through in order to reach Stage 2, which serves the main road.
-Stage 3 only serves pedestrians, which are not considered here, so was also excluded.
-Stage 4 serves the side roads, which do experience significant demand.
-In each timestep when a stage has been active longer than the minimum green time, the agent generates state-action values for each potential stage and the highest value is chosen according to an $\epsilon$-greedy policy \cite{suttonbarto}. If the agent chooses the same stage, that stage is extended by 0.6s, otherwise the controler begins the transition to the other stage.
-The extension can be chosen indefinitely, as long as the agent identifies it as the best action.
 
-The complexity in the decision-making stems from the combination of using of Stage 1 as an intermediate state and the extensions to the stage duration.
-Traditional RL for UTC regards each Stage as an action for the agent to take, based on the instantaneous state of the system.
-However, in the case of the intermediate Stage 1, the agent has to choose when to start the transition without knowledge of the future state when Stage 2 begins.
-Regarding the extensions, given that their length is smaller than that of the initial phase, their impact on the state will be smaller, generating a distribution of reward and state-action value outcomes that the agent needs to approximate.
+Stage 1 services a protected right turn coming from the North. It is used by the traffic light controller, as a transitional step for reaching Stage 2, as defined by the transport authority.
+Stage 2 deals with the traffic in the North-South orientation.
+Stage 3 is the pedestrian stage, setting all pedestrian crossings to green, and all other phases to red.
+Stage 4 services the roads in the East-West orientation, which have considerable demand.
+
+Once the controller has had a stage active for the minimum green time duration, the agent is requested to compute the value of all potential state-action pairs (i.e. the value of other stages given the current state) once per time-step.
+From these, the action with the highest expected value is selected following an $\epsilon$-greedy policy\cite{suttonbarto}.
+Should the agent choose the same action, the current stage will be extended for a further time-step (0.6 seconds).
+There is no built-in limit to the maximum number of said extensions, leaving it for the agent to learn the optimal stage extensions for a given situation.
+If a different stage is chosen, then the controller will proceed to the intergreen transition between the current them.
+
+There are 2 situations that further add to the complexity of this control process:
+\begin{enumerate}
+\item The variation in the number of extensions, and hence in the length of the stages, will create a distribution of values over the state-action pairs, which the agent must approximate. The variance of this distribution will be higher than the variance that would be obtained using constant stage length.
+\item Using Stage 1 as as away to reach Stage 2 implies less certainty in the control process than in other stages, since there is an unaccounted dilated temporal horizon between the state that triggered the action, and the effects of said action over the state variables.
+\end{enumerate}
+
 \begin{figure}                                                
 \centering                                                    
 \includegraphics[width=2.5in]{phases_limited.png}                                    
@@ -223,7 +230,7 @@ Regarding the extensions, given that their length is smaller than that of the in
 \label{intersection}                                               
 \end{figure}     
 \subsection{Modal Prioritisation and Adjusting by Demand}
-The agent has to serve vehicles and pedestrians arriving at the intersection, seeking to jointly optimise the intersection for both modes of transport.
+The agent serves vehicles and pedestrians arriving at the intersection, seeking to jointly optimise the intersection for both modes of transport.
 
 All the reward functions presented in this paper follow the same structure.
 The reward, as seen by the agent, will be a linear combination of an independently calculated reward for the vehicles and another for the agents, as it can be seen in Eq. \ref{eq:modal}.
@@ -231,7 +238,7 @@ The reward, as seen by the agent, will be a linear combination of an independent
 R_t = \alpha * R^v_t + \beta * R^p_t;\,\,\,\,\,\,\ \alpha+\beta = 1
 \label{eq:modal}
 \end{equation}
-In this way, $\alpha$ and $\beta$ are the Modal Prioritisation coefficients for our rewards.
+In this way, $\alpha$ and $\beta$ are the Modal Prioritisation coefficients for our rewards, with $R^v, R^p$ being respectively the vehicular and pedestrian rewards.
 
 Of the rewards presented in the following section, those that were more sensitive towards the relative ratio of the demand between pedestrian and vehicles require of manual tuning of the modal prioritisation parameters.
 Even if this is undesirable from a modeller and operator point of view, since it partially counters the benefits that RL provides in terms of self-adjustment, they have been provided so potential users and researchers can evaluate the trade-offs between potential increased performance and increased configuration effort.
@@ -244,7 +251,7 @@ These series are identified with the suffix AD (Adjusted by Demand).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Reward Functions}
 \label{rewards}
-In this section the individually tested reward functions are introduced.
+All reward functions tested are presented in this section, with their analytical expressions.
 
 Let $N$ be the set of lane queue sensors present in the intersection.
 Let $M$ be the set of pedestrian occupancy sensors in the junction.
@@ -256,7 +263,7 @@ Lastly, let $t^v_e$ and $t^p_e$ be the entry times of vehicles and pedestrians t
 
 \subsection{Queue Length based Rewards}
 \subsubsection{Queue Length}
-Similar to \cite{pra2010}, used in \cite{aslani2019}, the reward is the negative sum at time $t$ of queues ($q$) over all ($n$) sensors.
+Similar to \cite{pra2010}, used in \cite{aslani2019}, the reward is the negative sum at $t$ of queues ($q$) over all ($n,m$) sensors.
 \begin{equation}
     R_t = - \alpha \sum_{n \in N} q^v_{t} - \beta \sum_{m \in M} q^p_{t}
 \label{eq:queue}
@@ -293,9 +300,9 @@ As Delta Queue, but dividing the sum by the phase length (Phase Length Normalisa
 \end{equation}
 
 \subsection{Waiting Time based Rewards}
-These rewards use Modal Prioritisation weights.
+These rewards require Modal Prioritisation weights.
 \subsubsection{Wait Time}
-The reward is the negative sum of time in queue accumulated since the last action. 
+The reward is the negative sum of time in queue accumulated since the last action by all vehicles. 
 \begin{equation}
 R_t = - \bigg( \sum_{v \in V_t} \tau^v_{t} + \sum_{p \in P_t} \tau^p_{t} \bigg)
 \label{eq:wait_time}
@@ -316,13 +323,13 @@ Negative sum of waiting time, adding a factor to scale it accordingly with an es
 \end{equation}
 
 \subsection{Delay based Rewards}
-These rewards use Modal Prioritisation weights.
+These rewards require Modal Prioritisation weights.
 \subsubsection{Delay}
 Seen in \cite{wan2018}. Negative weighted sum of the delay by all entities. Delay is understood as deviation from the maximum allowed speed. 
 For the pedestrians, the time in queue is used given that, from the point of view of the sensors, pedestrian presence is binary.
 Assuming a simulator time step of length $\delta$:
 \begin{equation}
-    R_t = - \bigg( \alpha \sum_{v \in V_t}  \sum_{t^p_e}^t \delta * \big( 1-\frac{s_v}{s_{max}} \big) + \beta \sum_{p \in P_t} \tau^p_t \bigg)
+    R_t = - \bigg( \alpha \sum_{v \in V_t}  \sum_{t^p_e}^t \delta \big( 1-\frac{s_v}{s_{max}} \big) + \beta \sum_{p \in P_t} \tau^p_t \bigg)
 \label{eq:delay}
 \end{equation}
 
@@ -332,7 +339,7 @@ Similar to Eq. (\ref{eq:delta_wait_time}).
 The reward is the variation between actions of the delay as calculated in Eq. (\ref{eq:delta_wait_time}).
 \begin{equation}
 \begin{split}
-R_t =  \alpha \bigg( \sum_{v \in V_t} \sum_{t^{pp}}^{t^p} ts * & \big( 1-\frac{s_v}{s_{max}} \big) - \sum_{v \in V_t}  \sum_{t^p}^t ts * \big( 1-\frac{s_v}{s_{max}} \big) \bigg) \\
+R_t =  \alpha \bigg( \sum_{v \in V_t} \sum_{t^{pp}}^{t^p} \delta & \big( 1-\frac{s_v}{s_{max}} \big) - \sum_{v \in V_t}  \sum_{t^p}^t \delta \big( 1-\frac{s_v}{s_{max}} \big) \bigg) \\
 & + \beta \bigg( \sum_{p \in P_t} \tau^p_{t^p} - \sum_{p \in P_t} \tau^p_{t} \bigg) 
 \end{split}
 \label{eq:changedelay} 
@@ -341,8 +348,8 @@ R_t =  \alpha \bigg( \sum_{v \in V_t} \sum_{t^{pp}}^{t^p} ts * & \big( 1-\frac{s
 \subsubsection{Delay Adjusted by Demand}
 Same as in Eq. (\ref{eq:delay}), introducing a scaling demand term.
 \begin{equation}
-    R_t = -\frac{1}{\hat{d}} \bigg( \alpha \sum_{v\in V_t}  \sum_{t^p}^t ts * \big( 1-\frac{s_v}{s_{max}} \big) + \beta \sum_{p \in P_t} \tau^p_{t} \bigg)
-\label{eq:delay}
+    R_t = -\frac{1}{\hat{d}} \bigg( \alpha \sum_{v\in V_t}  \sum_{t^p}^t \delta \big( 1-\frac{s_v}{s_{max}} \big) + \beta \sum_{p \in P_t} \tau^p_{t} \bigg)
+\label{eq:delay_ad}
 \end{equation}
 
 \subsection{Average Speed based Rewards}
@@ -368,7 +375,7 @@ Pedestrian reward is the maximum between the sum of pedestrians waiting divided 
 As in the previous two entries, adding a multiplication by an estimation of the demand $\hat{d}$, scaling the reward with the difficulty of the task.
 
 \subsection{Throughput based Rewards}
-These rewards use Modal Prioritisation weights.
+These rewards require Modal Prioritisation weights.
 \subsubsection{Throughput}
 The reward is the sum of the pedestrians and vehicles that cleared the intersection since the last action.
 \begin{equation}
@@ -459,12 +466,12 @@ Maximum Occupancy     & 6.92\pm 0.54 & 196.09\pm 130.04 & 10.02\pm 1.75 & 397.20
 \label{experiments}
 \subsection{DQN Agents Training}
 The training process covered 1500 episodes running for 3000 steps of length $\delta=0.6$ seconds for a simulated time of 30 minutes (1800 seconds).
-The traffic demand is increased as the training advances, with the agent progressively facing sub-saturated, near-saturated and over-saturated scenarios, with a minimum of 1 vehicle/3 seconds (1200 vehicles/h) and a maximum of 1 vehicle/1.4 seconds (2571 vehicles/h).
+The traffic demand is increased as the training advances, with the agent progressively facing sub-saturated, near-saturated and over-saturated scenarios, with a minimum of 1 vehicle / 3 seconds (1200 vehicles/h) and a maximum of 1 vehicle / 1.4 seconds (2571 vehicles/h).
 
-For each reward function, 10 copies of the agent were trained, and their performance was compared against two reference systems. These were Maximum Occupancy (longest queue first) and Vehicle Actuated System D \cite{highways} (vehicle-triggered green time extensions), commonly used in the UK. The agent performing best in each class was selected for scoring.
+For each reward function, 10 copies of the agent were trained, and their performance was compared against two reference systems. These are Maximum Occupancy (longest queue first) and Vehicle Actuated System D \cite{highways} (vehicle-triggered green time extensions), which is commonly used in the UK. The agent performing best in each class was selected for scoring.
 \subsection{Evaluation and Scoring}
 Each agent is tested and its performance scored over 100 copies of 3 different scenarios with different demand levels. Each evaluation has the same length as the training episodes, and the demand is kept constant during each run.
-These three scenarios are aimed to test the agents during normal operation, peak times and over-saturated conditions, and will be henceforth referred to as Normal, Peak and Over-saturated.
+These three scenarios are aimed to test the agents during normal operation, peak times and over-saturated conditions, and will be henceforth referred to as Normal, Peak and Over-saturated Scenarios.
 Peak Scenario uses the level of demand observed in the junction that results in saturated traffic conditions under traditional controllers.
 
 The Normal Scenario uses an arrival rate of 1 vehicle / 2.1 seconds (1714 vehicles/h). Peak Scenario uses an arrival rate of 1 vehicle / 1.7 seconds (2117 vehicles/h). Over-saturated Scenario uses an arrival rate of 1 vehicle / 1.4 seconds (2400 vehicles/h)
@@ -473,26 +480,26 @@ The Normal Scenario uses an arrival rate of 1 vehicle / 2.1 seconds (1714 vehicl
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results and Discussion}
 \label{results}
-The results obtained from the simulations of the different reward functions for DQN agents are summarised in Fig. \ref{fig:results_9_grid}, including the performance of the 14 rewards found to have lower waiting times and seeming most desirable in practice, and detailed for all 31 rewards in Table \ref{table}.
+The results obtained from the simulations of the different reward functions for DQN agents are summarised in Fig. \ref{fig:results_9_grid}, which includes the performance of the 14 rewards found to have lower waiting times and seeming most desirable in practice, and detailed for all 31 rewards in Table \ref{table}.
 In Fig. \ref{fig:results_9_grid}, the distribution of pedestrian and vehicle waiting times, and the combination of mean performances for both modes of transportation across 100 repetitions of each demand level are presented.
 Table \ref{table} shows the mean waiting time for each distribution and their standard deviation, also calculated across all three demand levels. 
 
-The paper presents further evidence that RL agents can reach better performance than reference adaptive methods, being more evident when pedestrians are added.
+The results display further evidence that RL agents can reach better performance than reference adaptive methods, being more evident when pedestrians are added.
 In the case of MO, the bad performance can be framed within the need of having more pedestrians queued than vehicles in any sensor in order to start the pedestrian stage.
 VA suffers due to its predisposition towards extending green times by 1.5s in the presence of any vehicle, making it more difficult to reach a state in which the pedestrian stage can be started.
-Both of these characteristics make the vanilla reference methods less suited for intersections including pedestrians than the RL methods presented, especially in situations with high demand.
+Both of these characteristics make the vanilla reference methods less suited for intersections including pedestrians than the RL methods presented in Fig. \ref{fig:results_9_grid}, especially in situations of high demand.
 
-On a global level, methods based on maximisation of the average network speed show the lowest global waiting times for pedestrians and vehicles combined across all demand levels while also obtaining some of the lowest spreads.
-They are closely followed by Queue minimisation, which nevertheless obtains the lowest average waiting times for vehicles in the Normal and Peak Scenarios, but falls behind in Over-saturated conditions and when dealing with pedestrians.
-Queue Squared minimisation has a comparable yet slightly lower performance, followed by Delta Queues and Delta Queues Phase Length Normalisation.
-This last reward has shown to obtain better performance with higher demand, which is consistent with less variance in the arrival times and makes it an option that could be further explored for permanently congested intersections.
+On a global level, methods based on maximisation of the average network speed show the lowest global waiting times for pedestrians and vehicles combined across all demand levels, while also obtaining some of the lowest spreads.
+Their performance is closely followed by Queue minimisation, which nevertheless obtains the lowest average waiting times for vehicles in the Normal and Peak Scenarios, but falls behind in Over-saturated conditions and when dealing with pedestrians.
+Queue Squared minimisation has a comparable yet slightly worse performance, followed by Delta Queues and Delta Queues Phase Length Normalisation.
+This last reward has shown to obtain better performance with higher demand, which is consistent with it generating less variance in the state, since it is modelling for arrival rates given an action, and makes it an option that could be further explored for permanently congested intersections.
 
 Prioritised rewards based on Waiting Time had acceptable performance, although they are was very susceptible to the changes in the modal prioritisation weights. 
 This is similar to the behaviour shown by the Delay-based rewards, which overall perform worse.
 Without a weight configuration heavily favouring the pedestrians, these reward functions were found to converge for vehicles only, obtaining the lowest vehicle waiting times overall in the case of the Delay functions, at the expense of rarely, if ever, serving pedestrians.
 The suitability of a given choice of modal prioritisation weights is further affected by the functional form of the reward.
-In the results, it can be observed that while in general the choice $(\alpha=5,\beta=95)$ obtains better results (e.g. Wait Time and Delay), for certain functional choices the prioritisation $(\alpha=20,\beta=80)$ produces best results, which would not be the case if the suitability of the weights was only affected by the relative demand ratios between vehicles and pedestrians. 
-This is the case with Throughput based functions, which unlike the Wait and Delay functions, obtained lower waiting times with equal modal weights, and a general increase as the weights become more skewed towards the pedestrians.
+In the results, it can be observed that while in general the choice $(\alpha=5,\beta=95)$ obtains better results (e.g. Wait Time and Delay), for certain functional choices the prioritisation $(\alpha=20,\beta=80)$ is the one producing the best results, which would not be the case if the suitability of the weights was only affected by the relative demand ratios between vehicles and pedestrians. 
+This is the case with Throughput based functions, which unlike the Wait and Delay functions, obtained lower waiting times with equal modal weights, and a general wait increase as the weights become more skewed towards the pedestrians.
 
 Rewards using Differences in Delay or Wait Time, having good performance in the literature, were found either not to converge for pedestrians or to produce mediocre results.
 
@@ -577,7 +584,7 @@ We are also grateful to W. Chernikoff, Toyota Mobility Foundation and The Alan T
 % number - used to balance the columns on the last page
 % adjust value as needed - may need to be readjusted if
 % the document is modified later
-\IEEEtriggeratref{11}
+%\IEEEtriggeratref{11}
 % The "triggered" command can be changed if desired:
 %\IEEEtriggercmd{\enlargethispage{-5in}}
 
@@ -596,8 +603,8 @@ We are also grateful to W. Chernikoff, Toyota Mobility Foundation and The Alan T
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
 \begin{thebibliography}{1}
-\bibitem{mova} Vincent, R. A., \& Peirce, J. R. (1988). 'MOVA': Traffic Responsive, Self-optimising Signal Control for Isolated Intersections. Traffic Management Division, Traffic Group, Transport and Road Research Laboratory.
 \bibitem{scoot} Hunt, P. B., Robertson, D. I., Bretherton, R. D., \& Royle, M. C. (1982). The SCOOT on-line traffic signal optimisation technique. Traffic Engineering \& Control, 23(4).
+\bibitem{mova} Vincent, R. A., \& Peirce, J. R. (1988). 'MOVA': Traffic Responsive, Self-optimising Signal Control for Isolated Intersections. Traffic Management Division, Traffic Group, Transport and Road Research Laboratory.
 \bibitem{scats} Lowrie, P. R. (1990). Scats, sydney co-ordinated adaptive traffic system: A traffic responsive method of controlling urban traffic.
 \bibitem{wiering2000} Wiering, M. A. (2000). Multi-agent reinforcement learning for traffic light control. In Machine Learning: Proceedings of the Seventeenth International Conference (ICML'2000) (pp. 1151-1158).
 \bibitem{abdul2003} Abdulhai, B., Pringle, R., \& Karakoulas, G. J. (2003). Reinforcement learning for true adaptive traffic signal control. Journal of Transportation Engineering, 129(3), 278-285.
@@ -622,6 +629,7 @@ We are also grateful to W. Chernikoff, Toyota Mobility Foundation and The Alan T
 \bibitem{liu2017} Liu, Y., Liu, L., \& Chen, W. P. (2017, October). Intelligent traffic light control using distributed multi-agent Q learning. In 2017 IEEE 20th International Conference on Intelligent Transportation Systems (ITSC) (pp. 1-8). IEEE.
 \bibitem{chen2020} Chacha Chen, H. W., Xu, N., Zheng, G., Yang, M., Xiong, Y., Xu, K., \& Li, Z. Toward A Thousand Lights: Decentralized Deep Reinforcement Learning for Large-Scale Traffic Signal Control.
 \bibitem{sumo} Lopez, P. A., Behrisch, M., Bieker-Walz, L., Erdmann, J., Flötteröd, Y. P., Hilbrich, R., ... \& WieBner, E. (2018, November). Microscopic traffic simulation using sumo. In 2018 21st International Conference on Intelligent Transportation Systems (ITSC) (pp. 2575-2582). IEEE.
+\bibitem{previous} Cabrejas Egea, A., Howell, S., Knutins, M., \& Connaughton C. (2020, October). Assessment of Reward Functions for Reinforcement Learning Traffic Signal Control under Real-World Limitations. IEEE Systems, Man, and Cybernetics 2020. 
 \bibitem{watkins} Watkins, C. J., \& Dayan, P. (1992). Q-learning. Machine learning, 8(3-4), 279-292.
 \bibitem{melo} Melo, F. S. (2001). Convergence of Q-learning: A simple proof. Institute Of Systems and Robotics, Tech. Rep, 1-4.
 \bibitem{mnih2015} Mnih, V., Kavukcuoglu, K., Silver, D., Rusu, A. A., Veness, J.,  ... \& Petersen, S. (2015). Human-level control through deep reinforcement learning. Nature, 518(7540), 529-533.

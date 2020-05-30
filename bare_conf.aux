@@ -48,6 +48,7 @@
 \citation{geneticped}
 \citation{liu2017}
 \citation{chen2020}
+\citation{previous}
 \citation{watkins}
 \citation{melo}
 \citation{mnih2015}
@@ -66,7 +67,6 @@
 \newlabel{eq:bellmanupdate}{{4}{2}{Q Learning and Value-Based RL}{equation.3.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {III-C}Deep Q Network}{2}{subsection.3.3}\protected@file@percent }
 \citation{sumo}
-\citation{gendersstate}
 \citation{suttonbarto}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Aerial view of Study Junction from Google Earth.}}{3}{figure.2}\protected@file@percent }
 \newlabel{intersection}{{2}{3}{Aerial view of Study Junction from Google Earth}{figure.2}{}}
@@ -74,13 +74,14 @@
 \newlabel{methods}{{IV}{3}{Methods}{section.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {IV-A}Reinforcement Learning Agent}{3}{subsection.4.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {IV-B}Reinforcement Learning Environment}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {IV-C}State Representation}{3}{subsection.4.3}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Study Junction model in SUMO with a schematic representation of the areas covered by vision-based sensors.}}{3}{figure.3}\protected@file@percent }
 \newlabel{intersection}{{3}{3}{Study Junction model in SUMO with a schematic representation of the areas covered by vision-based sensors}{figure.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {IV-C}State Representation}{3}{subsection.4.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {IV-D}Actions of the Agent}{3}{subsection.4.4}\protected@file@percent }
 \citation{pra2010}
 \citation{aslani2019}
 \citation{gendersthesis}
+\citation{liang2018}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Allowed stages and the phases that compose them. Stage 1 is an intermediate Stage, being necessary to go through it to reach Stage 2.}}{4}{figure.4}\protected@file@percent }
 \newlabel{intersection}{{4}{4}{Allowed stages and the phases that compose them. Stage 1 is an intermediate Stage, being necessary to go through it to reach Stage 2}{figure.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {IV-E}Modal Prioritisation and Adjusting by Demand}{4}{subsection.4.5}\protected@file@percent }
@@ -99,7 +100,8 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {V-A.5}Delta Queue PLN}{4}{subsubsection.5.1.5}\protected@file@percent }
 \newlabel{queuepln}{{12}{4}{Delta Queue PLN}{equation.5.12}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {V-B}Waiting Time based Rewards}{4}{subsection.5.2}\protected@file@percent }
-\citation{liang2018}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {V-B.1}Wait Time}{4}{subsubsection.5.2.1}\protected@file@percent }
+\newlabel{eq:wait_time}{{13}{4}{Wait Time}{equation.5.13}{}}
 \citation{wan2018}
 \citation{abdulhai2010}
 \citation{mannion}
@@ -108,8 +110,6 @@
 \citation{mousavi2017}
 \citation{gendersstate}
 \citation{highways}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {V-B.1}Wait Time}{5}{subsubsection.5.2.1}\protected@file@percent }
-\newlabel{eq:wait_time}{{13}{5}{Wait Time}{equation.5.13}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {V-B.2}Delta Wait Time}{5}{subsubsection.5.2.2}\protected@file@percent }
 \newlabel{eq:delta_wait_time}{{14}{5}{Delta Wait Time}{equation.5.14}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {V-B.3}Waiting Time Adjusted by Demand}{5}{subsubsection.5.2.3}\protected@file@percent }
@@ -120,7 +120,7 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {V-C.2}Delta Delay}{5}{subsubsection.5.3.2}\protected@file@percent }
 \newlabel{eq:changedelay}{{17}{5}{Delta Delay}{equation.5.17}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {V-C.3}Delay Adjusted by Demand}{5}{subsubsection.5.3.3}\protected@file@percent }
-\newlabel{eq:delay}{{18}{5}{Delay Adjusted by Demand}{equation.5.18}{}}
+\newlabel{eq:delay_ad}{{18}{5}{Delay Adjusted by Demand}{equation.5.18}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {V-D}Average Speed based Rewards}{5}{subsection.5.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {V-D.1}Average Speed, Wait Time Variant}{5}{subsubsection.5.4.1}\protected@file@percent }
 \newlabel{eq:avgspeed_wait}{{19}{5}{Average Speed, Wait Time Variant}{equation.5.19}{}}
@@ -134,15 +134,15 @@
 \newlabel{experiments}{{VI}{5}{Experiments}{section.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {VI-A}DQN Agents Training}{5}{subsection.6.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {VI-B}Evaluation and Scoring}{5}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Results and Discussion}{5}{section.7}\protected@file@percent }
+\newlabel{results}{{VII}{5}{Results and Discussion}{section.7}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Average waiting time for the best performing agents across all three demand scenarios.}}{6}{figure.5}\protected@file@percent }
 \newlabel{fig:results_9_grid}{{5}{6}{Average waiting time for the best performing agents across all three demand scenarios}{figure.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {VII}Results and Discussion}{6}{section.7}\protected@file@percent }
-\newlabel{results}{{VII}{6}{Results and Discussion}{section.7}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Average waiting time in seconds for all agents across demand levels}}{7}{table.1}\protected@file@percent }
 \newlabel{tab:some example table}{{I}{7}{Average waiting time in seconds for all agents across demand levels}{table.1}{}}
 \newlabel{table}{{I}{7}{Average waiting time in seconds for all agents across demand levels}{table.1}{}}
-\bibcite{mova}{1}
-\bibcite{scoot}{2}
+\bibcite{scoot}{1}
+\bibcite{mova}{2}
 \bibcite{scats}{3}
 \bibcite{wiering2000}{4}
 \bibcite{abdul2003}{5}
@@ -167,12 +167,13 @@
 \bibcite{liu2017}{24}
 \bibcite{chen2020}{25}
 \bibcite{sumo}{26}
-\bibcite{watkins}{27}
-\bibcite{melo}{28}
-\bibcite{mnih2015}{29}
-\bibcite{suttonbarto}{30}
-\bibcite{pytorch}{31}
-\bibcite{kiefer}{32}
-\bibcite{adam}{33}
-\bibcite{highways}{34}
+\bibcite{previous}{27}
+\bibcite{watkins}{28}
+\bibcite{melo}{29}
+\bibcite{mnih2015}{30}
+\bibcite{suttonbarto}{31}
+\bibcite{pytorch}{32}
+\bibcite{kiefer}{33}
+\bibcite{adam}{34}
+\bibcite{highways}{35}
 \@writefile{toc}{\contentsline {section}{References}{8}{section*.2}\protected@file@percent }
