@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.24)  31 MAY 2020 14:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.24)  31 MAY 2020 15:28
 entering extended mode
 **./bare_conf.tex
 (bare_conf.tex
@@ -670,28 +670,28 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <./figures/schematic_pp2.png, id=170, 909.3975pt x 925.20656pt>
 File: ./figures/schematic_pp2.png Graphic file (type png)
 <use ./figures/schematic_pp2.png>
-Package pdftex.def Info: ./figures/schematic_pp2.png  used on input line 154.
+Package pdftex.def Info: ./figures/schematic_pp2.png  used on input line 153.
 (pdftex.def)             Requested size: 180.67499pt x 183.8098pt.
  [2 <./figures/schematic_pp2.png>]
 <./figures/gmaps_iso_censored.jpg, id=200, 1355.0625pt x 1227.58624pt>
 File: ./figures/gmaps_iso_censored.jpg Graphic file (type jpg)
 <use ./figures/gmaps_iso_censored.jpg>
 Package pdftex.def Info: ./figures/gmaps_iso_censored.jpg  used on input line 1
-76.
+75.
 (pdftex.def)             Requested size: 180.67499pt x 163.67526pt.
 <./figures/intersection.png, id=201, 675.27281pt x 576.65437pt>
 File: ./figures/intersection.png Graphic file (type png)
 <use ./figures/intersection.png>
-Package pdftex.def Info: ./figures/intersection.png  used on input line 194.
+Package pdftex.def Info: ./figures/intersection.png  used on input line 192.
 (pdftex.def)             Requested size: 180.67499pt x 154.2821pt.
  [3 <./figures/gmaps_iso_censored.jpg> <./figures/intersection.png>]
 <./figures/phases_limited.png, id=209, 426.09187pt x 453.19313pt>
 File: ./figures/phases_limited.png Graphic file (type png)
 <use ./figures/phases_limited.png>
-Package pdftex.def Info: ./figures/phases_limited.png  used on input line 228.
+Package pdftex.def Info: ./figures/phases_limited.png  used on input line 226.
 (pdftex.def)             Requested size: 180.67499pt x 192.17233pt.
 
-Overfull \hbox (5.64156pt too wide) detected at line 300
+Overfull \hbox (5.64156pt too wide) detected at line 298
 []\OML/cmm/m/it/10 R[] \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10  [][]\OML/cmm/m/it/10
  [] [] q[] \OMS/cmsy/m/n/10   [] \OML/cmm/m/it/10 q[][] \OMS/cmsy/m/n/10   []\
 OML/cmm/m/it/10  [] q[] \OMS/cmsy/m/n/10   [] \OML/cmm/m/it/10 q[][][]
@@ -702,75 +702,125 @@ OML/cmm/m/it/10  [] q[] \OMS/cmsy/m/n/10   [] \OML/cmm/m/it/10 q[][][]
 File: ./figures/9grid_ordered_boxplot_all.pdf Graphic file (type pdf)
 <use ./figures/9grid_ordered_boxplot_all.pdf>
 Package pdftex.def Info: ./figures/9grid_ordered_boxplot_all.pdf  used on input
- line 388.
+ line 386.
 (pdftex.def)             Requested size: 516.0pt x 406.17303pt.
 
-Overfull \hbox (4.25006pt too wide) detected at line 424
+Overfull \hbox (4.25006pt too wide) detected at line 422
  
  []
 
 
-Overfull \hbox (4.25006pt too wide) detected at line 429
+Overfull \hbox (4.25006pt too wide) detected at line 427
  
  []
 
 
-Overfull \hbox (1.88892pt too wide) detected at line 429
+Overfull \hbox (1.88892pt too wide) detected at line 427
  
  []
 
 
-Overfull \hbox (4.25006pt too wide) detected at line 429
+Overfull \hbox (4.25006pt too wide) detected at line 427
  
  []
 
 
-Overfull \hbox (1.88892pt too wide) detected at line 429
+Overfull \hbox (1.88892pt too wide) detected at line 427
  
  []
 
 
-Overfull \hbox (8.50012pt too wide) detected at line 429
+Overfull \hbox (8.50012pt too wide) detected at line 427
  
  []
 
 
-Overfull \hbox (4.25006pt too wide) detected at line 430
+Overfull \hbox (4.25006pt too wide) detected at line 428
  
  []
 
 
-Overfull \hbox (1.88892pt too wide) detected at line 430
+Overfull \hbox (1.88892pt too wide) detected at line 428
  
  []
 
 
-Overfull \hbox (4.25006pt too wide) detected at line 430
+Overfull \hbox (4.25006pt too wide) detected at line 428
  
  []
 
 
-Overfull \hbox (4.25006pt too wide) detected at line 433
+Overfull \hbox (4.25006pt too wide) detected at line 431
  
  []
 
 
-Overfull \hbox (1.88892pt too wide) detected at line 433
+Overfull \hbox (1.88892pt too wide) detected at line 431
  
  []
 
 
-Overfull \hbox (4.25006pt too wide) detected at line 433
+Overfull \hbox (4.25006pt too wide) detected at line 431
  
  []
 
 
-Overfull \hbox (1.88892pt too wide) detected at line 433
+Overfull \hbox (1.88892pt too wide) detected at line 431
  
  []
 
 
-Overfull \hbox (8.50012pt too wide) detected at line 433
+Overfull \hbox (8.50012pt too wide) detected at line 431
+ 
+ []
+
+
+Overfull \hbox (4.25006pt too wide) detected at line 435
+ 
+ []
+
+
+Overfull \hbox (1.88892pt too wide) detected at line 435
+ 
+ []
+
+
+Overfull \hbox (8.50012pt too wide) detected at line 435
+ 
+ []
+
+
+Overfull \hbox (1.88892pt too wide) detected at line 435
+ 
+ []
+
+
+Overfull \hbox (8.50012pt too wide) detected at line 435
+ 
+ []
+
+
+Overfull \hbox (4.25006pt too wide) detected at line 436
+ 
+ []
+
+
+Overfull \hbox (4.25006pt too wide) detected at line 436
+ 
+ []
+
+
+Overfull \hbox (1.88892pt too wide) detected at line 436
+ 
+ []
+
+
+Overfull \hbox (8.50012pt too wide) detected at line 436
+ 
+ []
+
+
+Overfull \hbox (4.25006pt too wide) detected at line 437
  
  []
 
@@ -790,42 +840,12 @@ Overfull \hbox (8.50012pt too wide) detected at line 437
  []
 
 
-Overfull \hbox (1.88892pt too wide) detected at line 437
+Overfull \hbox (1.88892pt too wide) detected at line 439
  
  []
 
 
-Overfull \hbox (8.50012pt too wide) detected at line 437
- 
- []
-
-
-Overfull \hbox (4.25006pt too wide) detected at line 438
- 
- []
-
-
-Overfull \hbox (4.25006pt too wide) detected at line 438
- 
- []
-
-
-Overfull \hbox (1.88892pt too wide) detected at line 438
- 
- []
-
-
-Overfull \hbox (8.50012pt too wide) detected at line 438
- 
- []
-
-
-Overfull \hbox (4.25006pt too wide) detected at line 439
- 
- []
-
-
-Overfull \hbox (4.25006pt too wide) detected at line 439
+Overfull \hbox (8.50012pt too wide) detected at line 439
  
  []
 
@@ -840,57 +860,97 @@ Overfull \hbox (8.50012pt too wide) detected at line 439
  []
 
 
-Overfull \hbox (1.88892pt too wide) detected at line 441
+Overfull \hbox (1.88892pt too wide) detected at line 439
  
  []
 
 
-Overfull \hbox (8.50012pt too wide) detected at line 441
+Overfull \hbox (8.50012pt too wide) detected at line 439
  
  []
 
 
-Overfull \hbox (1.88892pt too wide) detected at line 441
+Overfull \hbox (4.25006pt too wide) detected at line 440
  
  []
 
 
-Overfull \hbox (8.50012pt too wide) detected at line 441
+Overfull \hbox (4.25006pt too wide) detected at line 440
  
  []
 
 
-Overfull \hbox (1.88892pt too wide) detected at line 441
+Overfull \hbox (1.88892pt too wide) detected at line 440
  
  []
 
 
-Overfull \hbox (8.50012pt too wide) detected at line 441
+Overfull \hbox (4.25006pt too wide) detected at line 440
  
  []
 
 
-Overfull \hbox (4.25006pt too wide) detected at line 442
+Overfull \hbox (4.25006pt too wide) detected at line 441
  
  []
 
 
-Overfull \hbox (4.25006pt too wide) detected at line 442
+Overfull \hbox (1.88892pt too wide) detected at line 443
  
  []
 
 
-Overfull \hbox (1.88892pt too wide) detected at line 442
+Overfull \hbox (8.50012pt too wide) detected at line 443
  
  []
 
 
-Overfull \hbox (4.25006pt too wide) detected at line 442
+Overfull \hbox (1.88892pt too wide) detected at line 443
  
  []
 
 
-Overfull \hbox (4.25006pt too wide) detected at line 443
+Overfull \hbox (8.50012pt too wide) detected at line 443
+ 
+ []
+
+
+Overfull \hbox (1.88892pt too wide) detected at line 443
+ 
+ []
+
+
+Overfull \hbox (8.50012pt too wide) detected at line 443
+ 
+ []
+
+
+Overfull \hbox (4.25006pt too wide) detected at line 444
+ 
+ []
+
+
+Overfull \hbox (1.88892pt too wide) detected at line 444
+ 
+ []
+
+
+Overfull \hbox (8.50012pt too wide) detected at line 444
+ 
+ []
+
+
+Overfull \hbox (1.88892pt too wide) detected at line 444
+ 
+ []
+
+
+Overfull \hbox (8.50012pt too wide) detected at line 444
+ 
+ []
+
+
+Overfull \hbox (4.25006pt too wide) detected at line 445
  
  []
 
@@ -911,46 +971,6 @@ Overfull \hbox (1.88892pt too wide) detected at line 445
 
 
 Overfull \hbox (8.50012pt too wide) detected at line 445
- 
- []
-
-
-Overfull \hbox (1.88892pt too wide) detected at line 445
- 
- []
-
-
-Overfull \hbox (8.50012pt too wide) detected at line 445
- 
- []
-
-
-Overfull \hbox (4.25006pt too wide) detected at line 446
- 
- []
-
-
-Overfull \hbox (1.88892pt too wide) detected at line 446
- 
- []
-
-
-Overfull \hbox (8.50012pt too wide) detected at line 446
- 
- []
-
-
-Overfull \hbox (1.88892pt too wide) detected at line 446
- 
- []
-
-
-Overfull \hbox (8.50012pt too wide) detected at line 446
- 
- []
-
-
-Overfull \hbox (4.25006pt too wide) detected at line 447
  
  []
 
@@ -975,6 +995,46 @@ Overfull \hbox (8.50012pt too wide) detected at line 447
  []
 
 
+Overfull \hbox (1.88892pt too wide) detected at line 447
+ 
+ []
+
+
+Overfull \hbox (8.50012pt too wide) detected at line 447
+ 
+ []
+
+
+Overfull \hbox (4.25006pt too wide) detected at line 448
+ 
+ []
+
+
+Overfull \hbox (1.88892pt too wide) detected at line 448
+ 
+ []
+
+
+Overfull \hbox (8.50012pt too wide) detected at line 448
+ 
+ []
+
+
+Overfull \hbox (1.88892pt too wide) detected at line 448
+ 
+ []
+
+
+Overfull \hbox (8.50012pt too wide) detected at line 448
+ 
+ []
+
+
+Overfull \hbox (4.25006pt too wide) detected at line 449
+ 
+ []
+
+
 Overfull \hbox (1.88892pt too wide) detected at line 449
  
  []
@@ -991,41 +1051,6 @@ Overfull \hbox (1.88892pt too wide) detected at line 449
 
 
 Overfull \hbox (8.50012pt too wide) detected at line 449
- 
- []
-
-
-Overfull \hbox (1.88892pt too wide) detected at line 449
- 
- []
-
-
-Overfull \hbox (8.50012pt too wide) detected at line 449
- 
- []
-
-
-Overfull \hbox (4.25006pt too wide) detected at line 450
- 
- []
-
-
-Overfull \hbox (1.88892pt too wide) detected at line 450
- 
- []
-
-
-Overfull \hbox (8.50012pt too wide) detected at line 450
- 
- []
-
-
-Overfull \hbox (1.88892pt too wide) detected at line 450
- 
- []
-
-
-Overfull \hbox (8.50012pt too wide) detected at line 450
  
  []
 
@@ -1035,22 +1060,27 @@ Overfull \hbox (4.25006pt too wide) detected at line 451
  []
 
 
-Overfull \hbox (1.88892pt too wide) detected at line 451
+Overfull \hbox (4.25006pt too wide) detected at line 452
  
  []
 
 
-Overfull \hbox (8.50012pt too wide) detected at line 451
+Overfull \hbox (4.25006pt too wide) detected at line 452
  
  []
 
 
-Overfull \hbox (1.88892pt too wide) detected at line 451
+Overfull \hbox (4.25006pt too wide) detected at line 452
  
  []
 
 
-Overfull \hbox (8.50012pt too wide) detected at line 451
+Overfull \hbox (4.25006pt too wide) detected at line 452
+ 
+ []
+
+
+Overfull \hbox (1.88892pt too wide) detected at line 453
  
  []
 
@@ -1060,42 +1090,27 @@ Overfull \hbox (4.25006pt too wide) detected at line 453
  []
 
 
-Overfull \hbox (4.25006pt too wide) detected at line 454
+Overfull \hbox (4.25006pt too wide) detected at line 453
  
  []
 
 
-Overfull \hbox (4.25006pt too wide) detected at line 454
+Overfull \hbox (1.88892pt too wide) detected at line 453
  
  []
 
 
-Overfull \hbox (4.25006pt too wide) detected at line 454
+Overfull \hbox (4.25006pt too wide) detected at line 453
  
  []
 
 
-Overfull \hbox (4.25006pt too wide) detected at line 454
+Overfull \hbox (4.25006pt too wide) detected at line 453
  
  []
 
 
-Overfull \hbox (1.88892pt too wide) detected at line 455
- 
- []
-
-
-Overfull \hbox (4.25006pt too wide) detected at line 455
- 
- []
-
-
-Overfull \hbox (4.25006pt too wide) detected at line 455
- 
- []
-
-
-Overfull \hbox (1.88892pt too wide) detected at line 455
+Overfull \hbox (4.25006pt too wide) detected at line 453
  
  []
 
@@ -1115,47 +1130,32 @@ Overfull \hbox (4.25006pt too wide) detected at line 455
  []
 
 
-Overfull \hbox (4.25006pt too wide) detected at line 457
+Overfull \hbox (1.88892pt too wide) detected at line 456
  
  []
 
 
-Overfull \hbox (4.25006pt too wide) detected at line 457
+Overfull \hbox (8.50012pt too wide) detected at line 456
  
  []
 
 
-Overfull \hbox (4.25006pt too wide) detected at line 457
+Overfull \hbox (1.88892pt too wide) detected at line 456
  
  []
 
 
-Overfull \hbox (1.88892pt too wide) detected at line 458
+Overfull \hbox (8.50012pt too wide) detected at line 456
  
  []
 
 
-Overfull \hbox (8.50012pt too wide) detected at line 458
+Overfull \hbox (1.88892pt too wide) detected at line 456
  
  []
 
 
-Overfull \hbox (1.88892pt too wide) detected at line 458
- 
- []
-
-
-Overfull \hbox (8.50012pt too wide) detected at line 458
- 
- []
-
-
-Overfull \hbox (1.88892pt too wide) detected at line 458
- 
- []
-
-
-Overfull \hbox (8.50012pt too wide) detected at line 458
+Overfull \hbox (8.50012pt too wide) detected at line 456
  
  []
 
@@ -1166,11 +1166,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [7]
-Underfull \hbox (badness 2119) in paragraph at lines 622--623
+Underfull \hbox (badness 2119) in paragraph at lines 619--620
 []\OT1/ptm/m/n/8 Haydari, A., & Yil-maz, Y. (2020). Deep Re-in-force-ment Learn
 -
  []
 
+[8]
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1182,28 +1183,30 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 641.
-[8]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 641.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 638.
+[9
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 638.
  (bare_conf.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 641.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 641.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 638.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 638.
 Package rerunfilecheck Info: File `bare_conf.out' has not changed.
 (rerunfilecheck)             Checksum: 0C78FD3A244CA1F6457008BB655E9815;2735.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 641.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 638.
  ) 
 Here is how much of TeX's memory you used:
- 11746 strings out of 481545
- 221485 string characters out of 2909744
- 638777 words of memory out of 3000000
+ 11747 strings out of 481545
+ 221491 string characters out of 2909744
+ 638835 words of memory out of 3000000
  26681 multiletter control sequences out of 15000+200000
  570573 words of font info for 104 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
- 35i,19n,40p,507b,824s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 35i,19n,40p,507b,858s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/bas
 e/8r.enc}<C:/Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
 public/amsfonts/cm/cmex10.pfb><C:/Users/acabrejasegea/AppData/Local/Programs/Mi
@@ -1227,9 +1230,9 @@ ta/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/acabre
 jasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/
 Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on bare_conf.pdf (8 pages, 1224727 bytes).
+Output written on bare_conf.pdf (9 pages, 1225564 bytes).
 PDF statistics:
- 505 PDF objects out of 1000 (max. 8388607)
- 117 named destinations out of 1000 (max. 500000)
+ 509 PDF objects out of 1000 (max. 8388607)
+ 118 named destinations out of 1000 (max. 500000)
  330 words of extra memory for PDF output out of 10000 (max. 10000000)
 

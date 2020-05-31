@@ -72,8 +72,7 @@ Effective traffic signal control is one of the key issues in Urban Traffic Contr
 The efficiency associated with this allocation has an important impact in travel times, harmful emissions and economic activity.
 
 First, fixed time controllers, and later adaptive systems have been used to further optimise the global traffic flow in our cities.
-Recent improvements in CPU and especially GPU power are allowing for vision-based sensors to gather large amounts of real-time data that a few years ago seemed unattainable, such as individual vehicle position and speeds.
-These data is now generated at a much lower marginal cost than with traditional actuated sensors.
+Recent improvements in CPU and especially GPU power are allowing for vision-based sensors to gather large amounts of real-time data that a few years ago seemed unattainable, such as individual vehicle position and speeds, at a much lower marginal cost than would be feasible with traditional actuated sensors.
 As a side effect of these developments, not only the area covered by sensors is ever increasing, also becoming possible to direct some of these towards pedestrians.
 This allows the development of novel smart control approaches, harnessing the power of real-time data to deliver cheap and responsive systems that can adapt to a variety of situations.
 
@@ -167,7 +166,7 @@ y_t = R_t + \gamma \,\,\, \max_{a_{t+1}} Q^{\pi} (s_{t+1}, a_{t+1}, \theta^-)
 \section{Methods}
 \label{methods}
 \subsection{Reinforcement Learning Agent}
-The basic common agent used to obtain these results is a standard implementation of a DQN in PyTorch \cite{pytorch}, optimising its weights via Stochastic Gradient Descent \cite{kiefer} with ADAM \cite{adam} being used as optimizer.
+The agent used to obtain these results is a standard implementation of a DQN in PyTorch \cite{pytorch}, optimising its weights via Stochastic Gradient Descent \cite{kiefer} with ADAM \cite{adam} being used as optimizer.
 The learning rate is $\alpha=10^{-5}$ and the discount factor is $\gamma = 0.8$ for all simulations.
 The Neural Network in the agent uses 2 hidden, fully connected layers of sizes 500 and 1000 respectively, using ReLU as an activation function.
 \subsection{Reinforcement Learning Environment}
@@ -183,7 +182,6 @@ The real-world site also contains 4 Vivacity vision-based sensors, able to suppl
 The demand and turning ratios at the junction have been calibrated using 3.5 months of journey time and flow data collected by these sensors.
 The environment includes an emulated traffic signal controller, responsible of changing between the different stages in the intersection and enforcing the operational limitations, focused on safety.
 This includes enforcing green times, intergreen times, as well as determining allowed stages.  
-
 A stage is defined as a group of non-conflicting green lights (phases) in a junction which change at the same time.
 
 The Agent decides which stage to select next and requests this from an emulated traffic signal controller, which moves to that stage subject to its limitations, which are primarily safety-related.
@@ -214,12 +212,12 @@ Stage 4 services the roads in the East-West orientation, which have considerable
 Once the controller has had a stage active for the minimum green time duration, the agent is requested to compute the value of all potential state-action pairs (i.e. the value of other stages given the current state) once per time-step.
 From these, the action with the highest expected value is selected following an $\epsilon$-greedy policy\cite{suttonbarto}.
 Should the agent choose the same action, the current stage will be extended for a further time-step (0.6 seconds).
-There is no built-in limit to the maximum number of said extensions, leaving it for the agent to learn the optimal stage extensions for a given situation.
+There is no built-in limit to the maximum number of said extensions, leaving it for the agent to learn the optimal green time for any given situation.
 If a different stage is chosen, then the controller will proceed to the intergreen transition between the current them.
 
 There are 2 situations that further add to the complexity of this control process:
 \begin{enumerate}
-\item The variation in the number of extensions, and hence in the length of the stages, will create a distribution of values over the state-action pairs, which the agent must approximate. The variance of this distribution will be higher than the variance that would be obtained using constant stage length.
+\item Variable number of extensions, and hence of the length of the stages, creates a distribution of values over the state-action pairs in most rewards, which the agent must approximate. The variance of this distribution will be higher than the variance that would be obtained using constant stage length.
 \item Using Stage 1 as as away to reach Stage 2 implies less certainty in the control process than in other stages, since there is an unaccounted dilated temporal horizon between the state that triggered the action, and the effects of said action over the state variables.
 \end{enumerate}
 
@@ -329,7 +327,7 @@ Seen in \cite{wan2018}. Negative weighted sum of the delay by all entities. Dela
 For the pedestrians, the time in queue is used given that, from the point of view of the sensors, pedestrian presence is binary.
 Assuming a simulator time step of length $\delta$:
 \begin{equation}
-    R_t = - \bigg( \alpha \sum_{v \in V_t}  \sum_{t^p_e}^t \delta \big( 1-\frac{s_v}{s_{max}} \big) + \beta \sum_{p \in P_t} \tau^p_t \bigg)
+    R_t = - \bigg( \alpha \sum_{v \in V_t}  \sum_{t^v_e}^t \delta \big( 1-\frac{s_v}{s_{max}} \big) + \beta \sum_{p \in P_t} \tau^p_t \bigg)
 \label{eq:delay}
 \end{equation}
 
@@ -355,7 +353,7 @@ Same as in Eq. (\ref{eq:delay}), introducing a scaling demand term.
 \subsection{Average Speed based Rewards}
 \subsubsection{Average Speed, Wait Time Variant}
 The vehicle reward is the average speed of vehicles in the area covered by sensors and normalised by the maximum speed.
-The pedestrian reward is the maximum between the sum of the waiting time of the pedestrian divided by a theoretical desirable maximum waiting time $\tau_{max}$ and 1.
+The pedestrian reward is the minimum between the sum of the waiting time of the pedestrian divided by a theoretical desirable maximum waiting time $\tau_{max}$ and 1.
 This produces two components of the reward $R_p, R_v \in [0,1]$.
 
 \begin{equation}
@@ -365,14 +363,14 @@ This produces two components of the reward $R_p, R_v \in [0,1]$.
 
 \subsubsection{Average Speed, Occupancy Variant}
 Vehicle reward as in the previous entry.
-Pedestrian reward is the maximum between the sum of pedestrians waiting divided by a theoretical maximum desirable capacity $p_{max}$ and 1. 
+Pedestrian reward is the minimum between the sum of pedestrians waiting divided by a theoretical maximum desirable capacity $p_{max}$ and 1. 
 \begin{equation}
     R_t =   \alpha \frac{ \sum_{v \in V_t} \frac{s}{s_{max}}}{\sum_{V_t} v} + \beta \min \big( \sum_{p \in P_t} \frac{p}{p_{max}} \, , 1 \big)
 \label{eq:avgspeed_occ}
 \end{equation}
 
 \subsubsection{Average Speed Adjusted by Demand, Demand and Occupancy Variants}
-As in the previous two entries, adding a multiplication by an estimation of the demand $\hat{d}$, scaling the reward with the difficulty of the task.
+As in the previous two entries, adding a multiplicative factor equal to the estimation of the demand $\hat{d}$, scaling the reward with the difficulty of the task.
 
 \subsection{Throughput based Rewards}
 These rewards require Modal Prioritisation weights.
@@ -468,9 +466,9 @@ Maximum Occupancy     & 6.92\pm 0.54 & 196.09\pm 130.04 & 10.02\pm 1.75 & 397.20
 The training process covered 1500 episodes running for 3000 steps of length $\delta=0.6$ seconds for a simulated time of 30 minutes (1800 seconds).
 The traffic demand is increased as the training advances, with the agent progressively facing sub-saturated, near-saturated and over-saturated scenarios, with a minimum of 1 vehicle / 3 seconds (1200 vehicles/h) and a maximum of 1 vehicle / 1.4 seconds (2571 vehicles/h).
 
-For each reward function, 10 copies of the agent were trained, and their performance was compared against two reference systems. These are Maximum Occupancy (longest queue first) and Vehicle Actuated System D \cite{highways} (vehicle-triggered green time extensions), which is commonly used in the UK. The agent performing best in each class was selected for scoring.
+For each reward function, 10 copies of the agent were trained, and their performance was compared against two reference systems. These are Maximum Occupancy (longest queue first) and Vehicle Actuated System D \cite{highways} (vehicle-triggered green time extensions), which is commonly used in the UK. The agent performing best against the reference systems in each class was selected for detailed scoring.
 \subsection{Evaluation and Scoring}
-Each agent is tested and its performance scored over 100 copies of 3 different scenarios with different demand levels. Each evaluation has the same length as the training episodes, and the demand is kept constant during each run.
+Each selected agent is tested and its performance scored over 100 copies of 3 different scenarios with different demand levels. Each evaluation is the same length as the training episodes, with the demand kept constant during each run.
 These three scenarios are aimed to test the agents during normal operation, peak times and over-saturated conditions, and will be henceforth referred to as Normal, Peak and Over-saturated Scenarios.
 Peak Scenario uses the level of demand observed in the junction that results in saturated traffic conditions under traditional controllers.
 
@@ -489,35 +487,34 @@ In the case of MO, the bad performance can be framed within the need of having m
 VA suffers due to its predisposition towards extending green times by 1.5s in the presence of any vehicle, making it more difficult to reach a state in which the pedestrian stage can be started.
 Both of these characteristics make the vanilla reference methods less suited for intersections including pedestrians than the RL methods presented in Fig. \ref{fig:results_9_grid}, especially in situations of high demand.
 
-On a global level, methods based on maximisation of the average network speed show the lowest global waiting times for pedestrians and vehicles combined across all demand levels, while also obtaining some of the lowest spreads.
-Their performance is closely followed by Queue minimisation, which nevertheless obtains the lowest average waiting times for vehicles in the Normal and Peak Scenarios, but falls behind in Over-saturated conditions and when dealing with pedestrians.
-Queue Squared minimisation has a comparable yet slightly worse performance, followed by Delta Queues and Delta Queues Phase Length Normalisation.
+On a global level, methods based on maximisation of the average network speed show the lowest global waiting times for pedestrians and vehicles combined across all demand levels, while also obtaining some of the lowest spreads, as shown in the case with no pedestrians \cite{previous}.
+Their performance is, again, closely followed by Queue minimisation, which nevertheless obtains the lowest average waiting times for vehicles in the Normal and Peak Scenarios, but falls behind in Over-saturated conditions and when dealing with pedestrians.
+Queue Squared minimisation has a comparable yet slightly worse performance, followed by Delta Queues and Delta Queues PLN.
 This last reward has shown to obtain better performance with higher demand, which is consistent with it generating less variance in the state, since it is modelling for arrival rates given an action, and makes it an option that could be further explored for permanently congested intersections.
 
-Prioritised rewards based on Waiting Time had acceptable performance, although they are was very susceptible to the changes in the modal prioritisation weights. 
-This is similar to the behaviour shown by the Delay-based rewards, which overall perform worse.
+Prioritised rewards based on Waiting Time show acceptable performance, but also a high sensitivity to the changes in the modal prioritisation weights. 
+This is similar to the behaviour shown by the Delay-based rewards, which overall perform worse potentially due to the need to use Wait Time for pedestrians, mixing the state variables, although this does not seem to be an issue for average speed based rewards.
 Without a weight configuration heavily favouring the pedestrians, these reward functions were found to converge for vehicles only, obtaining the lowest vehicle waiting times overall in the case of the Delay functions, at the expense of rarely, if ever, serving pedestrians.
 The suitability of a given choice of modal prioritisation weights is further affected by the functional form of the reward.
 In the results, it can be observed that while in general the choice $(\alpha=5,\beta=95)$ obtains better results (e.g. Wait Time and Delay), for certain functional choices the prioritisation $(\alpha=20,\beta=80)$ is the one producing the best results, which would not be the case if the suitability of the weights was only affected by the relative demand ratios between vehicles and pedestrians. 
-This is the case with Throughput based functions, which unlike the Wait and Delay functions, obtained lower waiting times with equal modal weights, and a general wait increase as the weights become more skewed towards the pedestrians.
+This is the case with Throughput based functions, which unlike the Wait and Delay functions, obtained lower waiting times with equal modal weights, and a general wait time increase as the weights become more skewed towards the pedestrians.
 
 Rewards using Differences in Delay or Wait Time, having good performance in the literature, were found either not to converge for pedestrians or to produce mediocre results.
 
 The addition of a demand scaling term generates, in general, a slight improvement in waiting times across the rewards using Wait Time and Delay, particularly at higher demand levels. 
-Average Speed rewards do not seem to benefit from this term, with all variants scoring similarly.
 
 Overall, the dominance shown by speed maximisation methods could be attributed to several factors.
 On one side, Average Speed based functions, as Queue based functions, obtain an instantaneous snapshot of a magnitude that does not intrinsically grow over time, as opposed to Delay, Wait and Throughput, so it exclusively encodes information about the moment the action is requested.
-It can also be argued that speed maximisation rewards are not affected by the correspondence between agent actions and time-steps in the environment . In the specific case of RL for UTC, the values of the reward received by the agent using a reward based on Queues, Delay, Wait or Throughput are a function of the length of the phase that generated them, making them theoretically less suitable for the underlying MDP than speed maximisation..
+It can also be argued that speed maximisation rewards are not affected by the correspondence between agent actions and time-steps in the environment . In the specific case of RL for UTC, the values of the reward received by the agent using a reward based on Queues, Delay, Wait or Throughput are a function of the length of the phase that generated them, making them theoretically less suitable for the underlying MDP than speed maximisation.
 
 Lastly, speed maximisation and queue minimisation have an extra benefit that makes them into serious candidates for expansive real-world use: the lack of need for modal prioritisation tuning.
 One of the main selling points of ML and RL methods stems from their ability to perform equal or better than traditional systems at a lower cost in a variety of situations.
-However, a lengthy manual tuning process in order to find the exact weights for a given junction is not only untranslatable to any other junction but also may not result in reduced planning and execution times compared with traditional control.
+However, a lengthy manual tuning process in order to find the exact weights for a given junction is not only untranslatable to any other intersection, but may also not result in reduced planning and execution times compared with traditional control.
 The lack of need for manual tuning, especially in the case of Average Speed functions, which are specifically crafted to avoid it, make them in our view more applicable in a wider and faster manner than any of the other reward functions here presented.
 
 One limitation of this paper is that the results are only relevant in the case of value-based DQN agents as introduced in Section \ref{problem} and Section \ref{methods}, not being relevant for CNN or Policy Gradient architectures.
 
-This work could be extended to account for other modes of transportation, performing a similar optimisation based on different vehicle classes (buses, cyclist, personal vehicles, trucks, etc). The optimisation could seek to prioritise them based on different criteria (e.g. priority to cyclists and public transport during rush hours).
+This work could be extended to account for other modes of transportation, performing a similar optimisation based on different vehicle classes (buses, cyclists, personal vehicles, trucks, etc.). The optimisation could seek to prioritise them based on different criteria (e.g. priority to cyclists and public transport during rush hours or weighting vehicles according to the expected number of passengers).
 
 % An example of a double column floating figure using two subfigures.
 %(The subfigure.sty package must be loaded for this to work.)
