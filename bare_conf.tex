@@ -56,7 +56,7 @@ Email: c.p.connaughton@warwick.ac.uk}
 Optimisation of Traffic Signal Control Systems is an important real-world challenge that has direct impact over the economic performance of urban areas.
 Recently, Reinforcement Learning is proving to be a successful tool that can effectively manage urban intersections with a fraction of the effort required to curate traditional Urban Traffic Controllers. However, literature dealing with the introduction and control of pedestrians in such intersections is scarce, and comparisons between the effect of the different approaches that can be taken in terms of architecture, state space or rewards are uncommon.
 
-This paper performs a robust comparison between different 31 different Reinforcement Learning reward functions for controlling intersections serving vehicles and pedestrians. 
+This paper performs a robust comparison between different 30 different Reinforcement Learning reward functions for controlling intersections serving vehicles and pedestrians. 
 We use a calibrated model in terms of demand, sensors, green times and other operational constrains of a real intersection in Greater Manchester, UK.
 The rewards can be broadly classified in 5 groups depending on the magnitudes used: queues, waiting time, delay, average speed and throughput in the junction.
  
@@ -68,7 +68,7 @@ We find that those rewards maximising the speed of the network obtain the lowest
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-Effective traffic signal control is one of the key issues in Urban Traffic Control (UTC), effectively controlling how the available resources (green time) in our urban travel network are allocated.
+Effective traffic signal control is one of the key issues in Urban Traffic Control (UTC), effectively deciding how the available resources (green time) in our urban travel network are allocated.
 The efficiency associated with this allocation has an important impact in travel times, harmful emissions and economic activity.
 
 First, fixed time controllers, and later adaptive systems have been used to further optimise the global traffic flow in our cities.
@@ -80,7 +80,7 @@ This allows the development of novel smart control approaches, harnessing the po
 Reinforcement Learning (RL) approaches have been showing promising results in this field.
 However, most of the existing works do not try to jointly optimise vehicular and pedestrian travel times, even though pedestrians are allowed and present in the great majority of urban intersections.
 
-This paper compares the performance of RL agents using 31 different reward functions split into 5 different classes based on the magnitudes they use, when controlling a simulation of a real-world junction in Greater Manchester (UK) that has been calibrated using 3.5 months of data gathered from Vivacity Labs vision-based sensors.
+This paper compares the performance of RL agents using 30 different reward functions split into 5 different classes based on the magnitudes they use, when controlling a simulation of a real-world junction in Greater Manchester (UK) that has been calibrated using 3.5 months of data gathered from Vivacity Labs vision-based sensors.
 
 The paper is structured as follows:
 Section \ref{lit} reviews previous literature in the field.
@@ -386,7 +386,7 @@ The reward is the sum of the pedestrians and vehicles that cleared the intersect
 \begin{figure*}                                                
 \centering                                                    
 \includegraphics[width=\textwidth]{9grid_ordered_boxplot_all.pdf}                                    
-\caption{Average waiting time for the best performing agents across all three demand scenarios.}                                  
+\caption{Top row: Average vehicular waiting time distribution for the fifteen best performing agents across demand levels. Middle row: Average pedestrian waiting time distribution across demand levels. Bottom row: Aggregated vehicular and pedestrian mean performance across demand levels.}                                  
 \label{fig:results_9_grid}                                               
 \end{figure*}
 
@@ -421,7 +421,7 @@ Queues PLN             & 14.57\pm 4.91 & 20.31\pm 4.94 & 32.90\pm 6.36 & 19.59\p
 $\Delta$ Queues        &  8.34\pm 1.04 & 18.37\pm 3.94 & 11.63\pm 3.09 & 19.45\pm 3.75 & 24.40\pm 7.20 & 19.70\pm 3.80  \\
 $\Delta$ Queues PLN    & 10.37\pm 1.10 & 17.45\pm 3.59 & 16.11\pm 4.38 & 18.44\pm 4.45 & 30.64\pm 5.00 & 19.49\pm 4.32  \\
 \midrule
-%Average Speed - Wait     & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0 & 0.0\pm 0.0  \\
+Average Speed - Wait     & 7.61\pm 0.84 & 16.31\pm 3.82 & 10.94\pm 2.19 & 17.05\pm 4.67 & 10.62\pm 1.17 & 38.36\pm 12.66  \\
 Average Speed - Occ      & 7.86\pm 0.94 & 14.79\pm 3.97 & 12.34\pm 3.44 & 15.43\pm 3.84 & 24.84\pm 7.31 & 15.56\pm 4.49  \\
 Average Speed AD - Wait  & 8.20\pm 0.80 & 15.37\pm 3.48 & 10.85\pm 2.11 & 15.55\pm 3.84 & 17.89\pm 5.68 & 14.95\pm 3.80  \\
 Average Speed AD - Occ   & 7.85\pm 0.88 & 16.68\pm 4.83 & 11.10\pm 2.44 & 17.20\pm 4.93 & 20.93\pm 6.83 & 17.66\pm 5.01  \\
@@ -480,7 +480,7 @@ The Normal Scenario uses an arrival rate of 1 vehicle / 2.1 seconds (1714 vehicl
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results and Discussion}
 \label{results}
-The results obtained from the simulations of the different reward functions for DQN agents are summarised in Fig. \ref{fig:results_9_grid}, which includes the performance of the 14 rewards found to have lower waiting times and seeming most desirable in practice, and detailed for all 31 rewards in Table \ref{table}.
+The results obtained from the simulations of the different reward functions for DQN agents are summarised in Fig. \ref{fig:results_9_grid}, which includes the performance of the 15 rewards found to have lower waiting times and seeming most desirable in practice, and detailed for all 30 rewards in Table \ref{table}.
 In Fig. \ref{fig:results_9_grid}, the distribution of pedestrian and vehicle waiting times, and the combination of mean performances for both modes of transportation across 100 repetitions of each demand level are presented.
 Table \ref{table} shows the mean waiting time for each distribution and their standard deviation, also calculated across all three demand levels. 
 
@@ -574,11 +574,6 @@ This work could be extended to account for other modes of transportation, perfor
 % optional entry into table of contents (if used)
 %\addcontentsline{toc}{section}{Acknowledgment}
 This work was part funded by EPSRC Grant EP/L015374 and part funded by InnovateUK grant 104219. 
-We are also grateful to W. Chernikoff, Toyota Mobility Foundation and The Alan Turing Institute for support in the initial stages.
-
-
-
-
 
 
 % trigger a \newpage just before the given reference
