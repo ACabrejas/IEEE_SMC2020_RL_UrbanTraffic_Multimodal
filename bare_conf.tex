@@ -56,8 +56,9 @@ Email: c.p.connaughton@warwick.ac.uk}
 Optimisation of Traffic Signal Control Systems is an important real-world challenge that has direct impact on the economy and quality of life of urban areas.
 Recently, Reinforcement Learning is proving to be a successful tool that can effectively manage urban intersections with a fraction of the effort required to curate traditional Urban Traffic Controllers. 
 %However, literature on the introduction and control of pedestrians to such intersections is scarce, and comparisons between the effect of the different approaches that can be taken in terms of architecture, state space or rewards are uncommon.
-This paper performs a robust comparison between 30 different Reinforcement Learning reward functions for controlling intersections serving vehicles and pedestrians. 
-We use a calibrated model in terms of demand, sensors, green times and other operational constraints of a real intersection in Greater Manchester, UK.
+This paper adds the authors' on previous work, performing a robust comparison between 30 different Reinforcement Learning reward functions for controlling intersections serving vehicles and pedestrians. 
+We use a calibrated model in terms of demand, sensors, green times and other operational constraints of a real intersection in Greater Manchester, UK. 
+Sensory inputs are restricted to what can be achieved with current vision-based sensors, such as those from Vivacity Labs.
 The rewards can be broadly classified in 5 groups depending on the magnitudes used: queues, waiting time, delay, average speed and throughput in the junction.
  The performance of different agents, in terms of waiting time, is compared across different demand levels ranging from normal operation to saturation of traditional adaptive controllers.
 We find that those rewards maximising the speed of the network obtain the lowest waiting time for vehicles and pedestrians simultaneously, closely followed by queue minimisation, demonstrating better performance than other methods proposed in the literature.
@@ -122,7 +123,7 @@ R_t = \mathbb{E} \bigg{[} \sum^{\infty}_{i=0} \gamma^i r_{t+i} \bigg{]} .
 \end{equation}
 In the case of RL for UTC, $\mathcal{T}$ is unknown, making it necessary to approach it from a model-free RL perspective.
 Model-Free RL is an sub-field of RL covering how independent agents can take sequential decisions in an unknown environment and learn from their interactions in order to obtain $\pi^*$. 
-There are two main approaches: Policy-Based RL, in which states are mapped to a distribution of potential actions, and Value-Based RL, which is used in this paper and estimates the {\em value} (expected return) of the different state-action pairs under a given policy $\pi$ defined  as
+There are two main approaches: Policy-Based RL, which maps states to a distribution of potential actions, and Value-Based RL, which is used in this paper and estimates the {\em value} (expected return) of the state-action pairs under a given policy $\pi$ defined  as
 \begin{equation}
 V^{\pi}(s) = \mathbb{E} [R_t|s,\pi].
 \label{eq:value}
@@ -232,16 +233,16 @@ The agent serves vehicles and pedestrians arriving at the intersection, seeking 
 All the reward functions presented in this paper follow the same structure.
 The reward, as seen by the agent, will be a linear combination of an independently calculated reward for the vehicles and another for the agents, as it can be seen in Eq. \ref{eq:modal}.
 \begin{equation}
-R_t = \alpha * R^v_t + \beta * R^p_t;\,\,\,\,\,\,\ \alpha+\beta = 1
+R_t = a * R^v_t + b * R^p_t;\,\,\,\,\,\,\ a+b = 1
 \label{eq:modal}
 \end{equation}
-In this way, $\alpha$ and $\beta$ are the Modal Prioritisation coefficients for our rewards, with $R^v, R^p$ being respectively the vehicular and pedestrian rewards.
+In this way, $a$ and $b$ are the Modal Prioritisation coefficients for our rewards, with $R^v, R^p$ being respectively the vehicular and pedestrian rewards.
 
 Of the rewards presented in the following section, those that were more sensitive towards the relative ratio of the demand between pedestrian and vehicles require manual tuning of the modal prioritisation parameters.
 While undesirable from a modeller and operator point of view since it partially counters the benefits that RL provides in terms of self-adjustment, they are provided so potential users and researchers can evaluate the trade-offs between potential increased performance and increased configuration effort.
 The mentioned series will be identified by the weight applied to the pedestrians.
-As such, series identified as P80 and P95 represent those in which the weights were $\alpha=0.2$, $\beta=0.8$, and $\alpha=0.05$, $\beta=0.95$ respectively. 
-Those series without an identifier did not require modal prioritisation ($\alpha = \beta$).
+As such, series identified as P80 and P95 represent those in which the weights were $a=0.2$, $b=0.8$, and $a=0.05$, $b=0.95$ respectively. 
+Those series without an identifier did not require modal prioritisation ($a = b$).
 
 Another addition that can be made to the rewards is to add a term scaling the difficulty with the demand level, implicitly accepting that higher demand typically worsens the performance of a network, independent of the actions of the controlling agent.
 These series are identified with the suffix AD (Adjusted by Demand).
@@ -262,21 +263,21 @@ Lastly, let $t^v_e$ and $t^p_e$ be the entry times of vehicles and pedestrians t
 \subsubsection{Queue Length}
 Similar to \cite{pra2010}, used in \cite{aslani2019}, the reward is the negative sum at $t$ of queues ($q$) over all ($n,m$) sensors.
 \begin{equation}
-    R_t = - \alpha \sum_{n \in N} q^v_{t} - \beta \sum_{m \in M} q^p_{t}
+    R_t = - \sum_{n \in N} q^v_{t} - \sum_{m \in M} q^p_{t}
 \label{eq:queue}
 \end{equation}
 
 \subsubsection{Queue Squared}
 Seen in \cite{gendersthesis}, this function squares the result of adding all queues.
 \begin{equation}
-   R_t = - \alpha \bigg( \sum_{n \in N} q^v_{t} \bigg)^2 - \beta \bigg( \sum_{m \in M} q^p_{t} \bigg)^2
+   R_t = -  \bigg( \sum_{n \in N} q^v_{t} \bigg)^2 - \bigg( \sum_{m \in M} q^p_{t} \bigg)^2
 \label{eq:queuesq} 
 \end{equation}
 
 \subsubsection{Queues PLN}
 As Queue length, but dividing the sum by the phase length (Phase Length Normalisation), approximating the reward that the action generates by unit of time it is active.
 \begin{equation}
-    R_t = - \frac{1}{t-t^p} \alpha \sum_{n \in N} q^v_{t} - \beta \sum_{m \in M} q^p_{t}
+    R_t = - \frac{1}{t-t^p}  \sum_{n \in N} q^v_{t} -  \sum_{m \in M} q^p_{t}
     \label{queuepln}
 \end{equation}
 
@@ -284,15 +285,15 @@ As Queue length, but dividing the sum by the phase length (Phase Length Normalis
 The reward is the variation of the sum of queues between actions.
 Similar to Eqs. (\ref{eq:delta_wait_time}) and (\ref{eq:changedelay}).
 \begin{equation}
-    R_t = \alpha \bigg( \sum_{n \in N} q^v_{t^p} -\sum_{n \in N} q^v_{t} \bigg) + \beta \bigg( \sum_{m \in M} q^p_{t^p} - \sum_{m \in M} q^p_{t} \bigg)
+    R_t =  \bigg( \sum_{n \in N} q^v_{t^p} -\sum_{n \in N} q^v_{t} \bigg) +  \bigg( \sum_{m \in M} q^p_{t^p} - \sum_{m \in M} q^p_{t} \bigg)
     \label{deltaqueue}
 \end{equation}
 
 \subsubsection{Delta Queue PLN}
 As Delta Queue, but dividing the sum by the phase length (Phase Length Normalisation).
 \begin{equation}
-    R_t = - \frac{1}{t-t^p} \bigg( \alpha \big( \sum_{n \in N} q^v_{t^p} - \sum_{n \in N} q^v_{t} \big) - 
-    \big( \beta \sum_{m \in M} q^p_{t^p}  - \sum_{m \in M} q^p_{t} \big) \bigg)
+    R_t = - \frac{1}{t-t^p} \bigg(  \big( \sum_{n \in N} q^v_{t^p} - \sum_{n \in N} q^v_{t} \big) - 
+    \big(  \sum_{m \in M} q^p_{t^p}  - \sum_{m \in M} q^p_{t} \big) \bigg)
     \label{queuepln}
 \end{equation}
 
@@ -301,21 +302,21 @@ These rewards require Modal Prioritisation weights.
 \subsubsection{Wait Time}
 The reward is the negative sum of time in queue accumulated since the last action by all vehicles. 
 \begin{equation}
-R_t = - \bigg( \sum_{v \in V_t} \tau^v_{t} + \sum_{p \in P_t} \tau^p_{t} \bigg)
+R_t = - \bigg(a \sum_{v \in V_t} \tau^v_{t} + b \sum_{p \in P_t} \tau^p_{t} \bigg)
 \label{eq:wait_time}
 \end{equation}
 
 \subsubsection{Delta Wait Time}
 Seen in \cite{liang2018}, similar to Eq. \ref{deltaqueue}. The reward is the variation in queueing time between actions.
 \begin{equation}
-R_t = \alpha \bigg( \sum_{v \in V_t} \tau^v_{t_p} -  \sum_{v \in V_t} \tau^v_{t} \bigg) + \beta \bigg( \sum_{p \in P_t} \tau^p_{t_p} -  \sum_{p \in P_t} \tau^p_{t} \bigg)
+R_t = a \bigg( \sum_{v \in V_t} \tau^v_{t_p} -  \sum_{v \in V_t} \tau^v_{t} \bigg) + b \bigg( \sum_{p \in P_t} \tau^p_{t_p} -  \sum_{p \in P_t} \tau^p_{t} \bigg)
 \label{eq:delta_wait_time}
 \end{equation}
 
 \subsubsection{Waiting Time Adjusted by Demand}
 Negative sum of waiting time, adding a factor to scale it accordingly with an estimate of the demand ($\hat{d}$).
 \begin{equation}
-   R_t = -\frac{1}{\hat{d}} \bigg( \alpha \sum_{v \in V_t} \tau^v_{t} + \beta \sum_{p \in P_t} \tau^p_{t} \bigg)
+   R_t = -\frac{1}{\hat{d}} \bigg( a \sum_{v \in V_t} \tau^v_{t} + b \sum_{p \in P_t} \tau^p_{t} \bigg)
 \label{eq:wait_time_norm} 
 \end{equation}
 
@@ -326,7 +327,7 @@ Seen in \cite{wan2018}. Negative weighted sum of the delay by all entities. Dela
 For the pedestrians, the time in queue is used given that, from the point of view of the sensors, pedestrian presence is binary.
 Assuming a simulator time step of length $\delta$:
 \begin{equation}
-    R_t = - \bigg( \alpha \sum_{v \in V_t}  \sum_{t^v_e}^t \delta \big( 1-\frac{s_v}{s_{max}} \big) + \beta \sum_{p \in P_t} \tau^p_t \bigg)
+    R_t = - \bigg( a \sum_{v \in V_t}  \sum_{t^v_e}^t \delta \big( 1-\frac{s_v}{s_{max}} \big) + b \sum_{p \in P_t} \tau^p_t \bigg)
 \label{eq:delay}
 \end{equation}
 
@@ -336,8 +337,8 @@ Similar to Eq. (\ref{eq:delta_wait_time}).
 The reward is the variation between actions of the delay as calculated in Eq. (\ref{eq:delta_wait_time}).
 \begin{equation}
 \begin{split}
-R_t =  \alpha \bigg( \sum_{v \in V_t} \sum_{t^{pp}}^{t^p} \delta & \big( 1-\frac{s_v}{s_{max}} \big) - \sum_{v \in V_t}  \sum_{t^p}^t \delta \big( 1-\frac{s_v}{s_{max}} \big) \bigg) \\
-& + \beta \bigg( \sum_{p \in P_t} \tau^p_{t^p} - \sum_{p \in P_t} \tau^p_{t} \bigg) 
+R_t =  a \bigg( \sum_{v \in V_t} \sum_{t^{pp}}^{t^p} \delta & \big( 1-\frac{s_v}{s_{max}} \big) - \sum_{v \in V_t}  \sum_{t^p}^t \delta \big( 1-\frac{s_v}{s_{max}} \big) \bigg) \\
+& + b \bigg( \sum_{p \in P_t} \tau^p_{t^p} - \sum_{p \in P_t} \tau^p_{t} \bigg) 
 \end{split}
 \label{eq:changedelay} 
 \end{equation}
@@ -345,7 +346,7 @@ R_t =  \alpha \bigg( \sum_{v \in V_t} \sum_{t^{pp}}^{t^p} \delta & \big( 1-\frac
 \subsubsection{Delay Adjusted by Demand}
 Same as in Eq. (\ref{eq:delay}), introducing a scaling demand term.
 \begin{equation}
-    R_t = -\frac{1}{\hat{d}} \bigg( \alpha \sum_{v\in V_t}  \sum_{t^p}^t \delta \big( 1-\frac{s_v}{s_{max}} \big) + \beta \sum_{p \in P_t} \tau^p_{t} \bigg)
+    R_t = -\frac{1}{\hat{d}} \bigg( a \sum_{v\in V_t}  \sum_{t^p}^t \delta \big( 1-\frac{s_v}{s_{max}} \big) + b \sum_{p \in P_t} \tau^p_{t} \bigg)
 \label{eq:delay_ad}
 \end{equation}
 
@@ -356,7 +357,7 @@ The pedestrian reward is the minimum between the sum of the waiting time of the 
 This produces two components of the reward $R_p, R_v \in [0,1]$.
 
 \begin{equation}
-    R_t = \alpha \frac{\sum_{v \in V_t} \frac{s}{s_{max}}}{\sum_{V_t} v}  + \beta \min \big( \sum_{p \in P_t} \frac{\tau^p_{t}}{\tau_{max}} \, , 1 \big)
+    R_t =  \frac{\sum_{v \in V_t} \frac{s}{s_{max}}}{\sum_{V_t} v}  +  \min \big( \sum_{p \in P_t} \frac{\tau^p_{t}}{\tau_{max}} \, , 1 \big)
 \label{eq:avgspeed_wait}
 \end{equation}
 
@@ -364,7 +365,7 @@ This produces two components of the reward $R_p, R_v \in [0,1]$.
 Vehicle reward as in the previous entry.
 Pedestrian reward is the minimum between the sum of pedestrians waiting divided by a theoretical maximum desirable capacity $p_{max}$ and 1. 
 \begin{equation}
-    R_t =   \alpha \frac{ \sum_{v \in V_t} \frac{s}{s_{max}}}{\sum_{V_t} v} + \beta \min \big( \sum_{p \in P_t} \frac{p}{p_{max}} \, , 1 \big)
+    R_t =    \frac{ \sum_{v \in V_t} \frac{s}{s_{max}}}{\sum_{V_t} v} +  \min \big( \sum_{p \in P_t} \frac{p}{p_{max}} \, , 1 \big)
 \label{eq:avgspeed_occ}
 \end{equation}
 
@@ -376,7 +377,7 @@ These rewards require Modal Prioritisation weights.
 \subsubsection{Throughput}
 The reward is the sum of the pedestrians and vehicles that cleared the intersection since the last action.
 \begin{equation}
-    r_t = \alpha \sum_{t_p}^t \rho_v + \beta \sum_{t_p}^t \rho_p
+    r_t = a \sum_{t_p}^t \rho_v + b \sum_{t_p}^t \rho_p
 \label{eq:throughput}
 \end{equation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -569,7 +570,7 @@ This work could be extended to account for other modes of transportation, perfor
 % optional entry into table of contents (if used)
 %\addcontentsline{toc}{section}{Acknowledgment}
 This work was part funded by EPSRC Grant EP/L015374 and part funded by InnovateUK grant 104219. 
-
+Vivacity Labs would like to thank Transport for Greater Manchester for helping take this work from simulation to the real world, Immense for their work calibrating the simulation model, and InnovateUK for funding that made the work possible.
 
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page
@@ -620,7 +621,7 @@ This work was part funded by EPSRC Grant EP/L015374 and part funded by InnovateU
 \bibitem{liu2017} Liu, Y., Liu, L., \& Chen, W. P. (2017, October). Intelligent traffic light control using distributed multi-agent Q learning. In 2017 IEEE 20th International Conference on Intelligent Transportation Systems (ITSC) (pp. 1-8). IEEE.
 \bibitem{chen2020} Chacha Chen, H. W., Xu, N., Zheng, G., Yang, M., Xiong, Y., Xu, K., \& Li, Z. Toward A Thousand Lights: Decentralized Deep Reinforcement Learning for Large-Scale Traffic Signal Control.
 \bibitem{sumo} Lopez, P. A., Behrisch, M., Bieker-Walz, L., Erdmann, J., Flötteröd, Y. P., Hilbrich, R., ... \& WieBner, E. (2018, November). Microscopic traffic simulation using sumo. In 2018 21st International Conference on Intelligent Transportation Systems (ITSC) (pp. 2575-2582). IEEE.
-\bibitem{previous} Cabrejas Egea, A., Howell, S., Knutins, M., \& Connaughton C. (2020, October). Assessment of Reward Functions for Reinforcement Learning Traffic Signal Control under Real-World Limitations. IEEE Systems, Man, and Cybernetics 2020. 
+\bibitem{previous} Cabrejas Egea, A., Howell, S., Knutins, M., \& Connaughton C. (2020, October). Assessment of Reward Functions for Reinforcement Learning Traffic Signal Control under Real-World Limitations. IEEE Systems, Man, and Cybernetics 2020 (Under review). 
 \bibitem{watkins} Watkins, C. J., \& Dayan, P. (1992). Q-learning. Machine learning, 8(3-4), 279-292.
 \bibitem{melo} Melo, F. S. (2001). Convergence of Q-learning: A simple proof. Institute Of Systems and Robotics, Tech. Rep, 1-4.
 \bibitem{mnih2015} Mnih, V., Kavukcuoglu, K., Silver, D., Rusu, A. A., Veness, J.,  ... \& Petersen, S. (2015). Human-level control through deep reinforcement learning. Nature, 518(7540), 529-533.
