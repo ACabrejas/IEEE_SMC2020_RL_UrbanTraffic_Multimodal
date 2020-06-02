@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.24)  3 JUN 2020 00:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.24)  3 JUN 2020 00:44
 entering extended mode
 **./bare_conf.tex
 (bare_conf.tex
@@ -691,12 +691,12 @@ Package pdftex.def Info: ./figures/phases_limited.png  used on input line 226.
 (pdftex.def)             Requested size: 180.67499pt x 192.17233pt.
  [3 <./figures/gmaps_iso_censored.jpg> <./figures/intersection.png>] [4 <./figu
 res/phases_limited.png>]
-<./figures/9grid_ordered_boxplot_all.pdf, id=232, 1398.57504pt x 1100.91489pt>
-File: ./figures/9grid_ordered_boxplot_all.pdf Graphic file (type pdf)
-<use ./figures/9grid_ordered_boxplot_all.pdf>
-Package pdftex.def Info: ./figures/9grid_ordered_boxplot_all.pdf  used on input
+<./figures/9grid_ordered_boxplot_all.png, id=232, 3885.51625pt x 3058.42625pt>
+File: ./figures/9grid_ordered_boxplot_all.png Graphic file (type png)
+<use ./figures/9grid_ordered_boxplot_all.png>
+Package pdftex.def Info: ./figures/9grid_ordered_boxplot_all.png  used on input
  line 386.
-(pdftex.def)             Requested size: 516.0pt x 406.17303pt.
+(pdftex.def)             Requested size: 516.0pt x 406.14958pt.
 
 Overfull \hbox (4.25006pt too wide) detected at line 422
  
@@ -1152,7 +1152,7 @@ Overfull \hbox (8.50012pt too wide) detected at line 456
  
  []
 
-[5] [6 <./figures/9grid_ordered_boxplot_all.pdf>]
+[5] [6 <./figures/9grid_ordered_boxplot_all.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1191,8 +1191,8 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 637.
  ) 
 Here is how much of TeX's memory you used:
  11746 strings out of 481545
- 221485 string characters out of 2909744
- 638875 words of memory out of 3000000
+ 221461 string characters out of 2909744
+ 638873 words of memory out of 3000000
  26681 multiletter control sequences out of 15000+200000
  570573 words of font info for 104 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
@@ -1220,9 +1220,9 @@ ta/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/acabre
 jasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/
 Users/acabrejasegea/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on bare_conf.pdf (8 pages, 1225108 bytes).
+Output written on bare_conf.pdf (8 pages, 1484853 bytes).
 PDF statistics:
- 504 PDF objects out of 1000 (max. 8388607)
+ 386 PDF objects out of 1000 (max. 8388607)
  117 named destinations out of 1000 (max. 500000)
  330 words of extra memory for PDF output out of 10000 (max. 10000000)
 
