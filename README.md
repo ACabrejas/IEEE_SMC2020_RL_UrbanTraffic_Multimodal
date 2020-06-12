@@ -11,6 +11,13 @@ The rewards can be broadly classified in 5 groups depending on the magnitudes us
 
 We find that those rewards maximising the speed of the network obtain the lowest waiting time for vehicles and pedestrians simultaneously, closely followed by queue minimisation, demonstrating better performance than other methods proposed in the literature.
 
+## Full Document
+<object data="https://github.com/ACabrejas/IEEE_SMC2020_RL_UrbanTraffic_Multimodal/blob/master/bare_conf.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="https://github.com/ACabrejas/IEEE_SMC2020_RL_UrbanTraffic_Multimodal/blob/master/bare_conf.pdf">
+        <p>This browser does not support displaying PDFs here. Please go to the location of the full PDF to view it: <a href="https://github.com/ACabrejas/IEEE_SMC2020_RL_UrbanTraffic_Multimodal/blob/master/bare_conf.pdf">View PDF</a>.</p>
+    </embed>
+</object>
+
 ## Results
 ![](figures/9grid_ordered_boxplot_all-page-001.jpg)
 
