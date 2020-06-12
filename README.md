@@ -11,6 +11,7 @@ The rewards can be broadly classified in 5 groups depending on the magnitudes us
 
 We find that those rewards maximising the speed of the network obtain the lowest waiting time for vehicles and pedestrians simultaneously, closely followed by queue minimisation, demonstrating better performance than other methods proposed in the literature.
 
+## Results
 ![](figures/9grid_ordered_boxplot_all-page-001.jpg)
 
 ![](figures/table_results.PNG)
