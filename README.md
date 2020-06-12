@@ -14,7 +14,7 @@ We find that those rewards maximising the speed of the network obtain the lowest
 ## Full Document
 <object data="https://github.com/ACabrejas/IEEE_SMC2020_RL_UrbanTraffic_Multimodal/blob/master/bare_conf.pdf" type="application/pdf" width="700px" height="700px">
     <embed src="https://github.com/ACabrejas/IEEE_SMC2020_RL_UrbanTraffic_Multimodal/blob/master/bare_conf.pdf">
-        <p>This browser does not support displaying PDFs here. Please go to the location of the full PDF to view it: <a href="https://github.com/ACabrejas/IEEE_SMC2020_RL_UrbanTraffic_Multimodal/blob/master/bare_conf.pdf">View PDF</a>.</p>
+        <p>This format does not support displaying PDFs here. Please go to the location of the full PDF to view it: <a href="https://github.com/ACabrejas/IEEE_SMC2020_RL_UrbanTraffic_Multimodal/blob/master/bare_conf.pdf">View PDF</a>.</p>
     </embed>
 </object>
 
