@@ -1,4 +1,7 @@
 # Assessment of Reward Functions in Reinforcement Learning for Multi-Modal Urban Traffic Control under Real-World limitations
+This repository contains a pre-print version of the paper titled above, submitted to IEEE Systems, Man and Cybernetics 2020 (SMC2020), for private distribution and version control.
+All intellectual property here contained belongs to Alvaro Cabrejas Egea, the Mathematics for Real-World Systems Centre for Doctoral Training (University of Warwick), The Alan Turing Institute and IEEE.
+
 Optimisation of Traffic Signal Control Systems is an important real-world challenge that has direct impact on the economy and quality of life of urban areas.Recently, Reinforcement Learning is proving to be a successful tool that can effectively manage urban intersections with a fraction of the effort required to curate traditional Urban Traffic Controllers. 
 
 This paper adds on the authors' previous work, performing a robust comparison between 30 different Reinforcement Learning reward functions for controlling intersections serving vehicles and pedestrians. We use a calibrated model in terms of demand, sensors, green times and other operational constraints of a real intersection in Greater Manchester, UK. 
