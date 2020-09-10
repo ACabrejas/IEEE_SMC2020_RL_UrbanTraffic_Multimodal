@@ -1,0 +1,528 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{35}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{#1}\fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[\protect\citeauthoryear{Abdoos, Mozayani, and Bazzan}{Abdoos
+  et~al\mbox{.}}{2011}]%
+        {abdoos2011}
+\bibfield{author}{\bibinfo{person}{Monireh Abdoos}, \bibinfo{person}{Nasser
+  Mozayani}, {and} \bibinfo{person}{Ana L~C Bazzan}.}
+  \bibinfo{year}{2011}\natexlab{}.
+\newblock \showarticletitle{{Traffic light control in non-stationary
+  environments based on multi agent Q-learning}}. In
+  \bibinfo{booktitle}{\emph{2011 14th International IEEE conference on
+  intelligent transportation systems (ITSC)}}. IEEE,
+  \bibinfo{pages}{1580--1585}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Abdulhai, Pringle, and Karakoulas}{Abdulhai
+  et~al\mbox{.}}{2003}]%
+        {abdul2003}
+\bibfield{author}{\bibinfo{person}{Baher Abdulhai}, \bibinfo{person}{Rob
+  Pringle}, {and} \bibinfo{person}{Grigoris~J Karakoulas}.}
+  \bibinfo{year}{2003}\natexlab{}.
+\newblock \showarticletitle{{Reinforcement learning for true adaptive traffic
+  signal control}}.
+\newblock \bibinfo{journal}{\emph{Journal of Transportation Engineering}}
+  \bibinfo{volume}{129}, \bibinfo{number}{3} (\bibinfo{year}{2003}),
+  \bibinfo{pages}{278--285}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Aslani, Mesgari, Seipel, and Wiering}{Aslani
+  et~al\mbox{.}}{2019}]%
+        {aslani2019}
+\bibfield{author}{\bibinfo{person}{Mohammad Aslani},
+  \bibinfo{person}{Mohammad~Saadi Mesgari}, \bibinfo{person}{Stefan Seipel},
+  {and} \bibinfo{person}{Marco Wiering}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{{Developing adaptive traffic signal control by
+  actor--critic and direct exploration methods}}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the Institution of Civil
+  Engineers-Transport}}, Vol.~\bibinfo{volume}{172}. Thomas Telford Ltd,
+  \bibinfo{pages}{289--298}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{{Cabrejas Egea}, Howell, Knutins, and
+  Connaughton}{{Cabrejas Egea} et~al\mbox{.}}{2020}]%
+        {previous}
+\bibfield{author}{\bibinfo{person}{Alvaro {Cabrejas Egea}},
+  \bibinfo{person}{Shaun Howell}, \bibinfo{person}{Maksis Knutins}, {and}
+  \bibinfo{person}{Colm Connaughton}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{{Assessment of Reward Functions for Reinforcement
+  Learning Traffic Signal Control under Real-World Limitations}}. In
+  \bibinfo{booktitle}{\emph{IEEE International Conference on Systems, Man and
+  Cybernetics}}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Chen, Wei, Xu, Zheng, Yang, Xiong, Xu, and
+  Li}{Chen et~al\mbox{.}}{2020}]%
+        {chen2020}
+\bibfield{author}{\bibinfo{person}{Chacha Chen}, \bibinfo{person}{Hua Wei},
+  \bibinfo{person}{Nan Xu}, \bibinfo{person}{Guanjie Zheng},
+  \bibinfo{person}{Ming Yang}, \bibinfo{person}{Yuanhao Xiong},
+  \bibinfo{person}{Kai Xu}, {and} \bibinfo{person}{Zhenhui Li}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{{Toward A Thousand Lights: Decentralized Deep
+  Reinforcement Learning for Large-Scale Traffic Signal Control}}.
+\newblock \bibinfo{journal}{\emph{AAAI}} (\bibinfo{year}{2020}),
+  \bibinfo{pages}{3414--3121}.
+\newblock
+\urldef\tempurl%
+\url{www.aaai.org}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{El-Tantawy and Abdulhai}{El-Tantawy and
+  Abdulhai}{2010}]%
+        {abdulhai2010}
+\bibfield{author}{\bibinfo{person}{Samah El-Tantawy} {and}
+  \bibinfo{person}{Baher Abdulhai}.} \bibinfo{year}{2010}\natexlab{}.
+\newblock \showarticletitle{{An agent-based learning towards decentralized and
+  coordinated traffic signal control}}.
+\newblock \bibinfo{journal}{\emph{IEEE Conference on Intelligent Transportation
+  Systems, Proceedings, ITSC}} (\bibinfo{year}{2010}),
+  \bibinfo{pages}{665--670}.
+\newblock
+\showISBNx{9781424476572}
+\showISSN{2153-0009}
+\urldef\tempurl%
+\url{https://doi.org/10.1109/ITSC.2010.5625066}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{El-Tantawy, Abdulhai, and
+  Abdelgawad}{El-Tantawy et~al\mbox{.}}{2014}]%
+        {survey2014}
+\bibfield{author}{\bibinfo{person}{Samah El-Tantawy}, \bibinfo{person}{Baher
+  Abdulhai}, {and} \bibinfo{person}{Hossam Abdelgawad}.}
+  \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{{Design of reinforcement learning parameters for
+  seamless application of adaptive traffic signal control}}.
+\newblock \bibinfo{journal}{\emph{Journal of Intelligent Transportation
+  Systems}} \bibinfo{volume}{18}, \bibinfo{number}{3} (\bibinfo{year}{2014}),
+  \bibinfo{pages}{227--245}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Gao, Shen, Liu, Ito, and Shiratori}{Gao
+  et~al\mbox{.}}{2017}]%
+        {gao2017}
+\bibfield{author}{\bibinfo{person}{Juntao Gao}, \bibinfo{person}{Yulong Shen},
+  \bibinfo{person}{Jia Liu}, \bibinfo{person}{Minoru Ito}, {and}
+  \bibinfo{person}{Norio Shiratori}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{{Adaptive traffic signal control: Deep
+  reinforcement learning algorithm with experience replay and target network}}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1705.02755}}
+  (\bibinfo{year}{2017}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Genders}{Genders}{2018}]%
+        {gendersthesis}
+\bibfield{author}{\bibinfo{person}{Wade Genders}.}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \emph{\bibinfo{title}{{Deep reinforcement learning adaptive traffic
+  signal control}}}.
+\newblock \bibinfo{thesistype}{Ph.D. Dissertation}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Genders and Razavi}{Genders and
+  Razavi}{2016}]%
+        {genders2016}
+\bibfield{author}{\bibinfo{person}{Wade Genders} {and} \bibinfo{person}{Saiedeh
+  Razavi}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{{Using a Deep Reinforcement Learning Agent for
+  Traffic Signal Control}}.
+\newblock  (\bibinfo{year}{2016}), \bibinfo{pages}{1--9}.
+\newblock
+\showeprint[arxiv]{arXiv:1611.01142v1}
+
+
+\bibitem[\protect\citeauthoryear{Genders and Razavi}{Genders and
+  Razavi}{2018}]%
+        {gendersstate}
+\bibfield{author}{\bibinfo{person}{Wade Genders} {and} \bibinfo{person}{Saiedeh
+  Razavi}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{{Evaluating reinforcement learning state
+  representations for adaptive traffic signal control}}.
+\newblock \bibinfo{journal}{\emph{Procedia computer science}}
+  \bibinfo{volume}{130} (\bibinfo{year}{2018}), \bibinfo{pages}{26--33}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Genders and Razavi}{Genders and
+  Razavi}{2019}]%
+        {genders2019}
+\bibfield{author}{\bibinfo{person}{Wade Genders} {and} \bibinfo{person}{Saiedeh
+  Razavi}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{{Asynchronous n-step Q-learning adaptive traffic
+  signal control}}.
+\newblock \bibinfo{journal}{\emph{Journal of Intelligent Transportation
+  Systems: Technology, Planning, and Operations}} \bibinfo{volume}{23},
+  \bibinfo{number}{4} (\bibinfo{year}{2019}), \bibinfo{pages}{319--331}.
+\newblock
+\showISSN{15472442}
+\urldef\tempurl%
+\url{https://doi.org/10.1080/15472450.2018.1491003}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Haydari and Yilmaz}{Haydari and
+  Yilmaz}{2020}]%
+        {survey2020}
+\bibfield{author}{\bibinfo{person}{Ammar Haydari} {and} \bibinfo{person}{Yasin
+  Yilmaz}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{{Deep Reinforcement Learning for Intelligent
+  Transportation Systems: A Survey}}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2005.00935}}
+  (\bibinfo{year}{2020}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{{Highways Agency}}{{Highways Agency}}{2002}]%
+        {highways}
+\bibfield{author}{\bibinfo{person}{{Highways Agency}}.}
+  \bibinfo{year}{2002}\natexlab{}.
+\newblock \showarticletitle{{Siting of Inductive Loops for Vehicle Detecting
+  Equipments at Permanent Road Traffic Signal Installations}}.
+\newblock  \bibinfo{number}{C} (\bibinfo{year}{2002}).
+\newblock
+\showISBNx{MCE 0108 Issue C}
+
+
+\bibitem[\protect\citeauthoryear{Hunt, Robertson, Bretherton, and Royle}{Hunt
+  et~al\mbox{.}}{1982}]%
+        {scoot}
+\bibfield{author}{\bibinfo{person}{P~B Hunt}, \bibinfo{person}{D~I Robertson},
+  \bibinfo{person}{R~D Bretherton}, {and} \bibinfo{person}{M~Cr Royle}.}
+  \bibinfo{year}{1982}\natexlab{}.
+\newblock \showarticletitle{{The SCOOT on-line traffic signal optimisation
+  technique}}.
+\newblock \bibinfo{journal}{\emph{Traffic Engineering {\&} Control}}
+  \bibinfo{volume}{23}, \bibinfo{number}{4} (\bibinfo{year}{1982}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Kiefer, Wolfowitz, and Others}{Kiefer
+  et~al\mbox{.}}{1952}]%
+        {kiefer}
+\bibfield{author}{\bibinfo{person}{Jack Kiefer}, \bibinfo{person}{Jacob
+  Wolfowitz}, {and} \bibinfo{person}{Others}.} \bibinfo{year}{1952}\natexlab{}.
+\newblock \showarticletitle{{Stochastic estimation of the maximum of a
+  regression function}}.
+\newblock \bibinfo{journal}{\emph{The Annals of Mathematical Statistics}}
+  \bibinfo{volume}{23}, \bibinfo{number}{3} (\bibinfo{year}{1952}),
+  \bibinfo{pages}{462--466}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Kingma and Ba}{Kingma and Ba}{2014}]%
+        {adam}
+\bibfield{author}{\bibinfo{person}{Diederik~P Kingma} {and}
+  \bibinfo{person}{Jimmy Ba}.} \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{{Adam: A method for stochastic optimization}}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1412.6980}}
+  (\bibinfo{year}{2014}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Liang, Du, Wang, and Han}{Liang
+  et~al\mbox{.}}{2018}]%
+        {liang2018}
+\bibfield{author}{\bibinfo{person}{Xiaoyuan Liang}, \bibinfo{person}{Xunsheng
+  Du}, \bibinfo{person}{Guiling Wang}, {and} \bibinfo{person}{Zhu Han}.}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{{Deep Reinforcement Learning for Traffic Light
+  Control in Vehicular Networks}}.
+\newblock  \bibinfo{volume}{XX}, \bibinfo{number}{Xx} (\bibinfo{year}{2018}),
+  \bibinfo{pages}{1--11}.
+\newblock
+\showISBNx{0387310738}
+\showeprint[arxiv]{1803.11115}
+\urldef\tempurl%
+\url{http://arxiv.org/abs/1803.11115}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Liang, Du, Wang, and Han}{Liang
+  et~al\mbox{.}}{2019}]%
+        {liang2017}
+\bibfield{author}{\bibinfo{person}{Xiaoyuan Liang}, \bibinfo{person}{Xunsheng
+  Du}, \bibinfo{person}{Guiling Wang}, {and} \bibinfo{person}{Zhu Han}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{{A Deep Reinforcement Learning Network for Traffic
+  Light Cycle Control}}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Vehicular Technology}}
+  \bibinfo{volume}{68}, \bibinfo{number}{2} (\bibinfo{year}{2019}),
+  \bibinfo{pages}{1243--1253}.
+\newblock
+\showISSN{00189545}
+\urldef\tempurl%
+\url{https://doi.org/10.1109/TVT.2018.2890726}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Liu, Liu, and Chen}{Liu et~al\mbox{.}}{2018}]%
+        {liu2017}
+\bibfield{author}{\bibinfo{person}{Ying Liu}, \bibinfo{person}{Lei Liu}, {and}
+  \bibinfo{person}{Wei~Peng Chen}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{{Intelligent traffic light control using
+  distributed multi-agent Q learning}}.
+\newblock \bibinfo{journal}{\emph{IEEE Conference on Intelligent Transportation
+  Systems, Proceedings, ITSC}}  \bibinfo{volume}{2018-March}
+  (\bibinfo{year}{2018}), \bibinfo{pages}{1--8}.
+\newblock
+\showISBNx{9781538615256}
+\showISSN{2153-0009}
+\urldef\tempurl%
+\url{https://doi.org/10.1109/ITSC.2017.8317730}
+\showDOI{\tempurl}
+\showeprint[arxiv]{1711.10941}
+
+
+\bibitem[\protect\citeauthoryear{Lopez, Behrisch, Bieker-Walz, Erdmann,
+  Fl{\"{o}}tter{\"{o}}d, Hilbrich, L{\"{u}}cken, Rummel, Wagner, and
+  WieBner}{Lopez et~al\mbox{.}}{2018}]%
+        {sumo}
+\bibfield{author}{\bibinfo{person}{Pablo~Alvarez Lopez},
+  \bibinfo{person}{Michael Behrisch}, \bibinfo{person}{Laura Bieker-Walz},
+  \bibinfo{person}{Jakob Erdmann}, \bibinfo{person}{Yun-Pang
+  Fl{\"{o}}tter{\"{o}}d}, \bibinfo{person}{Robert Hilbrich},
+  \bibinfo{person}{Leonhard L{\"{u}}cken}, \bibinfo{person}{Johannes Rummel},
+  \bibinfo{person}{Peter Wagner}, {and} \bibinfo{person}{Evamarie WieBner}.}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{{Microscopic traffic simulation using sumo}}. In
+  \bibinfo{booktitle}{\emph{2018 21st International Conference on Intelligent
+  Transportation Systems (ITSC)}}. IEEE, \bibinfo{pages}{2575--2582}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Lowrie}{Lowrie}{1990}]%
+        {scats}
+\bibfield{author}{\bibinfo{person}{P~R Lowrie}.}
+  \bibinfo{year}{1990}\natexlab{}.
+\newblock \showarticletitle{{Scats, sydney co-ordinated adaptive traffic
+  system: A traffic responsive method of controlling urban traffic}}.
+\newblock  (\bibinfo{year}{1990}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Mannion, Duggan, and Howley}{Mannion
+  et~al\mbox{.}}{2016}]%
+        {mannion}
+\bibfield{author}{\bibinfo{person}{Patrick Mannion}, \bibinfo{person}{Jim
+  Duggan}, {and} \bibinfo{person}{Enda Howley}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{{An experimental review of reinforcement learning
+  algorithms for adaptive traffic signal control}}.
+\newblock In \bibinfo{booktitle}{\emph{Autonomic road transport support
+  systems}}. \bibinfo{publisher}{Springer}, \bibinfo{pages}{47--66}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Melo}{Melo}{2001}]%
+        {melo}
+\bibfield{author}{\bibinfo{person}{Francisco~S Melo}.}
+  \bibinfo{year}{2001}\natexlab{}.
+\newblock \showarticletitle{{Convergence of Q-learning: A simple proof}}.
+\newblock \bibinfo{journal}{\emph{Institute Of Systems and Robotics, Tech.
+  Rep}} (\bibinfo{year}{2001}), \bibinfo{pages}{1--4}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Mnih, Kavukcuoglu, Silver, Rusu, Veness,
+  Bellemare, Graves, Riedmiller, Fidjeland, Ostrovski, Petersen, Beattie,
+  Sadik, Antonoglou, King, Kumaran, Wierstra, Legg, and Hassabis}{Mnih
+  et~al\mbox{.}}{2015}]%
+        {mnih2015}
+\bibfield{author}{\bibinfo{person}{Volodymyr Mnih}, \bibinfo{person}{Koray
+  Kavukcuoglu}, \bibinfo{person}{David Silver}, \bibinfo{person}{Andrei~A.
+  Rusu}, \bibinfo{person}{Joel Veness}, \bibinfo{person}{Marc~G. Bellemare},
+  \bibinfo{person}{Alex Graves}, \bibinfo{person}{Martin Riedmiller},
+  \bibinfo{person}{Andreas~K. Fidjeland}, \bibinfo{person}{Georg Ostrovski},
+  \bibinfo{person}{Stig Petersen}, \bibinfo{person}{Charles Beattie},
+  \bibinfo{person}{Amir Sadik}, \bibinfo{person}{Ioannis Antonoglou},
+  \bibinfo{person}{Helen King}, \bibinfo{person}{Dharshan Kumaran},
+  \bibinfo{person}{Daan Wierstra}, \bibinfo{person}{Shane Legg}, {and}
+  \bibinfo{person}{Demis Hassabis}.} \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{{Human-level control through deep reinforcement
+  learning}}.
+\newblock \bibinfo{journal}{\emph{Nature}} \bibinfo{volume}{518},
+  \bibinfo{number}{7540} (\bibinfo{year}{2015}), \bibinfo{pages}{529--533}.
+\newblock
+\showISSN{14764687}
+\urldef\tempurl%
+\url{https://doi.org/10.1038/nature14236}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Mousavi, Schukat, and Howley}{Mousavi
+  et~al\mbox{.}}{2017}]%
+        {mousavi2017}
+\bibfield{author}{\bibinfo{person}{Seyed~Sajad Mousavi},
+  \bibinfo{person}{Michael Schukat}, {and} \bibinfo{person}{Enda Howley}.}
+  \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{{Traffic light control using deep policy-gradient
+  and value-function-based reinforcement learning}}.
+\newblock \bibinfo{journal}{\emph{IET Intelligent Transport Systems}}
+  \bibinfo{volume}{11}, \bibinfo{number}{7} (\bibinfo{year}{2017}),
+  \bibinfo{pages}{417--423}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Paszke, Gross, Massa, Lerer, Bradbury, Chanan,
+  Killeen, Lin, Gimelshein, Antiga, and Others}{Paszke et~al\mbox{.}}{2019}]%
+        {pytorch}
+\bibfield{author}{\bibinfo{person}{Adam Paszke}, \bibinfo{person}{Sam Gross},
+  \bibinfo{person}{Francisco Massa}, \bibinfo{person}{Adam Lerer},
+  \bibinfo{person}{James Bradbury}, \bibinfo{person}{Gregory Chanan},
+  \bibinfo{person}{Trevor Killeen}, \bibinfo{person}{Zeming Lin},
+  \bibinfo{person}{Natalia Gimelshein}, \bibinfo{person}{Luca Antiga}, {and}
+  \bibinfo{person}{Others}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{{Pytorch: An imperative style, high-performance
+  deep learning library}}. In \bibinfo{booktitle}{\emph{Advances in neural
+  information processing systems}}. \bibinfo{pages}{8026--8037}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Prashanth and Bhatnagar}{Prashanth and
+  Bhatnagar}{2010}]%
+        {pra2010}
+\bibfield{author}{\bibinfo{person}{L~A Prashanth} {and}
+  \bibinfo{person}{Shalabh Bhatnagar}.} \bibinfo{year}{2010}\natexlab{}.
+\newblock \showarticletitle{{Reinforcement learning with function approximation
+  for traffic signal control}}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Intelligent
+  Transportation Systems}} \bibinfo{volume}{12}, \bibinfo{number}{2}
+  (\bibinfo{year}{2010}), \bibinfo{pages}{412--421}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Sutton and Barto}{Sutton and Barto}{2018}]%
+        {suttonbarto}
+\bibfield{author}{\bibinfo{person}{Richard~S Sutton} {and}
+  \bibinfo{person}{Andrew~G Barto}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{{Reinforcement learning: An
+  introduction}}}.
+\newblock \bibinfo{publisher}{MIT press}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Turky, Ahmad, Yusoff, and Hammad}{Turky
+  et~al\mbox{.}}{2009}]%
+        {geneticped}
+\bibfield{author}{\bibinfo{person}{Ayad~M Turky}, \bibinfo{person}{M~S Ahmad},
+  \bibinfo{person}{Mohd Zaliman~Mohd Yusoff}, {and} \bibinfo{person}{Baraa~T
+  Hammad}.} \bibinfo{year}{2009}\natexlab{}.
+\newblock \showarticletitle{{Using genetic algorithm for traffic light control
+  system with a pedestrian crossing}}. In
+  \bibinfo{booktitle}{\emph{International Conference on Rough Sets and
+  Knowledge Technology}}. Springer, \bibinfo{pages}{512--519}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Vincent and Peirce}{Vincent and
+  Peirce}{1988}]%
+        {mova}
+\bibfield{author}{\bibinfo{person}{R~A Vincent} {and} \bibinfo{person}{J~R
+  Peirce}.} \bibinfo{year}{1988}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{{'MOVA': Traffic Responsive,
+  Self-optimising Signal Control for Isolated Intersections}}}.
+\newblock \bibinfo{publisher}{Traffic Management Division, Traffic Group,
+  Transport and Road Research}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Wan and Hwang}{Wan and Hwang}{2018}]%
+        {wan2018}
+\bibfield{author}{\bibinfo{person}{Chia-Hao Wan} {and}
+  \bibinfo{person}{Ming-Chorng Hwang}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{{Value-based deep reinforcement learning for
+  adaptive isolated intersection signal control}}.
+\newblock \bibinfo{journal}{\emph{IET Intelligent Transport Systems}}
+  \bibinfo{volume}{12}, \bibinfo{number}{9} (\bibinfo{year}{2018}),
+  \bibinfo{pages}{1005--1010}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Watkins and Dayan}{Watkins and Dayan}{1992}]%
+        {watkins}
+\bibfield{author}{\bibinfo{person}{Christopher J C~H Watkins} {and}
+  \bibinfo{person}{Peter Dayan}.} \bibinfo{year}{1992}\natexlab{}.
+\newblock \showarticletitle{{Q-learning}}.
+\newblock \bibinfo{journal}{\emph{Machine learning}} \bibinfo{volume}{8},
+  \bibinfo{number}{3-4} (\bibinfo{year}{1992}), \bibinfo{pages}{279--292}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Wei, Zheng, Gayah, and Li}{Wei
+  et~al\mbox{.}}{2019}]%
+        {survey2020wei}
+\bibfield{author}{\bibinfo{person}{Hua Wei}, \bibinfo{person}{Guanjie Zheng},
+  \bibinfo{person}{Vikash Gayah}, {and} \bibinfo{person}{Zhenhui Li}.}
+  \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{{A survey on traffic signal control methods}}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1904.08117}}
+  (\bibinfo{year}{2019}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Wiering}{Wiering}{2000}]%
+        {wiering2000}
+\bibfield{author}{\bibinfo{person}{Marco Wiering}.}
+  \bibinfo{year}{2000}\natexlab{}.
+\newblock \showarticletitle{{Multi-Agent Reinforcement Learning for Traffic
+  Light Control}}. In \bibinfo{booktitle}{\emph{Proc Intl Conf Machine
+  Learning}} \emph{(\bibinfo{series}{ICML '00}, \bibinfo{number}{JANUARY
+  2000})}. \bibinfo{publisher}{Morgan Kaufmann Publishers Inc.},
+  \bibinfo{address}{San Francisco, CA, USA}, \bibinfo{pages}{1151--1158}.
+\newblock
+\showISBNx{1558607072}
+\showISSN{14765497}
+\urldef\tempurl%
+\url{https://doi.org/10.1038/ijo.2010.228}
+\showDOI{\tempurl}
+
+
+\end{thebibliography}
