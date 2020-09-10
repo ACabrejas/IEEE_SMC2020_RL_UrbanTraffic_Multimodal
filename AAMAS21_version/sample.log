@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.22)  10 SEP 2020 16:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.22)  10 SEP 2020 16:59
 entering extended mode
 **./sample.tex
 (sample.tex
@@ -1723,11 +1723,11 @@ LaTeX Warning: There were multiply-defined labels.
  )
 (\end occurred when \iffalse on line 1253 was incomplete) 
 Here is how much of TeX's memory you used:
- 21769 strings out of 481553
- 373019 string characters out of 2911008
+ 21771 strings out of 481553
+ 373067 string characters out of 2911008
  703638 words of memory out of 3000000
  35963 multiletter control sequences out of 15000+200000
- 684352 words of font info for 336 fonts, out of 3000000 for 9000
+ 684511 words of font info for 337 fonts, out of 3000000 for 9000
  1302 hyphenation exceptions out of 8191
  63i,19n,100p,799b,807s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/ACE-Desktop/
@@ -1755,7 +1755,7 @@ E-Desktop/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/newtx/txexs.pfb>
 x/txmiaX.pfb><C:/Users/ACE-Desktop/AppData/Local/Programs/MiKTeX 2.9/fonts/type
 1/public/txfonts/txsyb.pfb><C:/Users/ACE-Desktop/AppData/Local/Programs/MiKTeX 
 2.9/fonts/type1/public/newtx/txsys.pfb>
-Output written on sample.pdf (8 pages, 1741292 bytes).
+Output written on sample.pdf (8 pages, 1741053 bytes).
 PDF statistics:
  423 PDF objects out of 1000 (max. 8388607)
  120 named destinations out of 1000 (max. 500000)
