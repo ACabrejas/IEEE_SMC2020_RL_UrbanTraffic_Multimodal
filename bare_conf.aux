@@ -25,6 +25,9 @@
 \citation{pra2010}
 \citation{abdulhai2010}
 \citation{abdoos2011}
+\citation{yau}
+\citation{survey2020}
+\citation{survey2020wei}
 \citation{liang2017}
 \citation{gao2017}
 \citation{mousavi2017}
@@ -35,19 +38,15 @@
 \citation{gendersthesis}
 \citation{wan2018}
 \citation{gendersstate}
-\citation{mannion}
 \citation{survey2020}
-\citation{survey2020wei}
+\citation{geneticped}
+\citation{liu2017}
+\citation{previous}
 \providecommand \oddpage@label [2]{}
 \babel@aux{english}{}
 \@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {II}Related Work}{1}{section.2}\protected@file@percent }
 \newlabel{lit}{{II}{1}{Related Work}{section.2}{}}
-\citation{survey2020}
-\citation{geneticped}
-\citation{liu2017}
-\citation{chen2020}
-\citation{previous}
 \citation{watkins}
 \citation{melo}
 \citation{mnih2015}
@@ -67,9 +66,9 @@
 \@writefile{toc}{\contentsline {section}{\numberline {IV}Methods}{2}{section.4}\protected@file@percent }
 \newlabel{methods}{{IV}{2}{Methods}{section.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {IV-A}Reinforcement Learning Agent}{2}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {IV-B}Reinforcement Learning Environment}{2}{subsection.4.2}\protected@file@percent }
 \citation{suttonbarto}
 \@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces Schematic Learning Process}}{3}{algocf.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {IV-B}Reinforcement Learning Environment}{3}{subsection.4.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {IV-C}State Representation}{3}{subsection.4.3}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Study Junction model in SUMO with a schematic representation of the areas covered by vision-based sensors.}}{3}{figure.1}\protected@file@percent }
 \newlabel{intersection}{{1}{3}{Study Junction model in SUMO with a schematic representation of the areas covered by vision-based sensors}{figure.1}{}}
@@ -79,7 +78,7 @@
 \citation{gendersthesis}
 \citation{liang2017}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Allowed stages and the phases that compose them. Stage 1 is an intermediate Stage, which is necessary to go through to reach Stage 2.}}{4}{figure.2}\protected@file@percent }
-\newlabel{intersection}{{2}{4}{Allowed stages and the phases that compose them. Stage 1 is an intermediate Stage, which is necessary to go through to reach Stage 2}{figure.2}{}}
+\newlabel{intersection_phases}{{2}{4}{Allowed stages and the phases that compose them. Stage 1 is an intermediate Stage, which is necessary to go through to reach Stage 2}{figure.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {IV-E}Modal Prioritisation and Adjusting by Demand}{4}{subsection.4.5}\protected@file@percent }
 \newlabel{eq:modal}{{7}{4}{Modal Prioritisation and Adjusting by Demand}{equation.4.7}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {V}Reward Functions}{4}{section.5}\protected@file@percent }
@@ -94,18 +93,17 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {V-A.4}Delta Queue}{4}{subsubsection.5.1.4}\protected@file@percent }
 \newlabel{deltaqueue}{{11}{4}{Delta Queue}{equation.5.11}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {V-A.5}Delta Queue PLN}{4}{subsubsection.5.1.5}\protected@file@percent }
-\newlabel{queuepln}{{12}{4}{Delta Queue PLN}{equation.5.12}{}}
+\newlabel{deltaqueuepln}{{12}{4}{Delta Queue PLN}{equation.5.12}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {V-B}Waiting Time based Rewards}{4}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {V-B.1}Wait Time}{4}{subsubsection.5.2.1}\protected@file@percent }
-\newlabel{eq:wait_time}{{13}{4}{Wait Time}{equation.5.13}{}}
 \citation{wan2018}
 \citation{abdulhai2010}
-\citation{mannion}
 \citation{genders2016}
 \citation{gao2017}
 \citation{mousavi2017}
 \citation{gendersstate}
 \citation{highways}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {V-B.1}Wait Time}{5}{subsubsection.5.2.1}\protected@file@percent }
+\newlabel{eq:wait_time}{{13}{5}{Wait Time}{equation.5.13}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {V-B.2}Delta Wait Time}{5}{subsubsection.5.2.2}\protected@file@percent }
 \newlabel{eq:delta_wait_time}{{14}{5}{Delta Wait Time}{equation.5.14}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {V-B.3}Waiting Time Adjusted by Demand}{5}{subsubsection.5.2.3}\protected@file@percent }
@@ -130,11 +128,11 @@
 \newlabel{experiments}{{VI}{5}{Experiments}{section.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {VI-A}DQN Agents Training}{5}{subsection.6.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {VI-B}Evaluation and Scoring}{5}{subsection.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {VII}Results and Discussion}{5}{section.7}\protected@file@percent }
-\newlabel{results}{{VII}{5}{Results and Discussion}{section.7}{}}
 \citation{previous}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Top row: Average vehicular waiting time distribution for the fifteen best performing agents across demand levels. Middle row: Average pedestrian waiting time distribution across demand levels. Bottom row: Aggregated vehicular and pedestrian mean performance across demand levels.}}{6}{figure.3}\protected@file@percent }
 \newlabel{fig:results_9_grid}{{3}{6}{Top row: Average vehicular waiting time distribution for the fifteen best performing agents across demand levels. Middle row: Average pedestrian waiting time distribution across demand levels. Bottom row: Aggregated vehicular and pedestrian mean performance across demand levels}{figure.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Results and Discussion}{6}{section.7}\protected@file@percent }
+\newlabel{results}{{VII}{6}{Results and Discussion}{section.7}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Average waiting time in seconds for all agents across demand levels}}{7}{table.1}\protected@file@percent }
 \newlabel{tab:some example table}{{I}{7}{Average waiting time in seconds for all agents across demand levels}{table.1}{}}
 \newlabel{table}{{I}{7}{Average waiting time in seconds for all agents across demand levels}{table.1}{}}
@@ -146,19 +144,19 @@
 \bibcite{pra2010}{6}
 \bibcite{abdulhai2010}{7}
 \bibcite{abdoos2011}{8}
-\bibcite{liang2017}{9}
-\bibcite{gao2017}{10}
-\bibcite{mousavi2017}{11}
-\bibcite{survey2014}{12}
-\bibcite{aslani2019}{13}
-\bibcite{genders2019}{14}
-\bibcite{genders2016}{15}
-\bibcite{gendersthesis}{16}
-\bibcite{wan2018}{17}
-\bibcite{gendersstate}{18}
-\bibcite{mannion}{19}
-\bibcite{survey2020}{20}
-\bibcite{survey2020wei}{21}
+\bibcite{yau}{9}
+\bibcite{survey2020}{10}
+\bibcite{survey2020wei}{11}
+\bibcite{liang2017}{12}
+\bibcite{gao2017}{13}
+\bibcite{mousavi2017}{14}
+\bibcite{survey2014}{15}
+\bibcite{aslani2019}{16}
+\bibcite{genders2019}{17}
+\bibcite{genders2016}{18}
+\bibcite{gendersthesis}{19}
+\bibcite{wan2018}{20}
+\bibcite{gendersstate}{21}
 \bibcite{geneticped}{22}
 \bibcite{liu2017}{23}
 \bibcite{chen2020}{24}

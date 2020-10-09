@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.22)  26 SEP 2020 13:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7300 64-bit) (preloaded format=pdflatex 2020.2.22)  26 SEP 2020 13:08
 entering extended mode
 **./bare_conf_hl.tex
 (bare_conf_hl.tex
@@ -588,7 +588,14 @@ Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
 \SOUL@ttwidth=\dimen194
 \SOUL@uldp=\dimen195
 \SOUL@ulht=\dimen196
-) (bare_conf_hl.aux)
+) (bare_conf_hl.aux
+
+LaTeX Warning: Label `intersection' multiply defined.
+
+
+LaTeX Warning: Label `queuepln' multiply defined.
+
+)
 \openout1 = `bare_conf_hl.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
@@ -675,190 +682,23 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 36.
 ("C:\Users\ACE-Desktop\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\ums
 b.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
+) [1{C:/Users/ACE-Desktop/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
-LaTeX Warning: Reference `lit' on page 1 undefined on input line 89.
 
-
-LaTeX Warning: Reference `problem' on page 1 undefined on input line 90.
-
-
-LaTeX Warning: Reference `methods' on page 1 undefined on input line 91.
-
-
-LaTeX Warning: Reference `rewards' on page 1 undefined on input line 92.
-
-
-LaTeX Warning: Reference `experiments' on page 1 undefined on input line 93.
-
-
-LaTeX Warning: Reference `results' on page 1 undefined on input line 94.
-
-
-LaTeX Warning: Citation `scoot' on page 1 undefined on input line 98.
-
-
-LaTeX Warning: Citation `mova' on page 1 undefined on input line 98.
-
-
-LaTeX Warning: Citation `scats' on page 1 undefined on input line 98.
-
-
-LaTeX Warning: Citation `wiering2000' on page 1 undefined on input line 99.
-
-
-LaTeX Warning: Citation `abdul2003' on page 1 undefined on input line 99.
-
-
-LaTeX Warning: Citation `pra2010' on page 1 undefined on input line 99.
-
-
-LaTeX Warning: Citation `abdulhai2010' on page 1 undefined on input line 99.
-
-
-LaTeX Warning: Citation `abdoos2011' on page 1 undefined on input line 99.
-
-
-LaTeX Warning: Citation `liang2017' on page 1 undefined on input line 100.
-
-
-LaTeX Warning: Citation `gao2017' on page 1 undefined on input line 100.
-
-
-LaTeX Warning: Citation `mousavi2017' on page 1 undefined on input line 100.
-
-
-LaTeX Warning: Citation `survey2014' on page 1 undefined on input line 100.
-
-
-LaTeX Warning: Citation `aslani2019' on page 1 undefined on input line 100.
-
-
-LaTeX Warning: Citation `genders2019' on page 1 undefined on input line 100.
-
-
-LaTeX Warning: Citation `genders2016' on page 1 undefined on input line 100.
-
-
-LaTeX Warning: Citation `gendersthesis' on page 1 undefined on input line 100.
-
-
-LaTeX Warning: Citation `wan2018' on page 1 undefined on input line 100.
-
-
-LaTeX Warning: Citation `gendersstate' on page 1 undefined on input line 101.
-
-
-LaTeX Warning: Citation `mannion' on page 1 undefined on input line 102.
-
-
-LaTeX Warning: Citation `survey2020' on page 1 undefined on input line 102.
-
-
-LaTeX Warning: Citation `survey2020wei' on page 1 undefined on input line 102.
-
-[1{C:/Users/ACE-Desktop/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
-
-
-]
-
-LaTeX Warning: Citation `survey2020' on page 2 undefined on input line 105.
-
-
-LaTeX Warning: Citation `geneticped' on page 2 undefined on input line 105.
-
-
-LaTeX Warning: Citation `liu2017' on page 2 undefined on input line 105.
-
-
-LaTeX Warning: Citation `chen2020' on page 2 undefined on input line 105.
-
-
-LaTeX Warning: Citation `previous' on page 2 undefined on input line 108.
-
-
-LaTeX Warning: Citation `watkins' on page 2 undefined on input line 137.
-
-
-LaTeX Warning: Citation `melo' on page 2 undefined on input line 137.
-
-
-LaTeX Warning: Citation `mnih2015' on page 2 undefined on input line 163.
-
-
-LaTeX Warning: Citation `pytorch' on page 2 undefined on input line 175.
-
-
-LaTeX Warning: Citation `kiefer' on page 2 undefined on input line 175.
-
-
-LaTeX Warning: Citation `adam' on page 2 undefined on input line 175.
-
-
-LaTeX Warning: Citation `sumo' on page 2 undefined on input line 213.
-
-[2]
-<./figures/intersection.png, id=190, 675.27281pt x 576.65437pt>
+] [2]
+<./figures/intersection.png, id=196, 675.27281pt x 576.65437pt>
 File: ./figures/intersection.png Graphic file (type png)
 <use ./figures/intersection.png>
 Package pdftex.def Info: ./figures/intersection.png  used on input line 225.
 (pdftex.def)             Requested size: 180.67499pt x 154.2821pt.
-
-
-LaTeX Warning: Citation `suttonbarto' on page 3 undefined on input line 245.
-
-[3 <./figures/intersection.png>]
-<./figures/phases_limited.png, id=199, 426.09187pt x 453.19313pt>
+ [3 <./figures/intersection.png>]
+<./figures/phases_limited.png, id=205, 426.09187pt x 453.19313pt>
 File: ./figures/phases_limited.png Graphic file (type png)
 <use ./figures/phases_limited.png>
 Package pdftex.def Info: ./figures/phases_limited.png  used on input line 258.
 (pdftex.def)             Requested size: 180.67499pt x 192.17233pt.
-
-
-LaTeX Warning: Reference `eq:modal' on page 4 undefined on input line 266.
-
-
-LaTeX Warning: Citation `pra2010' on page 4 undefined on input line 296.
-
-
-LaTeX Warning: Citation `aslani2019' on page 4 undefined on input line 296.
-
-
-LaTeX Warning: Citation `gendersthesis' on page 4 undefined on input line 303.
-
-
-LaTeX Warning: Citation `liang2017' on page 4 undefined on input line 341.
-
-[4 <./figures/phases_limited.png>]
-
-LaTeX Warning: Citation `wan2018' on page 5 undefined on input line 357.
-
-
-LaTeX Warning: Citation `abdulhai2010' on page 5 undefined on input line 366.
-
-
-LaTeX Warning: Citation `mannion' on page 5 undefined on input line 366.
-
-
-LaTeX Warning: Citation `genders2016' on page 5 undefined on input line 366.
-
-
-LaTeX Warning: Citation `gao2017' on page 5 undefined on input line 366.
-
-
-LaTeX Warning: Citation `mousavi2017' on page 5 undefined on input line 366.
-
-
-LaTeX Warning: Citation `gendersstate' on page 5 undefined on input line 366.
-
-
-LaTeX Warning: Reference `eq:delta_wait_time' on page 5 undefined on input line
- 367.
-
-
-LaTeX Warning: Reference `eq:delay' on page 5 undefined on input line 377.
-
-<./figures/9grid_ordered_boxplot_all.png, id=214, 3885.51625pt x 3058.42625pt>
+ [4 <./figures/phases_limited.png>]
+<./figures/9grid_ordered_boxplot_all.png, id=223, 3885.51625pt x 3058.42625pt>
 File: ./figures/9grid_ordered_boxplot_all.png Graphic file (type png)
 <use ./figures/9grid_ordered_boxplot_all.png>
 Package pdftex.def Info: ./figures/9grid_ordered_boxplot_all.png  used on input
@@ -1319,44 +1159,13 @@ Overfull \hbox (8.50012pt too wide) detected at line 486
  
  []
 
-
-LaTeX Warning: Citation `highways' on page 5 undefined on input line 499.
-
-
-LaTeX Warning: Reference `fig:results_9_grid' on page 5 undefined on input line
- 511.
-
-
-LaTeX Warning: Reference `table' on page 5 undefined on input line 511.
-
-
-LaTeX Warning: Reference `fig:results_9_grid' on page 5 undefined on input line
- 512.
-
-
-LaTeX Warning: Reference `table' on page 5 undefined on input line 513.
-
-[5]
-
-LaTeX Warning: Reference `fig:results_9_grid' on page 6 undefined on input line
- 518.
-
-
-LaTeX Warning: Citation `previous' on page 6 undefined on input line 520.
-
-[6 <./figures/9grid_ordered_boxplot_all.png>]
+[5] [6 <./figures/9grid_ordered_boxplot_all.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 3323) has occurred while \output is active []
 
  [7]
-
-LaTeX Warning: Reference `problem' on page 8 undefined on input line 545.
-
-
-LaTeX Warning: Reference `methods' on page 8 undefined on input line 545.
-
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1378,17 +1187,14 @@ Package rerunfilecheck Info: File `bare_conf_hl.out' has not changed.
 (rerunfilecheck)             Checksum: 0C78FD3A244CA1F6457008BB655E9815;2735.
 
 
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 680.
  ) 
 Here is how much of TeX's memory you used:
  11944 strings out of 481553
  223692 string characters out of 2911008
- 638356 words of memory out of 3000000
+ 639295 words of memory out of 3000000
  26865 multiletter control sequences out of 15000+200000
  571993 words of font info for 106 fonts, out of 3000000 for 9000
  1145 hyphenation exceptions out of 8191
@@ -1415,9 +1221,9 @@ rw/times/utmb8a.pfb><C:/Users/ACE-Desktop/AppData/Local/Programs/MiKTeX 2.9/fon
 ts/type1/urw/times/utmbi8a.pfb><C:/Users/ACE-Desktop/AppData/Local/Programs/MiK
 TeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/ACE-Desktop/AppData/Local/Pr
 ograms/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on bare_conf_hl.pdf (8 pages, 739295 bytes).
+Output written on bare_conf_hl.pdf (8 pages, 741180 bytes).
 PDF statistics:
- 362 PDF objects out of 1000 (max. 8388607)
+ 378 PDF objects out of 1000 (max. 8388607)
  116 named destinations out of 1000 (max. 500000)
  320 words of extra memory for PDF output out of 10000 (max. 10000000)
 
