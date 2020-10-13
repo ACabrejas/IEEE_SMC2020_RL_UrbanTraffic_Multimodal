@@ -53,16 +53,15 @@ Email: c.p.connaughton@warwick.ac.uk}
 \maketitle
 
 \begin{abstract}
-Optimisation of Traffic Signal Control Systems is an important real-world challenge that has direct impact on the economy and quality of life of urban areas.
-Recently, Reinforcement Learning is proving to be a successful tool that can effectively manage urban intersections with a fraction of the effort required to curate traditional Urban Traffic Controllers. 
-However, literature on the introduction and control of pedestrians to such intersections is scarce. %, and comparisons between the effect of the different approaches that can be taken in terms of architecture, state space or rewards are uncommon.
+Reinforcement Learning is proving a successful tool that can manage urban intersections with a fraction of the effort required to curate traditional traffic controllers.
+However, literature on the introduction and control of pedestrians to such intersections is scarce.
 Furthermore, it is unclear what traffic state variables should be used as reward to obtain the best agent performance.
 This paper robustly evaluates 30 different Reinforcement Learning reward functions for controlling intersections serving pedestrians and vehicles covering the main traffic state variables available via modern vision-based sensors.
-Some rewards proposed in previous literature in the context of only vehicular traffic are extended to pedestrians while others are introduced here.
-We use a calibrated model in terms of demand, sensors, green times and other operational constraints of a real intersection in Greater Manchester, UK. 
-The assessed rewards can be broadly classified in 5 groups depending on the magnitudes used: queues, waiting time, delay, average speed and throughput in the junction.
-The performance of different agents, in terms of waiting time, is compared across different demand levels ranging from normal operation to saturation of traditional adaptive controllers.
-We find that those rewards maximising the speed of the network obtain the lowest waiting time for vehicles and pedestrians simultaneously, closely followed by queue minimisation, demonstrating better performance than other methods previously proposed in the literature.
+Some rewards proposed in previous literature solely for vehicular traffic are extended to pedestrians while new ones are introduced.
+We use a calibrated model in terms of demand, sensors, green times and other operational constraints of a real intersection in Greater Manchester, UK.
+The assessed rewards can be classified in 5 groups depending on the magnitudes used: queues, waiting time, delay, average speed and throughput in the junction.
+The performance of different agents, in terms of waiting time, is compared across different demand levels, from normal operation to saturation of traditional adaptive controllers.
+We find that those rewards maximising the speed of the network obtain the lowest waiting time for vehicles and pedestrians simultaneously, closely followed by queue minimisation, demonstrating better performance than other previously proposed methods.
 \end{abstract}
 
 \IEEEpeerreviewmaketitle
@@ -199,7 +198,7 @@ The Neural Network in the agent uses 2 hidden, fully connected layers of sizes 5
         }
     }
  \caption{Schematic Learning Process}
- \vspace{-5mm}
+
 \end{algorithm}
 \subsection{Reinforcement Learning Environment}
 The environment is modelled in the microscopic traffic simulator SUMO \cite{sumo}, representing a real-world intersection in Greater Manchester, UK.
@@ -248,7 +247,7 @@ There are 2 situations that further add to the complexity of this control proces
 \includegraphics[width=2.5in]{phases_limited.png}                                    
 \caption{Allowed stages and the phases that compose them. Stage 1 is an intermediate Stage, which is necessary to go through to reach Stage 2.}                                  
 \label{intersection_phases}  
-\vspace{-5mm}                                             
+                                            
 \end{figure}     
 \subsection{Modal Prioritisation and Adjusting by Demand}
 The agent serves vehicles and pedestrians arriving at the intersection, seeking to jointly optimise the intersection for both modes of transport.
@@ -407,7 +406,7 @@ The reward is the sum of the pedestrians and vehicles that cleared the intersect
 \includegraphics[width=\textwidth]{9grid_ordered_boxplot_all.png}                                    
 \caption{Top row: Average vehicular waiting time distribution for the fifteen best performing agents across demand levels. Middle row: Average pedestrian waiting time distribution across demand levels. Bottom row: Aggregated vehicular and pedestrian mean performance across demand levels.}                                  
 \label{fig:results_9_grid}    
-\vspace{-4mm}                                           
+                                          
 \end{figure*}
 
 \begin{table*}[!htp]
@@ -479,7 +478,7 @@ Maximum Occupancy     & 6.92\pm 0.54 & 196.09\pm 130.04 & 10.02\pm 1.75 & 397.20
 \bottomrule
 \label{table}
 \end{tabular*}
-\vspace{-5mm}    
+    
 \end{table*}
 \section{Experiments}
 \label{experiments}
@@ -579,7 +578,7 @@ This work could be extended to account for other modes of transportation, perfor
 
 
 
-\vspace{-1mm}
+
 % conference papers do not normally have an appendix
 % use section* for acknowledgement
 \section*{Acknowledgment}
@@ -592,7 +591,7 @@ Vivacity Labs thanks Transport for Greater Manchester for helping take this work
 % number - used to balance the columns on the last page
 % adjust value as needed - may need to be readjusted if
 % the document is modified later
-%\IEEEtriggeratref{11}
+\IEEEtriggeratref{11}
 % The "triggered" command can be changed if desired:
 %\IEEEtriggercmd{\enlargethispage{-5in}}
 
@@ -610,7 +609,7 @@ Vivacity Labs thanks Transport for Greater Manchester for helping take this work
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
-\vspace{-1.5mm}   
+  
 \begin{thebibliography}{0}
 %1
 \bibitem{scoot} Hunt, P. B., Robertson, D. I., Bretherton, R. D., \& Royle, M. C. (1982). The SCOOT on-line traffic signal optimisation technique. Traffic Engineering \& Control, 23(4).
