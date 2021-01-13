@@ -33,8 +33,8 @@
 \begin{document}
 
 % paper title
-\title{Assessment of Reward Functions in Reinforcement Learning for Multi-Modal Urban Traffic Control under Real-World limitations}
-
+%\title{Assessment of Reward Functions in Reinforcement Learning for Multi-Modal Urban Traffic Control under Real-World limitations}
+\title{Reward Functions for Real-World Pedestrian and Vehicular Intersection Control through Reinforcement Learning}
 
 % author names and affiliations
 % use a multiple column layout for up to three different
@@ -54,12 +54,12 @@ Email: c.p.connaughton@warwick.ac.uk}
 
 \begin{abstract}
 Reinforcement Learning is proving a successful tool that can manage urban intersections with a fraction of the effort required to curate traditional traffic controllers.
-However, literature on the introduction and control of pedestrians to such intersections is scarce.
-Furthermore, it is unclear what traffic state variables should be used as reward to obtain the best agent performance.
-This paper robustly evaluates 30 different Reinforcement Learning reward functions for controlling intersections serving pedestrians and vehicles covering the main traffic state variables available via modern vision-based sensors.
-Some rewards proposed in previous literature solely for vehicular traffic are extended to pedestrians while new ones are introduced.
-We use a calibrated model in terms of demand, sensors, green times and other operational constraints of a real intersection in Greater Manchester, UK.
-The assessed rewards can be classified in 5 groups depending on the magnitudes used: queues, waiting time, delay, average speed and throughput in the junction.
+However, literature on the introduction and control of pedestrians to such intersections is very scarce.
+Furthermore, it is unclear what traffic state variables should be used as reward to minimise waiting times.
+This paper robustly evaluates 30 different Reinforcement Learning reward functions for controlling a real-world intersection serving pedestrians and vehicles covering the main traffic state variables available via modern vision-based sensors.
+Some rewards proposed in previous literature solely for vehicular traffic are extended to pedestrians while new ones are proposed.
+We use a calibrated model in terms of demand, sensors, green times and other operational constraints of a real intersection in Greater Manchester, UK, to which the agent has been since deployed.
+The assessed rewards can be classified in 5 groups depending on the quantities used: queues, waiting time, delay, average speed and throughput in the junction.
 The performance of different agents, in terms of waiting time, is compared across different demand levels, from normal operation to saturation of traditional adaptive controllers.
 We find that those rewards maximising the speed of the network obtain the lowest waiting time for vehicles and pedestrians simultaneously, closely followed by queue minimisation, demonstrating better performance than other previously proposed methods.
 \end{abstract}
@@ -78,7 +78,7 @@ This has allowed the development of novel smart control approaches, using real-t
 Reinforcement Learning (RL) approaches have been showing promising results in this field.
 However, most of the existing works restrict themselves to vehicles only, not attempting to jointly optimise vehicular and pedestrian travel times, even though pedestrians are present in the great majority of real urban intersections.
 
-This paper compares the performance of 30 different reward functions used by Deep Q-Network agents, split into 5 different classes based on the magnitudes they use, when controlling a simulation of a real-world junction in Greater Manchester (UK) that has been calibrated using 3.5 months of data gathered from Vivacity Labs vision-based sensors.
+This paper compares the performance of 30 different reward functions used by Deep Q-Network agents, split into 5 different classes based on the quantities they use, when controlling a simulation of a real-world junction in Greater Manchester (UK) that has been calibrated using 3.5 months of data gathered from Vivacity Labs vision-based sensors.
 
 The paper is structured as follows:
 Section \ref{lit} reviews previous literature in the field.
@@ -92,8 +92,8 @@ Lastly, Section \ref{results} provides the experimental results and discusses th
 \label{lit}
 RL for UTC has been previously explored and discussed in a variety of research, aiming to eventually substitute existing adaptive control methods such as SCOOT\cite{scoot}, MOVA\cite{mova} and SCATS\cite{scats}.
 The field has evolved from early inquiries about its theoretical potential use \cite{wiering2000} \cite{abdul2003} \cite{pra2010} \cite{abdulhai2010} \cite{abdoos2011}, to progressively more applied and realistic scenarios that look towards real-world use and deployment.
-Recent works use different magnitudes in the reward function of the controlling agents (delay, queues, waiting time, throughput, ...), however, it is not clear what benefits are provided from choosing which.
-The different magnitudes used as reward are thoroughly indexed in \cite{yau} \cite{survey2020} \cite{survey2020wei}, although no direct performance comparisons are made.
+Recent works use different quantities in the reward function of the controlling agents (delay, queues, waiting time, throughput, ...), however, it is not clear what benefits are provided from choosing which.
+The different quantities used as reward are thoroughly indexed in \cite{yau} \cite{survey2020} \cite{survey2020wei}, although no direct performance comparisons are made.
 Different methods are taken regarding inputs, such as pixel-based vectors passed to a CNN \cite{liang2017} \cite{gao2017} \cite{mousavi2017}, per-lane state signals using fully connected neural networks \cite{survey2014} \cite{aslani2019} \cite{genders2019}, or hybrid approaches \cite{genders2016} \cite{gendersthesis} \cite{wan2018}.
 Recent research suggests that more complex state representations only provide marginal gains, if any\cite{gendersstate}, so in this paper the second approach is taken.
 %Recently, extensive reviews are being carried out \cite{mannion} \cite{survey2020} \cite{survey2020wei} indexing the various approaches taken and pushing the field towards maturity but without comparing performances of the different approaches and proposed rewards.
@@ -102,7 +102,7 @@ A common thread in most previous works is the need for approximations about the 
 As indicated in \cite{survey2020}, pedestrian implementation has a high impact on learning performance, being often discarded as unimportant or left for future work save for two exceptions \cite{geneticped} \cite{liu2017}, the first of which uses a genetic algorithm instead of RL, and the second explores a single reward function.
 In this paper we attempt to cover this gap in the literature, providing a robust performance assessment of RL agents serving both vehicles and pedestrians, using a variety of rewards, both novel and from the literature, attempting to uncover what state variables should be used in the reward to obtain the best performance.
 These are applied to a RL agent in a calibrated model of a real-world junction, using real geometry, calibrated demand, realistic sensor inputs and emulated traffic light controllers, to which some of these agents have been deployed to control real traffic in it since these experiments took place.
-This paper delivers the future work deferred from \cite{previous} in terms of shifting the focus towards pedestrians and multi-objective optimisation, while keeping the problem grounded in the real world.
+This paper delivers the future work deferred from \cite{previous} in terms of adding pedestrians, performing the required reward function re-engineering and shifting the focus towards multi-objective optimisation.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem Definition}
 \label{problem}
@@ -651,7 +651,7 @@ Vivacity Labs thanks Transport for Greater Manchester for helping take this work
 
 \bibitem{geneticped} Turky, A. M., Ahmad, M. S., Yusoff, M. Z. M., \& Hammad, B. T. (2009, July). Using genetic algorithm for traffic light control system with a pedestrian crossing. In International Conference on Rough Sets and Knowledge Technology (pp. 512-519). Springer, Berlin, Heidelberg.
 \bibitem{liu2017} Liu, Y., Liu, L., \& Chen, W. P. (2017, October). Intelligent traffic light control using distributed multi-agent Q learning. In 2017 IEEE 20th International Conference on Intelligent Transportation Systems (ITSC) (pp. 1-8). IEEE.
-\bibitem{chen2020} Chacha Chen, H. W., Xu, N., Zheng, G., Yang, M., Xiong, Y., Xu, K., \& Li, Z. Toward A Thousand Lights: Decentralized Deep Reinforcement Learning for Large-Scale Traffic Signal Control.
+%\bibitem{chen2020} Chacha Chen, H. W., Xu, N., Zheng, G., Yang, M., Xiong, Y., Xu, K., \& Li, Z. Toward A Thousand Lights: Decentralized Deep Reinforcement Learning for Large-Scale Traffic Signal Control.
 \bibitem{previous} Cabrejas Egea, A., Howell, S., Knutins, M., \& Connaughton C. (2020, October). Assessment of Reward Functions for Reinforcement Learning Traffic Signal Control under Real-World Limitations. IEEE Systems, Man, and Cybernetics (October 2020) (Accepted). 
 \bibitem{watkins} Watkins, C. J., \& Dayan, P. (1992). Q-learning. Machine learning, 8(3-4), 279-292.
 \bibitem{melo} Melo, F. S. (2001). Convergence of Q-learning: A simple proof. Institute Of Systems and Robotics, Tech. Rep, 1-4.
