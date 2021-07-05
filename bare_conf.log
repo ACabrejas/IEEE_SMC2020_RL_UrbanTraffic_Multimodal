@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.16)  30 JUN 2021 15:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.16)  5 JUL 2021 17:39
 entering extended mode
 **./bare_conf.tex
 (bare_conf.tex
@@ -1174,10 +1174,10 @@ Package rerunfilecheck Info: File `bare_conf.out' has not changed.
 (rerunfilecheck)             Checksum: 4CF5A378538B67F9A8D3A6AFC71893AB;6493.
  ) 
 Here is how much of TeX's memory you used:
- 14175 strings out of 479321
- 249538 string characters out of 2851777
- 740315 words of memory out of 3000000
- 31308 multiletter control sequences out of 15000+600000
+ 14171 strings out of 479321
+ 249490 string characters out of 2851777
+ 740300 words of memory out of 3000000
+ 31306 multiletter control sequences out of 15000+600000
  442772 words of font info for 108 fonts, out of 8000000 for 9000
  1145 hyphenation exceptions out of 8191
  71i,19n,75p,463b,839s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1203,7 +1203,7 @@ rw/times/utmb8a.pfb><C:/Users/ACE-Desktop/AppData/Local/Programs/MiKTeX 2.9/fon
 ts/type1/urw/times/utmbi8a.pfb><C:/Users/ACE-Desktop/AppData/Local/Programs/MiK
 TeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Users/ACE-Desktop/AppData/Local/Pr
 ograms/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on bare_conf.pdf (8 pages, 741724 bytes).
+Output written on bare_conf.pdf (8 pages, 741790 bytes).
 PDF statistics:
  377 PDF objects out of 1000 (max. 8388607)
  115 named destinations out of 1000 (max. 500000)
