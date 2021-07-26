@@ -1,0 +1,132 @@
+Hello, my name is A.C.E and in this video I will presenting our paper Reward Functions for Real-World Pedestrian and Vehicular Intersection Control through Reinforcement Learning. This work is the result of a collaboration between the University of Warwick and Vivacity labs, including Colm Connaughton and myself.
+-----------------------------------
+
+
+Winds of change are blowing in the field of traffic signal control.
+
+Globally, populous cities are looking for data-intensive solutions that mitigate their congestion and mobility issues, in a moment when there is little appetite for big investments to create large new infrastructures.
+
+Effective traffic signal control is one of the key issues in Urban Traffic Control (UTC), effectively deciding how the available resources (green time) in our urban travel networks are allocated.
+The efficiency associated with this allocation has an important impact on travel times, harmful emissions and economic activity.
+First, fixed time controllers, and later, adaptive systems have been used to further optimise the global traffic flow in our cities.
+
+Recent increases in available computing power have enabled the advent of a brand-new generation of machine-learning based Traffic Signal Controllers, which are becoming very serious contenders in this race.
+
+------------------------
+
+However, the great majority of the available literature on the topic revolves around vehicular intersections only, as pedestrians are often discarded or left for future work, on account of the impact on learning that their inclusion tends to have.
+This impact stems from the fact that including pedestrians’ presence steers the problem towards multi-objective optimisation, as vehicles and pedestrians have to share the available green time
+Also from the fact that pedestrian measurements are inherently different from those of vehicles. For example, pedestrian counts do not carry the information about spatial ordering that queues do, and maximum occupancy for pedestrians tends not to be an issue in most juctions.
+This leads to the requirement of more sophisticated sensors that can identify individual entities and can cover extensive areas.
+
+In our paper we attempt to cover this gap in the literature, providing a robust performance assessment of RL agents simultaneously serving both vehicles and pedestrians, using a variety of rewards, both novel and from the literature, attempting to uncover what state variables should be used in the reward to obtain the best performance.
+
+--------------------------
+
+Hence, the first component we require is the ability for sensing and accurately translating the reality into features for our agents.
+To this end, the intersections in which we are modelling and controlling are fitted with Vivacity vision-based sensors that are able to identify, classify and track the different modes of transportation. The input for the simulations here presented is limited to what can be (and has been) achieved with these sensors.
+
+
+--------------------------
+
+
+These new sensors can perform real-time image analysis, allowing us to obtain measurements that previously used induction loops could not dream of.
+
+This is extremely useful since this opens the doors to the development of products that can deal with multiple modes of transportation in our streets, paving the road for modal prioritisation based approaches, in which, for example, public transport or bus lanes could be given higher priority than individual vehicles in terms of traffic management.
+Other alternatives could involve different traffic light settings for different requirements, such as aiming to minimise pollution, or quickly clearing an area after a special event, such as a football game.
+
+What you are seeing on the screen now, is the analysis of one such sensor, developed by one of our partners, Vivacity Labs, which was being performed in real-time in Manchester, UK.
+
+This newly available data, of extreme high quality and granularity, is allowing us to generate new controllers based on Reinforcement Learning.
+
+-------------------------------
+
+Reinforcement Learning allows us to frame the Traffic Light Control of an intersection as Markov Decision Process, a discrete-time stochastic control process.
+In it, an agent learns how to control a system by repeatedly interacting with an environment for which no prior information is given.
+This process is guided by the estimation of the state that the system is in, achieved via sensors, the decision of which action is more suitable for the current situation, and the reward function that maps the subsequent state to a numeric value, informing the agent of what was the outcome of its actions.
+In this context, the reward is the entirety of the feedback provided to the agent, and the only indicator of the quality of the exerted control.
+Hence, the choice of reward is of paramount importance during the design of RL traffic controllers.
+However, while there is some knowledge about the amount and granularity of sensor data required to train such systems, comparisons between the suitability of different quantities and functional forms in rewards are scarce.
+In this paper, we attempt to provide a robust comparison between a variety of reward functions, both novel and previously used in the literature in a real-world setting.
+
+
+--------------------------------
+
+The junction where the assessment was performed is a SUMO model of a real intersection in Manchester, UK, having repeatedly deployed these agents for real control since the work I’m presenting took place.
+The model was calibrated using 3.5 months of real data gathered by sensors both for vehicles and pedestrians.
+At the request of the transportation authority, Stage 1 is treated as an intermediary stage required to reach stage 2, leaving us with 3 available actions.
+This kind of situation, while common on our streets, can create a more challenging landscape for the agent, since the agent has to choose when to start the transition without knowledge of the future state when Stage 2 begins. Regarding the extensions, given that their length is smaller than that of the initial phase, their impact on the state will be smaller, generating a distribution of reward and state-action value outcomes that the agent needs to approximate.
+Further to this, minimum green times and yellow times are enforced in line with what can be expected in any traditionally-managed intersection.
+
+-----------------------------------
+
+A total of 30 reward functions were created and taken from previous literature.
+They can be broadly classified in 5 groups depending on the quantities that they use, including
+Queues
+Waiting times
+Lost time, understood as any deviation from the maximum allowed speed
+Average Speed
+And Throughput
+The variables used to calculate them are either point measurements, or the variation of these between actions.
+Some of the rewards include a demand estimation term that accounts for the increased difficulty of the task as the demand grows or a term that focuses on the rate of reward instead of the reward per-action.
+
+A full list of rewards and their analytical expressions can be found in the paper itself.
+
+The total reward observed by the agent is a linear combination of the rewards generated by pedestrians and vehicles over a given action.
+
+2 baseline agents are used as comparison. The first is a Maximum Occupancy system in which the longest queue goes first, and the second is the Vehicle Actuated System D which is commonly used in the UK.
+
+----------------------------------------
+
+Regarding the agent,
+It is a standard vanilla implementation of the DQN agent, you can find the pseudocode available in the full paper.
+The state information passed to the agent was a concatenation of the previous occupancy states across the different lanes, covering 12 seconds.
+10 agents of each class were trained for 1500 episodes, selecting the best in each class for detailed scoring.
+The test involved controlling 100 copies of 3 reference scenarios.
+Demand levels are normal operation, saturated conditions and oversaturated conditions for traditional controllers and will be identified as low, medium and high demands.
+
+
+----------------------------------------
+
+Here you can see the distribution of average waiting times per vehicle and pedestrian, over the 100 executions of the 3 scenarios mentioned, for a selection of the best performing reward functions. Full details for all rewards are available in the paper.
+
+Reward functions optimising the Average Speed of around the intersection were found to be best performing across all three scenarios and consistently outperformed the reference agents. 
+While adjusting the average speed by an estimate of the demand level shows to improve the performance of this reward function, this is not true across all cases.
+
+The performance of queue length and average speed based rewards was comparable, but when reliability is taken into account, average speed is preferred since it produces a lower variance in waiting times.
+
+The results from agents using reward functions based on either Wait Time or Time Lost are inconsistent when comparing pedestrians with vehicles.
+
+The rewards based on difference in delay (Delta Wait Time and Delta Time Lost), which were used in several previous items of research as a most desirable reward function, were amongst the worst performers.
+
+--------------------------------------
+
+Overall, our research reaffirms earlier findings that RL outperforms adaptive baseline algorithms.
+
+We find that the agents using rewards that tried to maximise average speed produced the lowest waiting times across demand levels, including both reference traffic systems.
+
+Rewarding based on delay minimisation or stopped time may perform worse than speed-based rewards as they encode information about previous timesteps, whereas queue lengths and vehicle speeds are snapshots at a single timestep, which better suits the underpinning  description of the problem as a Markov Decision Process.
+
+This may happen, especially under high demand, due to the fact that speed maximisation penalises the agent for vehicles which are moving slowly forward in congested conditions, which would not have been penalised by the queue length reward.
+This would also not have been captured by the stopped time reward, which may explain its worse performance overall, even while being the target metric.
+Another key finding is that whilst rewards based on difference in delay were found to perform well in earlier works, this was found to perform poorly in the present work.
+Lastly, while rate-of-reward type functions did not perform especially well, this may change if they are reformulated in a way that the reward for the entire action + any extensions are jointly computed rather than separatedly, to provide higer consistency to the per timestep reward computation.
+
+
+-----------------------------------------
+
+There are ways in which this work could be extended and improve:
+
+The control area could be extended to a series of intersections. This poses different problems in terms of agent coordination, but agents such as those here presented can be the baseline to start this work, as our later testing as demonstrated.
+
+The sensors’ abilities could be expanded to obtain measurements such as delay on the level of individual vehicles and pedestrians to for example identify outliers that have been waiting for too long.
+
+And lastly, it could be possible to expand the array of inputs available to the agent such that information about the different transportation modes, such as bicycles and buses can be used to treat them separately from the rest of the traffic flow.
+
+--------------------------------------------
+
+Thank you very much for attending this presentation, and I will be very happy to answer any questions that you may have.
+
+
+
+
